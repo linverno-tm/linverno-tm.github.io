@@ -116,12 +116,12 @@ p, li, dd { text-wrap: pretty; }
   overflow: hidden; background: var(--sirt);
   margin-right: calc(-1 * var(--gutter));
 }
-.hero-rasm img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: left top; }
+.hero-rasm .plast img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: left top; }
 .izoh { font-size: 0.875rem; color: var(--xira); margin-top: 12px; line-height: 1.5; }
 
 @media (max-width: 899px) {
   .hero-rasm .plast { width: calc(100% + var(--gutter)); }
-  .hero-rasm img { aspect-ratio: 4 / 3.1; width: 158%; max-width: none; }
+  .hero-rasm .plast img { aspect-ratio: 4 / 3.1; width: 158%; max-width: none; }
 }
 @media (min-width: 900px) {
   .hero-pastki { grid-template-columns: minmax(18rem, 4fr) 8fr; gap: clamp(32px, 4vw, 64px); }
@@ -295,5 +295,5 @@ footer a { color: var(--xira); }
   .hero h1 { font-size: clamp(2rem, 5vw, 3rem); max-width: 22ch; }
   .hero-pastki { grid-template-columns: 1fr 1fr; margin-top: 24px; }
   .hero-rasm .plast { width: auto; margin-right: calc(-1 * var(--gutter)); }
-  .hero-rasm img { width: 100%; aspect-ratio: 16 / 10; }
+  .hero-rasm .plast img { width: 100%; aspect-ratio: 16 / 10; }
 }

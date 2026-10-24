@@ -11,7 +11,8 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RASM = json.load(open(os.path.join(ROOT, "tools", "rasmlar.json"), encoding="utf-8"))
-CSS = open(os.path.join(ROOT, "tools", "style.css"), encoding="utf-8").read()
+CSS = open(os.path.join(ROOT, "tools", "style.css"), encoding="utf-8").read() + open(os.path.join(ROOT, "tools", "harakat.css"), encoding="utf-8").read()
+JS = open(os.path.join(ROOT, "tools", "harakat.js"), encoding="utf-8").read()
 SAYT = "https://linverno-tm.github.io/"
 TG = "https://t.me/m_tojiddinov7"
 
@@ -24,7 +25,10 @@ T = {
         "nav": [("#ishlar", "Ishlar"), ("#xizmatlar", "Xizmatlar"), ("#aloqa", "Aloqa")],
         "til_link": "en/", "til_label": "EN", "til_aria": "English version",
         "tg_btn": "Telegram’da yozish",
-        "h1": ["Biznesingiz uchun CRM,", "mobil ilova, Telegram bot", "va mini app yarataman."],
+        "h1_bosh": "Biznesingiz uchun", "h1_oxir": "yarataman.",
+        "h1_sozlar": ["CRM", "mobil ilova", "Telegram bot", "mini app", "sayt"],
+        "h1_statik": "CRM, mobil ilova, Telegram bot, mini app va sayt",
+        "lenta": ["Hamkor CRM", "Mijozlar ilovasi", "KINO TV", "Qog‘oz Bino", "Hamkor Savdo", "Shuxrat o‘g‘li", "Oltinko‘l", "MINI GES", "ChatForge"],
         "lead": "<strong>Hamkor CRM muallifiman.</strong> To‘rtta filialning alohida 1C bazalarini bitta tizimga birlashtirdim: savdo, nasiya, kassa va ombor endi bir joyda va internet uzilsa ham ishlaydi.",
         "cta2": "Ishlarni ko‘rish",
         "hero_alt": "Hamkor CRM bosh sahifasi: kassalardagi pul, nasiya qarzi, muddati o‘tgan qarz, oylik foyda grafigi",
@@ -44,7 +48,7 @@ T = {
             ("crm-qarz", "Muddati o‘tgan qarzlar ro‘yxati, kechikish kunlari bo‘yicha guruhlangan", "Muddati o‘tgan qarzlar"),
             ("crm-kassa", "Kassalardagi pul qoldig‘i filiallar kesimida: naqd, terminal, Click, Payme", "Kassalar filiallar kesimida"),
         ],
-        "crm_oxir": "Bir oyda <span class=\"raqam\">1 373</span> ta o‘zgarish, <span class=\"raqam\">230</span> dan ortiq ekran, <span class=\"raqam\">65</span> ta hisobot. Shu platformani sizning savdongizga ham moslab beraman.",
+        "crm_oxir": "Bir oyda <span class=\"raqam\" data-son=\"1373\">1 373</span> ta o‘zgarish, <span class=\"raqam\" data-son=\"230\">230</span> dan ortiq ekran, <span class=\"raqam\" data-son=\"65\">65</span> ta hisobot. Shu platformani sizning savdongizga ham moslab beraman.",
         "crm_link": "hamkorcrm.uz",
         "toliq": "To‘liq o‘lchamda ochish",
         "mob_h2": "Mobil ilovalar",
@@ -118,7 +122,10 @@ T = {
         "nav": [("#ishlar", "Work"), ("#xizmatlar", "Services"), ("#aloqa", "Contact")],
         "til_link": "../", "til_label": "UZ", "til_aria": "O‘zbekcha versiya",
         "tg_btn": "Message on Telegram",
-        "h1": ["I build CRMs, mobile apps,", "Telegram bots and mini apps", "for businesses."],
+        "h1_bosh": "I build", "h1_oxir": "for businesses.",
+        "h1_sozlar": ["CRMs", "mobile apps", "Telegram bots", "mini apps", "websites"],
+        "h1_statik": "CRMs, mobile apps, Telegram bots, mini apps and websites",
+        "lenta": ["Hamkor CRM", "Customer app", "KINO TV", "Qog‘oz Bino", "Hamkor Savdo", "Shuxrat o‘g‘li", "Oltinko‘l", "MINI GES", "ChatForge"],
         "lead": "<strong>I wrote Hamkor CRM.</strong> It joined four stores’ separate 1C databases into one system: sales, installments, cash and stock now live in one place and keep working when the internet drops.",
         "cta2": "See the work",
         "hero_alt": "Hamkor CRM home screen: cash on hand, installment debt, overdue debt, monthly profit chart",
@@ -138,7 +145,7 @@ T = {
             ("crm-qarz", "Overdue debt list grouped by days late", "Overdue debt"),
             ("crm-kassa", "Cash balance per branch: cash, card terminal, Click, Payme", "Cash by branch"),
         ],
-        "crm_oxir": "In one month: <span class=\"raqam\">1,373</span> changes, <span class=\"raqam\">230</span>+ screens, <span class=\"raqam\">65</span> reports. I can adapt the same platform to your business.",
+        "crm_oxir": "In one month: <span class=\"raqam\" data-son=\"1373\">1,373</span> changes, <span class=\"raqam\" data-son=\"230\">230</span>+ screens, <span class=\"raqam\" data-son=\"65\">65</span> reports. I can adapt the same platform to your business.",
         "crm_link": "hamkorcrm.uz",
         "toliq": "Open full size",
         "mob_h2": "Mobile apps",
@@ -237,7 +244,16 @@ def page(k):
     url = SAYT if k == "uz" else SAYT + "en/"
     css = CSS.replace("{ROOT}", root)
     nav = "".join(f'<a class="bolim" href="{h}">{e(l)}</a>' for h, l in t["nav"])
-    h1 = "".join(f'<span class="q">{e(x)}</span>' for x in t["h1"])
+    sozlar = t["h1_sozlar"] + t["h1_sozlar"][:1]
+    h1 = (f'<span class="q">{e(t["h1_bosh"])}</span>'
+          f'<span class="q aylan" aria-hidden="true"><span class="aylan-ichi">'
+          + "".join(f"<span>{e(x)}</span>" for x in sozlar) +
+          f'</span></span><span class="statik">{e(t["h1_statik"])}</span>'
+          f'<span class="q">{e(t["h1_oxir"])}</span>')
+    yulduz = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg>'
+    lenta_bir = "".join(f'<span class="soz{" kontur" if i % 2 else ""}">{e(x)}</span>{yulduz}' for i, x in enumerate(t["lenta"]))
+    suzuvchi = picture(root, "mobil-bosh", "", "(min-width: 900px) 15vw, 34vw", lazy=False)
+    harflar = "".join(f'<span style="--i:{i}">{ch}</span>' for i, ch in enumerate("@m_tojiddinov7"))
     hero_img = picture(root, "crm-bosh", t["hero_alt"], "(min-width: 900px) 64vw, 160vw", lazy=False, high=True)
 
     fakt = "".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in t["faktlar"])
@@ -255,7 +271,8 @@ def page(k):
     saytlar = []
     for n, nom, belgi, matn, href, link, alt in t["saytlar"]:
         b = f'<span class="belgi">{e(belgi)}</span>' if belgi else ""
-        rasm = f'<div class="ramka">{picture(root, n, alt, "(min-width: 700px) 48vw, 100vw")}</div>'
+        uzun = n.replace("sayt-", "uzun-")
+        rasm = f'<div class="ramka oqim" data-nur>{picture(root, uzun, alt, "(min-width: 700px) 48vw, 100vw")}</div>'
         if href:
             rasm = f'<a href="{href}" rel="noopener" tabindex="-1" aria-hidden="true">{rasm}</a>'
         havola = f'<a class="havola" href="{href}" rel="noopener">{e(link)}</a>' if href else ""
@@ -268,7 +285,7 @@ def page(k):
     mob_boshqa = "".join(f'<li><b>{e(a)}</b><span>{e(b)}</span><a class="havola" href="{h}" rel="noopener">{e(t["kod"])}: {e(a)}</a></li>'
                          for a, b, h in t["mob_boshqa"])
     boshqa = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in t["boshqa"])
-    xiz = "".join(f'<div class="xizmat"><h3>{e(a)}</h3><p>{e(b)}</p></div>' for a, b in t["xizmatlar"])
+    xiz = "".join(f'<div class="xizmat" data-nur><h3>{e(a)}</h3><p>{e(b)}</p></div>' for a, b in t["xizmatlar"])
     poster = f"{root}img/veo-kadr-800.webp"
     other = SAYT + ("en/" if k == "uz" else "")
 
@@ -296,14 +313,16 @@ def page(k):
 <link rel="apple-touch-icon" href="{root}apple-touch-icon.png">
 <link rel="preload" href="{root}geologica.woff2" as="font" type="font/woff2" crossorigin>
 <style>{css}</style>
+<script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("harakat");</script>
 </head>
 <body>
 <a class="skip" href="#asosiy">{e(t['skip'])}</a>
-<header class="wrap top">
+<div class="progress" aria-hidden="true"></div>
+<header class="tepa"><div class="wrap top">
   <a class="nom" href="{root or './'}"><span class="toliq">Muhammadabdulloh Tojiddinov</span><span class="qisqa">M. Tojiddinov</span></a>
   <nav aria-label="{'Bo‘limlar' if k == 'uz' else 'Sections'}">{nav}<a class="til" href="{t['til_link']}" hreflang="{'en' if k == 'uz' else 'uz'}" lang="{'en' if k == 'uz' else 'uz'}" aria-label="{e(t['til_aria'])}">{t['til_label']}</a>
   <a class="btn btn-asosiy" href="{TG}" rel="noopener" aria-label="{e(t['tg_btn'])}">{TG_ICON}<span>{e(t['tg_btn'])}</span></a></nav>
-</header>
+</div></header>
 <main id="asosiy">
 <section class="wrap hero" aria-labelledby="h1">
   <h1 id="h1">{h1}</h1>
@@ -317,10 +336,12 @@ def page(k):
     </div>
     <figure class="hero-rasm">
       <div class="plast">{hero_img}</div>
+      <div class="suzuvchi" aria-hidden="true">{suzuvchi}</div>
       <figcaption class="izoh">{e(t['hero_izoh'])}</figcaption>
     </figure>
   </div>
 </section>
+<div class="lenta" aria-hidden="true"><div class="lenta-ichi">{lenta_bir}{lenta_bir}</div></div>
 
 <section class="wrap bolim-bosh" id="ishlar" aria-labelledby="crm">
   <h2 id="crm">{e(t['crm_h2'])}</h2>
@@ -401,7 +422,7 @@ def page(k):
 
 <section class="wrap aloqa" id="aloqa" aria-labelledby="al">
   <h2 id="al" class="tagi">{e(t['aloqa_h2'])}</h2>
-  <a class="katta-havola" href="{TG}" rel="noopener">@m_tojiddinov7</a>
+  <a class="katta-havola" href="{TG}" rel="noopener" aria-label="Telegram: @m_tojiddinov7"><span class="harflar" aria-hidden="true">{harflar}</span></a>
   <p class="tagi" style="margin-top:28px">{e(t['aloqa_p'])}</p>
   <div class="aloqa-boshqa">
     <a class="havola" href="https://hamkorcrm.uz/" rel="noopener">hamkorcrm.uz</a>
@@ -410,28 +431,7 @@ def page(k):
 </section>
 </main>
 <footer><div class="wrap"><span>© 2026 {e(t['footer'])}</span><a href="{t['til_link']}" hreflang="{'en' if k == 'uz' else 'uz'}">{'English' if k == 'uz' else 'O‘zbekcha'}</a></div></footer>
-<script>
-(() => {{
-  const v = document.querySelector("video[data-src]");
-  if (!v) return;
-  const b = v.parentElement.querySelector(".pauza");
-  const kam = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let qolda = false, yuklandi = false;
-  const yukla = () => {{ if (!yuklandi) {{ v.src = v.dataset.src; yuklandi = true; }} }};
-  const ikon = () => {{
-    b.innerHTML = v.paused ? '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>' : '{PAUZA}';
-    b.setAttribute("aria-label", v.paused ? b.dataset.davom : b.dataset.pauza);
-  }};
-  b.hidden = false;
-  v.addEventListener("play", ikon); v.addEventListener("pause", ikon); ikon();
-  b.addEventListener("click", () => {{ qolda = true; yukla(); v.paused ? v.play() : v.pause(); }});
-  if (kam) return;
-  new IntersectionObserver(([x]) => {{
-    if (qolda) return;
-    if (x.isIntersecting) {{ yukla(); v.play().catch(() => {{}}); }} else v.pause();
-  }}, {{ rootMargin: "200px 0px" }}).observe(v);
-}})();
-</script>
+<script>{JS}</script>
 </body>
 </html>
 """
