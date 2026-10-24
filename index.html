@@ -132,7 +132,7 @@ p, li, dd { text-wrap: pretty; }
 .hero-matn p strong { color: var(--qogoz); font-weight: 480; }
 .tugmalar { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-rasm { position: relative; margin: 0; min-width: 0; }
-.hero-pastki > *, .crm-ichi > *, .ekranlar > *, .tg-ishlar > *, .saytlar > *, .media-ishlar > * { min-width: 0; }
+.hero-pastki > *, .crm-ichi > *, .mobil-ichi > *, .ekranlar > *, .tg-ishlar > *, .saytlar > *, .media-ishlar > * { min-width: 0; }
 .hero-rasm .plast {
   border: 1px solid var(--chiziq); border-right: 0;
   border-radius: var(--r) 0 0 var(--r);
@@ -220,6 +220,34 @@ section { scroll-margin-top: 24px; }
 .ish p { color: var(--xira); margin-top: 8px; max-width: 32rem; }
 .ish .havola { display: inline-block; margin-top: 14px; }
 
+/* Mobil ilovalar */
+.mobil-ichi { display: grid; gap: 48px; margin-top: 56px; }
+.mobil-rasmlar { margin: 0; }
+.uch-telefon { display: flex; gap: 16px; align-items: flex-start; }
+.uch-telefon figure { margin: 0; flex: 1 1 0; min-width: 0; }
+.uch-telefon figure:nth-child(1) { margin-top: 56px; }
+.uch-telefon figure:nth-child(3) { margin-top: 112px; }
+.mobil-matn h3 { font-size: 1.625rem; letter-spacing: -0.02em; font-variation-settings: "SHRP" 50; }
+.mobil-matn > p { color: var(--xira); margin-top: 10px; max-width: 34rem; }
+.mobil-matn .faktlar { margin-top: 32px; }
+.mobil-boshqa { margin-top: 72px; }
+.mobil-boshqa h3 { font-size: 1.375rem; letter-spacing: -0.015em; font-variation-settings: "SHRP" 50; }
+.royxat.uchta { margin-top: 20px; }
+@media (min-width: 900px) { .royxat.uchta { grid-template-columns: repeat(3, 1fr); column-gap: clamp(24px, 3vw, 48px); } }
+.royxat .havola { display: inline-block; margin-top: 8px; font-size: 0.95rem; }
+@media (max-width: 699px) {
+  .uch-telefon {
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+  .uch-telefon figure { flex: 0 0 64vw; scroll-snap-align: start; }
+  .uch-telefon figure:nth-child(n) { margin-top: 0; }
+}
+@media (min-width: 1000px) {
+  .mobil-ichi { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(40px, 5vw, 88px); align-items: start; }
+}
+
 /* Saytlar */
 .saytlar { display: grid; gap: 56px; margin-top: 56px; }
 @media (min-width: 700px) { .saytlar { grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 64px; } }
@@ -303,7 +331,7 @@ footer a { color: var(--xira); }
 </header>
 <main id="asosiy">
 <section class="wrap hero" aria-labelledby="h1">
-  <h1 id="h1"><span class="q">Biznesingiz uchun CRM,</span><span class="q">Telegram bot va mini app</span><span class="q">yarataman.</span></h1>
+  <h1 id="h1"><span class="q">Biznesingiz uchun CRM,</span><span class="q">mobil ilova, Telegram bot</span><span class="q">va mini app yarataman.</span></h1>
   <div class="hero-pastki">
     <div class="hero-matn">
       <p><strong>Hamkor CRM muallifiman.</strong> To‘rtta filialning alohida 1C bazalarini bitta tizimga birlashtirdim: savdo, nasiya, kassa va ombor endi bir joyda va internet uzilsa ham ishlaydi.</p>
@@ -325,10 +353,30 @@ footer a { color: var(--xira); }
     <div class="crm-chap">
       <p class="tagi">1C o‘rnini bosgan muddatli to‘lov savdo tizimi. Sentabr 2026 dan ishlab chiqyapman, platforma meniki.</p>
       <div class="crm-yozuv"><p>To‘rtta do‘kon to‘rtta alohida 1C bazasida ishlardi va bir-birini ko‘rmasdi. Bir do‘konda qora ro‘yxatga tushgan mijoz keyingisida yana nasiyaga tovar olishi mumkin edi.</p><p>Hammasi uchun bitta tizim qurdim: savdo, nasiya shartnomalari, to‘lovlar, kassa, ombor, ish haqi va hisobotlar. 1C bilan ikki tomonlama sinxronlanadi, shuning uchun o‘tish davrida ikkalasi yonma-yon ishladi.</p></div>
-      <dl class="faktlar"><div><dt>Internet uzilsa ham ishlaydi</dt><dd>Kompyuterdagi shifrlangan nusxa bilan har bir oyna ochilaveradi. Amallar navbatga yoziladi va aloqa tiklanganda o‘zi yuboriladi.</dd></div><div><dt>Windows dasturi</dt><dd>Chekni so‘ramasdan chop etadi va o‘zi yangilanadi. Xodimlar brauzer emas, dastur bilan ishlaydi.</dd></div><div><dt>Har bir yangilanish oldin sinovdan o‘tadi</dt><dd>Savdo, shartnoma, to‘lov va hisobotlar vaqtinchalik bazada tekshiriladi, keyin ishga chiqadi.</dd></div><div><dt>Telefonda ham</dt><dd>Mijozlar uchun Android ilova tayyorlanmoqda: shartnoma, to‘lov grafigi va qolgan qarz bir qarashda.</dd></div></dl>
+      <dl class="faktlar"><div><dt>Internet uzilsa ham ishlaydi</dt><dd>Kompyuterdagi shifrlangan nusxa bilan har bir oyna ochilaveradi. Amallar navbatga yoziladi va aloqa tiklanganda o‘zi yuboriladi.</dd></div><div><dt>Windows dasturi</dt><dd>Chekni so‘ramasdan chop etadi va o‘zi yangilanadi. Xodimlar brauzer emas, dastur bilan ishlaydi.</dd></div><div><dt>Har bir yangilanish oldin sinovdan o‘tadi</dt><dd>Savdo, shartnoma, to‘lov va hisobotlar vaqtinchalik bazada tekshiriladi, keyin ishga chiqadi.</dd></div><div><dt>Mijoz telefonida ham</dt><dd>Shartnoma, to‘lov grafigi va qolgan qarzni mijoz o‘z ilovasida ko‘radi. Ilova pastda, «Mobil ilovalar» bo‘limida.</dd></div></dl>
       <div class="crm-oxir"><p>Bir oyda <span class="raqam">1 373</span> ta o‘zgarish, <span class="raqam">230</span> dan ortiq ekran, <span class="raqam">65</span> ta hisobot. Shu platformani sizning savdongizga ham moslab beraman.</p><a class="havola" href="https://hamkorcrm.uz/" rel="noopener">hamkorcrm.uz</a></div>
     </div>
     <div class="ekranlar"><figure><a class="ramka" href="img/crm-mijozlar-1600.webp" aria-label="To‘liq o‘lchamda ochish: Mijozlar va ularning ishonch bahosi"><picture><source type="image/avif" srcset="img/crm-mijozlar-960.avif 960w, img/crm-mijozlar-1600.avif 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><source type="image/webp" srcset="img/crm-mijozlar-960.webp 960w, img/crm-mijozlar-1600.webp 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><img src="img/crm-mijozlar-960.webp" width="1600" height="1000" alt="Mijozlar ro‘yxati: har bir mijozning ishonch bahosi, shartnomalari va muddati o‘tgan qarzi" decoding="async" loading="lazy"></picture></a><figcaption class="izoh">Mijozlar va ularning ishonch bahosi</figcaption></figure><figure><a class="ramka" href="img/crm-qarz-1600.webp" aria-label="To‘liq o‘lchamda ochish: Muddati o‘tgan qarzlar"><picture><source type="image/avif" srcset="img/crm-qarz-960.avif 960w, img/crm-qarz-1600.avif 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><source type="image/webp" srcset="img/crm-qarz-960.webp 960w, img/crm-qarz-1600.webp 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><img src="img/crm-qarz-960.webp" width="1600" height="1000" alt="Muddati o‘tgan qarzlar ro‘yxati, kechikish kunlari bo‘yicha guruhlangan" decoding="async" loading="lazy"></picture></a><figcaption class="izoh">Muddati o‘tgan qarzlar</figcaption></figure><figure><a class="ramka" href="img/crm-kassa-1600.webp" aria-label="To‘liq o‘lchamda ochish: Kassalar filiallar kesimida"><picture><source type="image/avif" srcset="img/crm-kassa-960.avif 960w, img/crm-kassa-1600.avif 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><source type="image/webp" srcset="img/crm-kassa-960.webp 960w, img/crm-kassa-1600.webp 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><img src="img/crm-kassa-960.webp" width="1600" height="1000" alt="Kassalardagi pul qoldig‘i filiallar kesimida: naqd, terminal, Click, Payme" decoding="async" loading="lazy"></picture></a><figcaption class="izoh">Kassalar filiallar kesimida</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="wrap bolim-bosh" id="mobil" aria-labelledby="mb">
+  <h2 id="mb">Mobil ilovalar</h2>
+  <p class="tagi">Android va iPhone uchun bitta koddan yozaman (Flutter): bitta ilova ikkala do‘konga chiqadi.</p>
+  <div class="mobil-ichi">
+    <figure class="mobil-rasmlar">
+      <div class="uch-telefon"><figure><div class="telefon"><picture><source type="image/avif" srcset="img/mobil-bosh-520.avif 520w, img/mobil-bosh-780.avif 780w" sizes="(min-width: 1000px) 19vw, 64vw"><source type="image/webp" srcset="img/mobil-bosh-520.webp 520w, img/mobil-bosh-780.webp 780w" sizes="(min-width: 1000px) 19vw, 64vw"><img src="img/mobil-bosh-520.webp" width="780" height="1688" alt="Hamkor ilovasi, bosh sahifa: o‘z mablag‘i, muddatli to‘lov limiti, o‘tkazma, to‘ldirish, to‘lash va karta tugmalari" decoding="async" loading="lazy"></picture></div></figure><figure><div class="telefon"><picture><source type="image/avif" srcset="img/mobil-katalog-520.avif 520w, img/mobil-katalog-780.avif 780w" sizes="(min-width: 1000px) 19vw, 64vw"><source type="image/webp" srcset="img/mobil-katalog-520.webp 520w, img/mobil-katalog-780.webp 780w" sizes="(min-width: 1000px) 19vw, 64vw"><img src="img/mobil-katalog-520.webp" width="780" height="1688" alt="Hamkor ilovasi, katalog: telefonlar va oylik to‘lov narxi" decoding="async" loading="lazy"></picture></div></figure><figure><div class="telefon"><picture><source type="image/avif" srcset="img/mobil-tolovlar-520.avif 520w, img/mobil-tolovlar-780.avif 780w" sizes="(min-width: 1000px) 19vw, 64vw"><source type="image/webp" srcset="img/mobil-tolovlar-520.webp 520w, img/mobil-tolovlar-780.webp 780w" sizes="(min-width: 1000px) 19vw, 64vw"><img src="img/mobil-tolovlar-520.webp" width="780" height="1688" alt="Hamkor ilovasi, to‘lovlar tarixi oylar bo‘yicha: Payme, naqd, Click" decoding="async" loading="lazy"></picture></div></figure></div>
+      <figcaption class="izoh">Demo mijoz. Ism va summalar yopilgan; ilova do‘konlarga chiqarishga tayyorlanmoqda.</figcaption>
+    </figure>
+    <div class="mobil-matn">
+      <h3>Hamkor — mijozlar ilovasi</h3>
+      <p>Muddatli to‘lov bilan xarid qilgan mijoz uchun: shartnomalar, qolgan qarz, keyingi to‘lov va to‘lov tarixi telefonda. Katalogdan muddatli to‘lovga buyurtma beradi, do‘kon bilan chatda yozishadi.</p>
+      <dl class="faktlar"><div><dt>Hamkor CRM bilan bitta tizimda</dt><dd>Do‘konda qilingan to‘lov ilovada ham ko‘rinadi, qo‘shimcha kiritish yo‘q.</dd></div><div><dt>Kirish oson, qulf ishonchli</dt><dd>Telefon raqami va SMS kod bilan kiriladi; keyin ilova PIN yoki barmoq izi bilan ochiladi.</dd></div><div><dt>Uch tilda, ikki mavzuda</dt><dd>O‘zbek (kirill va lotin) va rus tilida; yorug‘ va qorong‘i ko‘rinish.</dd></div></dl>
+    </div>
+  </div>
+  <div class="mobil-boshqa">
+    <h3>Boshqa ilovalarim</h3>
+    <ul class="royxat uchta"><li><b>ChatForge</b><span>Flutter’da messenjer: shaxsiy yozishmalar, kerakli odamga push-xabarnoma.</span><a class="havola" href="https://github.com/linverno-tm/chatforge" rel="noopener">Kodi: ChatForge</a></li><li><b>Ommaviy SMS</b><span>Android ilova: Excel yoki CSV ro‘yxatdan SMS yuboradi; telefon o‘chib yonsa ham navbat yo‘qolmaydi.</span><a class="havola" href="https://github.com/linverno-tm/bulk-sms" rel="noopener">Kodi: Ommaviy SMS</a></li><li><b>Vazifalar ilovasi</b><span>Internet yo‘qda ham ishlaydi, aloqa tiklanganda o‘zi sinxronlanadi.</span><a class="havola" href="https://github.com/linverno-tm/task-manager" rel="noopener">Kodi: Vazifalar ilovasi</a></li></ul>
   </div>
 </section>
 
@@ -366,8 +414,8 @@ footer a { color: var(--xira); }
 </section>
 
 <section class="wrap bolim-bosh" id="boshqa" aria-labelledby="bq">
-  <h2 id="bq">Mobil ilovalar va avtomatlashtirish</h2>
-  <ul class="royxat"><li><b>Narx kuzatuvi</b><span>Raqobatchilarning Telegram guruhlaridagi e’lonlari narxlarga aylanadi; har do‘kon uchun kunlik PDF faqat yangi va o‘zgargan narxlar bilan keladi.</span></li><li><b>ChatForge</b><span>Flutter’da yozilgan messenjer: shaxsiy yozishmalar, kerakli odamga push-xabarnoma, takrorlanmaydigan foydalanuvchi nomi.</span></li><li><b>Ommaviy SMS</b><span>Android ilova: Excel yoki CSV ro‘yxatdan SMS yuboradi; telefon o‘chib yonsa ham navbat yo‘qolmaydi.</span></li><li><b>Vazifalar ilovasi</b><span>Internet yo‘qda ham ishlaydi, aloqa tiklanganda o‘zi sinxronlanadi. iPhone uslubidagi ko‘rinish.</span></li><li><b>Kameral hisobot</b><span>Hisob-faktura va kassa cheklaridan soliq tekshiruvi uchun hisobotni o‘zi yig‘adigan dastur.</span></li><li><b>O‘z ulagichlarim</b><span>YouTube va Pinterest bilan ishlaydigan MCP serverlar: kanal va kontent ishini sun’iy intellekt orqali bajarish uchun.</span></li></ul>
+  <h2 id="bq">Avtomatlashtirish</h2>
+  <ul class="royxat"><li><b>Narx kuzatuvi</b><span>Raqobatchilarning Telegram guruhlaridagi e’lonlari narxlarga aylanadi; har do‘kon uchun kunlik PDF faqat yangi va o‘zgargan narxlar bilan keladi.</span></li><li><b>Kameral hisobot</b><span>Hisob-faktura va kassa cheklaridan soliq tekshiruvi uchun hisobotni o‘zi yig‘adigan dastur.</span></li><li><b>O‘z ulagichlarim</b><span>YouTube va Pinterest bilan ishlaydigan MCP serverlar: kanal va kontent ishini sun’iy intellekt orqali bajarish uchun.</span></li></ul>
 </section>
 
 <section class="wrap bolim-bosh" id="xizmatlar" aria-labelledby="xz">

@@ -132,7 +132,7 @@ p, li, dd { text-wrap: pretty; }
 .hero-matn p strong { color: var(--qogoz); font-weight: 480; }
 .tugmalar { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-rasm { position: relative; margin: 0; min-width: 0; }
-.hero-pastki > *, .crm-ichi > *, .ekranlar > *, .tg-ishlar > *, .saytlar > *, .media-ishlar > * { min-width: 0; }
+.hero-pastki > *, .crm-ichi > *, .mobil-ichi > *, .ekranlar > *, .tg-ishlar > *, .saytlar > *, .media-ishlar > * { min-width: 0; }
 .hero-rasm .plast {
   border: 1px solid var(--chiziq); border-right: 0;
   border-radius: var(--r) 0 0 var(--r);
@@ -220,6 +220,34 @@ section { scroll-margin-top: 24px; }
 .ish p { color: var(--xira); margin-top: 8px; max-width: 32rem; }
 .ish .havola { display: inline-block; margin-top: 14px; }
 
+/* Mobil ilovalar */
+.mobil-ichi { display: grid; gap: 48px; margin-top: 56px; }
+.mobil-rasmlar { margin: 0; }
+.uch-telefon { display: flex; gap: 16px; align-items: flex-start; }
+.uch-telefon figure { margin: 0; flex: 1 1 0; min-width: 0; }
+.uch-telefon figure:nth-child(1) { margin-top: 56px; }
+.uch-telefon figure:nth-child(3) { margin-top: 112px; }
+.mobil-matn h3 { font-size: 1.625rem; letter-spacing: -0.02em; font-variation-settings: "SHRP" 50; }
+.mobil-matn > p { color: var(--xira); margin-top: 10px; max-width: 34rem; }
+.mobil-matn .faktlar { margin-top: 32px; }
+.mobil-boshqa { margin-top: 72px; }
+.mobil-boshqa h3 { font-size: 1.375rem; letter-spacing: -0.015em; font-variation-settings: "SHRP" 50; }
+.royxat.uchta { margin-top: 20px; }
+@media (min-width: 900px) { .royxat.uchta { grid-template-columns: repeat(3, 1fr); column-gap: clamp(24px, 3vw, 48px); } }
+.royxat .havola { display: inline-block; margin-top: 8px; font-size: 0.95rem; }
+@media (max-width: 699px) {
+  .uch-telefon {
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+  .uch-telefon figure { flex: 0 0 64vw; scroll-snap-align: start; }
+  .uch-telefon figure:nth-child(n) { margin-top: 0; }
+}
+@media (min-width: 1000px) {
+  .mobil-ichi { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(40px, 5vw, 88px); align-items: start; }
+}
+
 /* Saytlar */
 .saytlar { display: grid; gap: 56px; margin-top: 56px; }
 @media (min-width: 700px) { .saytlar { grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 64px; } }
@@ -303,7 +331,7 @@ footer a { color: var(--xira); }
 </header>
 <main id="asosiy">
 <section class="wrap hero" aria-labelledby="h1">
-  <h1 id="h1"><span class="q">I build CRMs,</span><span class="q">Telegram bots and mini apps</span><span class="q">for businesses.</span></h1>
+  <h1 id="h1"><span class="q">I build CRMs, mobile apps,</span><span class="q">Telegram bots and mini apps</span><span class="q">for businesses.</span></h1>
   <div class="hero-pastki">
     <div class="hero-matn">
       <p><strong>I wrote Hamkor CRM.</strong> It joined four stores’ separate 1C databases into one system: sales, installments, cash and stock now live in one place and keep working when the internet drops.</p>
@@ -325,10 +353,30 @@ footer a { color: var(--xira); }
     <div class="crm-chap">
       <p class="tagi">An installment-sales system that replaced 1C. In development since September 2026; I own the platform.</p>
       <div class="crm-yozuv"><p>Four stores ran on four separate 1C databases that couldn’t see each other. A customer blacklisted in one store could get new credit in the next.</p><p>I built one system for all of them: sales, installment contracts, payments, cash, warehouse, payroll and reports. It syncs with 1C both ways, so the two ran side by side during the switch.</p></div>
-      <dl class="faktlar"><div><dt>Works without internet</dt><dd>An encrypted local copy keeps every window usable. Actions queue up and sync back on their own when the line returns.</dd></div><div><dt>Windows app</dt><dd>Prints receipts silently and updates itself. Staff work in an app, not a browser tab.</dd></div><div><dt>Every release is tested first</dt><dd>Sales, contracts, payments and reports run on a throw-away database before a build goes live.</dd></div><div><dt>On the phone too</dt><dd>An Android app for customers is on the way: contract, payment schedule and remaining debt at a glance.</dd></div></dl>
+      <dl class="faktlar"><div><dt>Works without internet</dt><dd>An encrypted local copy keeps every window usable. Actions queue up and sync back on their own when the line returns.</dd></div><div><dt>Windows app</dt><dd>Prints receipts silently and updates itself. Staff work in an app, not a browser tab.</dd></div><div><dt>Every release is tested first</dt><dd>Sales, contracts, payments and reports run on a throw-away database before a build goes live.</dd></div><div><dt>On the customer’s phone too</dt><dd>Customers see their contract, payment schedule and remaining debt in their own app, shown below under “Mobile apps”.</dd></div></dl>
       <div class="crm-oxir"><p>In one month: <span class="raqam">1,373</span> changes, <span class="raqam">230</span>+ screens, <span class="raqam">65</span> reports. I can adapt the same platform to your business.</p><a class="havola" href="https://hamkorcrm.uz/" rel="noopener">hamkorcrm.uz</a></div>
     </div>
     <div class="ekranlar"><figure><a class="ramka" href="../img/crm-mijozlar-1600.webp" aria-label="Open full size: Customers and their trust score"><picture><source type="image/avif" srcset="../img/crm-mijozlar-960.avif 960w, ../img/crm-mijozlar-1600.avif 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><source type="image/webp" srcset="../img/crm-mijozlar-960.webp 960w, ../img/crm-mijozlar-1600.webp 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><img src="../img/crm-mijozlar-960.webp" width="1600" height="1000" alt="Customer list: each customer’s trust score, contracts and overdue debt" decoding="async" loading="lazy"></picture></a><figcaption class="izoh">Customers and their trust score</figcaption></figure><figure><a class="ramka" href="../img/crm-qarz-1600.webp" aria-label="Open full size: Overdue debt"><picture><source type="image/avif" srcset="../img/crm-qarz-960.avif 960w, ../img/crm-qarz-1600.avif 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><source type="image/webp" srcset="../img/crm-qarz-960.webp 960w, ../img/crm-qarz-1600.webp 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><img src="../img/crm-qarz-960.webp" width="1600" height="1000" alt="Overdue debt list grouped by days late" decoding="async" loading="lazy"></picture></a><figcaption class="izoh">Overdue debt</figcaption></figure><figure><a class="ramka" href="../img/crm-kassa-1600.webp" aria-label="Open full size: Cash by branch"><picture><source type="image/avif" srcset="../img/crm-kassa-960.avif 960w, ../img/crm-kassa-1600.avif 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><source type="image/webp" srcset="../img/crm-kassa-960.webp 960w, ../img/crm-kassa-1600.webp 1600w" sizes="(min-width: 1100px) 58vw, 150vw"><img src="../img/crm-kassa-960.webp" width="1600" height="1000" alt="Cash balance per branch: cash, card terminal, Click, Payme" decoding="async" loading="lazy"></picture></a><figcaption class="izoh">Cash by branch</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="wrap bolim-bosh" id="mobil" aria-labelledby="mb">
+  <h2 id="mb">Mobile apps</h2>
+  <p class="tagi">Android and iPhone from one codebase (Flutter): one app, published to both stores.</p>
+  <div class="mobil-ichi">
+    <figure class="mobil-rasmlar">
+      <div class="uch-telefon"><figure><div class="telefon"><picture><source type="image/avif" srcset="../img/mobil-bosh-520.avif 520w, ../img/mobil-bosh-780.avif 780w" sizes="(min-width: 1000px) 19vw, 64vw"><source type="image/webp" srcset="../img/mobil-bosh-520.webp 520w, ../img/mobil-bosh-780.webp 780w" sizes="(min-width: 1000px) 19vw, 64vw"><img src="../img/mobil-bosh-520.webp" width="780" height="1688" alt="Hamkor app home: own funds, installment limit, transfer, top-up, pay and card buttons" decoding="async" loading="lazy"></picture></div></figure><figure><div class="telefon"><picture><source type="image/avif" srcset="../img/mobil-katalog-520.avif 520w, ../img/mobil-katalog-780.avif 780w" sizes="(min-width: 1000px) 19vw, 64vw"><source type="image/webp" srcset="../img/mobil-katalog-520.webp 520w, ../img/mobil-katalog-780.webp 780w" sizes="(min-width: 1000px) 19vw, 64vw"><img src="../img/mobil-katalog-520.webp" width="780" height="1688" alt="Hamkor app catalog: phones with the monthly payment" decoding="async" loading="lazy"></picture></div></figure><figure><div class="telefon"><picture><source type="image/avif" srcset="../img/mobil-tolovlar-520.avif 520w, ../img/mobil-tolovlar-780.avif 780w" sizes="(min-width: 1000px) 19vw, 64vw"><source type="image/webp" srcset="../img/mobil-tolovlar-520.webp 520w, ../img/mobil-tolovlar-780.webp 780w" sizes="(min-width: 1000px) 19vw, 64vw"><img src="../img/mobil-tolovlar-520.webp" width="780" height="1688" alt="Hamkor app payment history by month: Payme, cash, Click" decoding="async" loading="lazy"></picture></div></figure></div>
+      <figcaption class="izoh">Demo customer. Name and amounts are hidden; the app is being prepared for the stores.</figcaption>
+    </figure>
+    <div class="mobil-matn">
+      <h3>Hamkor — the customer app</h3>
+      <p>For customers who bought on installments: contracts, remaining debt, next payment and payment history on the phone. They order from the catalog on installments and chat with the store.</p>
+      <dl class="faktlar"><div><dt>One system with Hamkor CRM</dt><dd>A payment made in the store shows up in the app too, nothing to enter twice.</dd></div><div><dt>Easy sign-in, solid lock</dt><dd>Sign in with a phone number and an SMS code; after that the app opens with a PIN or a fingerprint.</dd></div><div><dt>Three languages, two themes</dt><dd>Uzbek (Cyrillic and Latin) and Russian; light and dark.</dd></div></dl>
+    </div>
+  </div>
+  <div class="mobil-boshqa">
+    <h3>Other apps I built</h3>
+    <ul class="royxat uchta"><li><b>ChatForge</b><span>A Flutter messenger: one-to-one chats, push notifications to the right person.</span><a class="havola" href="https://github.com/linverno-tm/chatforge" rel="noopener">Code: ChatForge</a></li><li><b>Bulk SMS</b><span>An Android app that sends SMS from an Excel or CSV list; the queue survives a phone restart.</span><a class="havola" href="https://github.com/linverno-tm/bulk-sms" rel="noopener">Code: Bulk SMS</a></li><li><b>Task app</b><span>Works offline and syncs on its own when the connection returns.</span><a class="havola" href="https://github.com/linverno-tm/task-manager" rel="noopener">Code: Task app</a></li></ul>
   </div>
 </section>
 
@@ -366,8 +414,8 @@ footer a { color: var(--xira); }
 </section>
 
 <section class="wrap bolim-bosh" id="boshqa" aria-labelledby="bq">
-  <h2 id="bq">Mobile apps and automation</h2>
-  <ul class="royxat"><li><b>Price watch</b><span>Competitors’ posts in Telegram groups become prices; each store gets a daily PDF with only the new and changed prices.</span></li><li><b>ChatForge</b><span>A messenger built with Flutter: one-to-one chats, push notifications to the right person, unique usernames.</span></li><li><b>Bulk SMS</b><span>An Android app that sends SMS from an Excel or CSV list; the queue survives a phone restart.</span></li><li><b>Task app</b><span>Works offline and syncs on its own when the connection returns. iPhone-style interface.</span></li><li><b>Tax audit report</b><span>A program that builds the tax-audit report from invoices and cash receipts on its own.</span></li><li><b>My own connectors</b><span>MCP servers for YouTube and Pinterest, so channel and content work can be done through AI.</span></li></ul>
+  <h2 id="bq">Automation</h2>
+  <ul class="royxat"><li><b>Price watch</b><span>Competitors’ posts in Telegram groups become prices; each store gets a daily PDF with only the new and changed prices.</span></li><li><b>Tax audit report</b><span>A program that builds the tax-audit report from invoices and cash receipts on its own.</span></li><li><b>My own connectors</b><span>MCP servers for YouTube and Pinterest, so channel and content work can be done through AI.</span></li></ul>
 </section>
 
 <section class="wrap bolim-bosh" id="xizmatlar" aria-labelledby="xz">

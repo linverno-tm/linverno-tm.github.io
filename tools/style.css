@@ -109,7 +109,7 @@ p, li, dd { text-wrap: pretty; }
 .hero-matn p strong { color: var(--qogoz); font-weight: 480; }
 .tugmalar { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-rasm { position: relative; margin: 0; min-width: 0; }
-.hero-pastki > *, .crm-ichi > *, .ekranlar > *, .tg-ishlar > *, .saytlar > *, .media-ishlar > * { min-width: 0; }
+.hero-pastki > *, .crm-ichi > *, .mobil-ichi > *, .ekranlar > *, .tg-ishlar > *, .saytlar > *, .media-ishlar > * { min-width: 0; }
 .hero-rasm .plast {
   border: 1px solid var(--chiziq); border-right: 0;
   border-radius: var(--r) 0 0 var(--r);
@@ -196,6 +196,34 @@ section { scroll-margin-top: 24px; }
 .ish h3 { font-size: 1.625rem; letter-spacing: -0.02em; margin-top: 28px; font-variation-settings: "SHRP" 50; }
 .ish p { color: var(--xira); margin-top: 8px; max-width: 32rem; }
 .ish .havola { display: inline-block; margin-top: 14px; }
+
+/* Mobil ilovalar */
+.mobil-ichi { display: grid; gap: 48px; margin-top: 56px; }
+.mobil-rasmlar { margin: 0; }
+.uch-telefon { display: flex; gap: 16px; align-items: flex-start; }
+.uch-telefon figure { margin: 0; flex: 1 1 0; min-width: 0; }
+.uch-telefon figure:nth-child(1) { margin-top: 56px; }
+.uch-telefon figure:nth-child(3) { margin-top: 112px; }
+.mobil-matn h3 { font-size: 1.625rem; letter-spacing: -0.02em; font-variation-settings: "SHRP" 50; }
+.mobil-matn > p { color: var(--xira); margin-top: 10px; max-width: 34rem; }
+.mobil-matn .faktlar { margin-top: 32px; }
+.mobil-boshqa { margin-top: 72px; }
+.mobil-boshqa h3 { font-size: 1.375rem; letter-spacing: -0.015em; font-variation-settings: "SHRP" 50; }
+.royxat.uchta { margin-top: 20px; }
+@media (min-width: 900px) { .royxat.uchta { grid-template-columns: repeat(3, 1fr); column-gap: clamp(24px, 3vw, 48px); } }
+.royxat .havola { display: inline-block; margin-top: 8px; font-size: 0.95rem; }
+@media (max-width: 699px) {
+  .uch-telefon {
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+  .uch-telefon figure { flex: 0 0 64vw; scroll-snap-align: start; }
+  .uch-telefon figure:nth-child(n) { margin-top: 0; }
+}
+@media (min-width: 1000px) {
+  .mobil-ichi { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(40px, 5vw, 88px); align-items: start; }
+}
 
 /* Saytlar */
 .saytlar { display: grid; gap: 56px; margin-top: 56px; }

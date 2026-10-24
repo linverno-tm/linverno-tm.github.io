@@ -24,7 +24,7 @@ T = {
         "nav": [("#ishlar", "Ishlar"), ("#xizmatlar", "Xizmatlar"), ("#aloqa", "Aloqa")],
         "til_link": "en/", "til_label": "EN", "til_aria": "English version",
         "tg_btn": "Telegram’da yozish",
-        "h1": ["Biznesingiz uchun CRM,", "Telegram bot va mini app", "yarataman."],
+        "h1": ["Biznesingiz uchun CRM,", "mobil ilova, Telegram bot", "va mini app yarataman."],
         "lead": "<strong>Hamkor CRM muallifiman.</strong> To‘rtta filialning alohida 1C bazalarini bitta tizimga birlashtirdim: savdo, nasiya, kassa va ombor endi bir joyda va internet uzilsa ham ishlaydi.",
         "cta2": "Ishlarni ko‘rish",
         "hero_alt": "Hamkor CRM bosh sahifasi: kassalardagi pul, nasiya qarzi, muddati o‘tgan qarz, oylik foyda grafigi",
@@ -37,7 +37,7 @@ T = {
             ("Internet uzilsa ham ishlaydi", "Kompyuterdagi shifrlangan nusxa bilan har bir oyna ochilaveradi. Amallar navbatga yoziladi va aloqa tiklanganda o‘zi yuboriladi."),
             ("Windows dasturi", "Chekni so‘ramasdan chop etadi va o‘zi yangilanadi. Xodimlar brauzer emas, dastur bilan ishlaydi."),
             ("Har bir yangilanish oldin sinovdan o‘tadi", "Savdo, shartnoma, to‘lov va hisobotlar vaqtinchalik bazada tekshiriladi, keyin ishga chiqadi."),
-            ("Telefonda ham", "Mijozlar uchun Android ilova tayyorlanmoqda: shartnoma, to‘lov grafigi va qolgan qarz bir qarashda."),
+            ("Mijoz telefonida ham", "Shartnoma, to‘lov grafigi va qolgan qarzni mijoz o‘z ilovasida ko‘radi. Ilova pastda, «Mobil ilovalar» bo‘limida."),
         ],
         "ekranlar": [
             ("crm-mijozlar", "Mijozlar ro‘yxati: har bir mijozning ishonch bahosi, shartnomalari va muddati o‘tgan qarzi", "Mijozlar va ularning ishonch bahosi"),
@@ -47,6 +47,26 @@ T = {
         "crm_oxir": "Bir oyda <span class=\"raqam\">1 373</span> ta o‘zgarish, <span class=\"raqam\">230</span> dan ortiq ekran, <span class=\"raqam\">65</span> ta hisobot. Shu platformani sizning savdongizga ham moslab beraman.",
         "crm_link": "hamkorcrm.uz",
         "toliq": "To‘liq o‘lchamda ochish",
+        "mob_h2": "Mobil ilovalar",
+        "mob_tagi": "Android va iPhone uchun bitta koddan yozaman (Flutter): bitta ilova ikkala do‘konga chiqadi.",
+        "mob_alt": ("Hamkor ilovasi, bosh sahifa: o‘z mablag‘i, muddatli to‘lov limiti, o‘tkazma, to‘ldirish, to‘lash va karta tugmalari",
+                    "Hamkor ilovasi, katalog: telefonlar va oylik to‘lov narxi",
+                    "Hamkor ilovasi, to‘lovlar tarixi oylar bo‘yicha: Payme, naqd, Click"),
+        "mob_h3": "Hamkor — mijozlar ilovasi",
+        "mob_p": "Muddatli to‘lov bilan xarid qilgan mijoz uchun: shartnomalar, qolgan qarz, keyingi to‘lov va to‘lov tarixi telefonda. Katalogdan muddatli to‘lovga buyurtma beradi, do‘kon bilan chatda yozishadi.",
+        "mob_fakt": [
+            ("Hamkor CRM bilan bitta tizimda", "Do‘konda qilingan to‘lov ilovada ham ko‘rinadi, qo‘shimcha kiritish yo‘q."),
+            ("Kirish oson, qulf ishonchli", "Telefon raqami va SMS kod bilan kiriladi; keyin ilova PIN yoki barmoq izi bilan ochiladi."),
+            ("Uch tilda, ikki mavzuda", "O‘zbek (kirill va lotin) va rus tilida; yorug‘ va qorong‘i ko‘rinish."),
+        ],
+        "mob_izoh": "Demo mijoz. Ism va summalar yopilgan; ilova do‘konlarga chiqarishga tayyorlanmoqda.",
+        "mob_boshqa_h3": "Boshqa ilovalarim",
+        "mob_boshqa": [
+            ("ChatForge", "Flutter’da messenjer: shaxsiy yozishmalar, kerakli odamga push-xabarnoma.", "https://github.com/linverno-tm/chatforge"),
+            ("Ommaviy SMS", "Android ilova: Excel yoki CSV ro‘yxatdan SMS yuboradi; telefon o‘chib yonsa ham navbat yo‘qolmaydi.", "https://github.com/linverno-tm/bulk-sms"),
+            ("Vazifalar ilovasi", "Internet yo‘qda ham ishlaydi, aloqa tiklanganda o‘zi sinxronlanadi.", "https://github.com/linverno-tm/task-manager"),
+        ],
+        "kod": "Kodi",
         "tg_h2": "Telegram bot va mini app",
         "tg_tagi": "Mijoz alohida ilova o‘rnatmaydi: katalog, qidiruv va ro‘yxat Telegram ichida ochiladi.",
         "kino_alt": ("KINO TV mini app bosh sahifasi: tanlangan serial va bo‘limlar", "KINO TV: serial sahifasi, qismlar ro‘yxati"),
@@ -69,12 +89,9 @@ T = {
         "buklet_h3": "Yevrobuklet, Hamkor Savdo",
         "buklet_p": "A4, uch buklama, bosmaga tayyor vektor fayl. Tashqi tomoni.",
         "buklet_alt": "Hamkor Savdo yevrobukleti: «24 oygacha muddatli to‘lov», tovarlar va oylik to‘lovlar",
-        "boshqa_h2": "Mobil ilovalar va avtomatlashtirish",
+        "boshqa_h2": "Avtomatlashtirish",
         "boshqa": [
             ("Narx kuzatuvi", "Raqobatchilarning Telegram guruhlaridagi e’lonlari narxlarga aylanadi; har do‘kon uchun kunlik PDF faqat yangi va o‘zgargan narxlar bilan keladi."),
-            ("ChatForge", "Flutter’da yozilgan messenjer: shaxsiy yozishmalar, kerakli odamga push-xabarnoma, takrorlanmaydigan foydalanuvchi nomi."),
-            ("Ommaviy SMS", "Android ilova: Excel yoki CSV ro‘yxatdan SMS yuboradi; telefon o‘chib yonsa ham navbat yo‘qolmaydi."),
-            ("Vazifalar ilovasi", "Internet yo‘qda ham ishlaydi, aloqa tiklanganda o‘zi sinxronlanadi. iPhone uslubidagi ko‘rinish."),
             ("Kameral hisobot", "Hisob-faktura va kassa cheklaridan soliq tekshiruvi uchun hisobotni o‘zi yig‘adigan dastur."),
             ("O‘z ulagichlarim", "YouTube va Pinterest bilan ishlaydigan MCP serverlar: kanal va kontent ishini sun’iy intellekt orqali bajarish uchun."),
         ],
@@ -101,7 +118,7 @@ T = {
         "nav": [("#ishlar", "Work"), ("#xizmatlar", "Services"), ("#aloqa", "Contact")],
         "til_link": "../", "til_label": "UZ", "til_aria": "O‘zbekcha versiya",
         "tg_btn": "Message on Telegram",
-        "h1": ["I build CRMs,", "Telegram bots and mini apps", "for businesses."],
+        "h1": ["I build CRMs, mobile apps,", "Telegram bots and mini apps", "for businesses."],
         "lead": "<strong>I wrote Hamkor CRM.</strong> It joined four stores’ separate 1C databases into one system: sales, installments, cash and stock now live in one place and keep working when the internet drops.",
         "cta2": "See the work",
         "hero_alt": "Hamkor CRM home screen: cash on hand, installment debt, overdue debt, monthly profit chart",
@@ -114,7 +131,7 @@ T = {
             ("Works without internet", "An encrypted local copy keeps every window usable. Actions queue up and sync back on their own when the line returns."),
             ("Windows app", "Prints receipts silently and updates itself. Staff work in an app, not a browser tab."),
             ("Every release is tested first", "Sales, contracts, payments and reports run on a throw-away database before a build goes live."),
-            ("On the phone too", "An Android app for customers is on the way: contract, payment schedule and remaining debt at a glance."),
+            ("On the customer’s phone too", "Customers see their contract, payment schedule and remaining debt in their own app, shown below under “Mobile apps”."),
         ],
         "ekranlar": [
             ("crm-mijozlar", "Customer list: each customer’s trust score, contracts and overdue debt", "Customers and their trust score"),
@@ -124,6 +141,26 @@ T = {
         "crm_oxir": "In one month: <span class=\"raqam\">1,373</span> changes, <span class=\"raqam\">230</span>+ screens, <span class=\"raqam\">65</span> reports. I can adapt the same platform to your business.",
         "crm_link": "hamkorcrm.uz",
         "toliq": "Open full size",
+        "mob_h2": "Mobile apps",
+        "mob_tagi": "Android and iPhone from one codebase (Flutter): one app, published to both stores.",
+        "mob_alt": ("Hamkor app home: own funds, installment limit, transfer, top-up, pay and card buttons",
+                    "Hamkor app catalog: phones with the monthly payment",
+                    "Hamkor app payment history by month: Payme, cash, Click"),
+        "mob_h3": "Hamkor — the customer app",
+        "mob_p": "For customers who bought on installments: contracts, remaining debt, next payment and payment history on the phone. They order from the catalog on installments and chat with the store.",
+        "mob_fakt": [
+            ("One system with Hamkor CRM", "A payment made in the store shows up in the app too, nothing to enter twice."),
+            ("Easy sign-in, solid lock", "Sign in with a phone number and an SMS code; after that the app opens with a PIN or a fingerprint."),
+            ("Three languages, two themes", "Uzbek (Cyrillic and Latin) and Russian; light and dark."),
+        ],
+        "mob_izoh": "Demo customer. Name and amounts are hidden; the app is being prepared for the stores.",
+        "mob_boshqa_h3": "Other apps I built",
+        "mob_boshqa": [
+            ("ChatForge", "A Flutter messenger: one-to-one chats, push notifications to the right person.", "https://github.com/linverno-tm/chatforge"),
+            ("Bulk SMS", "An Android app that sends SMS from an Excel or CSV list; the queue survives a phone restart.", "https://github.com/linverno-tm/bulk-sms"),
+            ("Task app", "Works offline and syncs on its own when the connection returns.", "https://github.com/linverno-tm/task-manager"),
+        ],
+        "kod": "Code",
         "tg_h2": "Telegram bots and mini apps",
         "tg_tagi": "Nothing to install: the catalog, search and lists open right inside Telegram.",
         "kino_alt": ("KINO TV mini app home: featured series and sections", "KINO TV: series page with the episode list"),
@@ -146,12 +183,9 @@ T = {
         "buklet_h3": "Tri-fold booklet, Hamkor Savdo",
         "buklet_p": "A4, three panels, print-ready vector file. Outer side.",
         "buklet_alt": "Hamkor Savdo tri-fold booklet: “installments up to 24 months”, products and monthly payments",
-        "boshqa_h2": "Mobile apps and automation",
+        "boshqa_h2": "Automation",
         "boshqa": [
             ("Price watch", "Competitors’ posts in Telegram groups become prices; each store gets a daily PDF with only the new and changed prices."),
-            ("ChatForge", "A messenger built with Flutter: one-to-one chats, push notifications to the right person, unique usernames."),
-            ("Bulk SMS", "An Android app that sends SMS from an Excel or CSV list; the queue survives a phone restart."),
-            ("Task app", "Works offline and syncs on its own when the connection returns. iPhone-style interface."),
             ("Tax audit report", "A program that builds the tax-audit report from invoices and cash receipts on its own."),
             ("My own connectors", "MCP servers for YouTube and Pinterest, so channel and content work can be done through AI."),
         ],
@@ -228,6 +262,11 @@ def page(k):
         saytlar.append(f'<article class="sayt">{rasm}'
                        f'<h3>{e(nom)}{b}</h3><p>{e(matn)}</p>{havola}</article>')
 
+    mob_tel = "".join(f'<figure><div class="telefon">{picture(root, n, a, "(min-width: 1000px) 19vw, 64vw")}</div></figure>'
+                      for n, a in zip(("mobil-bosh", "mobil-katalog", "mobil-tolovlar"), t["mob_alt"]))
+    mob_fakt = "".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in t["mob_fakt"])
+    mob_boshqa = "".join(f'<li><b>{e(a)}</b><span>{e(b)}</span><a class="havola" href="{h}" rel="noopener">{e(t["kod"])}: {e(a)}</a></li>'
+                         for a, b, h in t["mob_boshqa"])
     boshqa = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in t["boshqa"])
     xiz = "".join(f'<div class="xizmat"><h3>{e(a)}</h3><p>{e(b)}</p></div>' for a, b in t["xizmatlar"])
     poster = f"{root}img/veo-kadr-800.webp"
@@ -293,6 +332,26 @@ def page(k):
       <div class="crm-oxir"><p>{t['crm_oxir']}</p><a class="havola" href="https://hamkorcrm.uz/" rel="noopener">{e(t['crm_link'])}</a></div>
     </div>
     <div class="ekranlar">{''.join(ekr)}</div>
+  </div>
+</section>
+
+<section class="wrap bolim-bosh" id="mobil" aria-labelledby="mb">
+  <h2 id="mb">{e(t['mob_h2'])}</h2>
+  <p class="tagi">{e(t['mob_tagi'])}</p>
+  <div class="mobil-ichi">
+    <figure class="mobil-rasmlar">
+      <div class="uch-telefon">{mob_tel}</div>
+      <figcaption class="izoh">{e(t['mob_izoh'])}</figcaption>
+    </figure>
+    <div class="mobil-matn">
+      <h3>{e(t['mob_h3'])}</h3>
+      <p>{e(t['mob_p'])}</p>
+      <dl class="faktlar">{mob_fakt}</dl>
+    </div>
+  </div>
+  <div class="mobil-boshqa">
+    <h3>{e(t['mob_boshqa_h3'])}</h3>
+    <ul class="royxat uchta">{mob_boshqa}</ul>
   </div>
 </section>
 
