@@ -71,6 +71,44 @@ T = {
             ("Vazifalar ilovasi", "Internet yo‘qda ham ishlaydi, aloqa tiklanganda o‘zi sinxronlanadi.", "https://github.com/linverno-tm/task-manager"),
         ],
         "kod": "Kodi",
+        "batafsil": "Batafsil",
+        "case": {
+            "mijoz": [
+                ("Maqsad", "Muddatli to‘lov bilan xarid qilgan mijoz shartnomasi, keyingi to‘lovi va limitini do‘konga bormasdan ko‘rsin; do‘kon esa unga xabar va aksiyani to‘g‘ridan-to‘g‘ri yuborsin."),
+                ("Yechim", "Flutter va Riverpod; har bo‘lim to‘rt qatlamda (model, ma’lumot, holat, ekran). Kirish SMS kod bilan, token telefonning xavfsiz xotirasida. Ma’lumot Hamkor CRM’ning mijoz API’sidan keladi. Avval Expo (React Native) da yozilgan edi, 7-oktabrda to‘liq Flutter’ga ko‘chirildi."),
+                ("Natija", "Android, iPhone va web uchun bitta kod. Testlar internetsiz ishlaydi: server o‘rniga namuna javoblar. Ilova do‘konlarga chiqarishga tayyorlanmoqda."),
+            ],
+            "kino": [
+                ("Maqsad", "Ko‘p qismli serialni Telegram’da qulay ko‘rish: kerakli qismni tez topish va qayerda to‘xtaganini yo‘qotmaslik."),
+                ("Yechim", "Bot (Python, aiogram 3, SQLite) yopiq ombor kanaldagi postlarni o‘zi katalogga yozadi: admin faqat video joylaydi, kodni bot beradi. Video foydalanuvchiga nusxa sifatida yuboriladi, hajm chegarasi yo‘q. Mini app yig‘ishsiz HTML/CSS/JS, Cloudflare Pages’da, katalog chekkada keshlanadi."),
+                ("Natija", "Katalogda 701 ta serial va kino, 8 ta bo‘lim. Mini app keyingi qismdan davom ettiradi va saqlanganlar ro‘yxatini yuritadi."),
+            ],
+            "qogoz": [
+                ("Maqsad", "Do‘stning @QogozBinoTVbot boti uchun posterli katalog — botning kodiga tegmasdan va tokenisiz."),
+                ("Yechim", "Katalogni botning o‘zidan yig‘adigan skript: har kodga /start yuboradi va javobni o‘qiydi. Mini app kirill va lotinda jonli qidiradi, bo‘lim va janr bo‘yicha saralaydi; serial bosilsa botning o‘zi ochiladi."),
+                ("Natija", "Bot tokeni ishlatilmaydi. To‘liq yig‘ish taxminan 10 daqiqa, yangi kodlar alohida tez qo‘shiladi."),
+            ],
+            "sayt-hamkor": [
+                ("Maqsad", "To‘rt filialli tarmoqni tanishtirish: kompaniya, taklif, har filial va bog‘lanish yo‘llari. Asosiy shart: sekin internetda ham tez ochilsin."),
+                ("Yechim", "Next.js 16, React 19, Tailwind v4, animatsiya kutubxonasisiz: hamma harakat CSS va taxminan 1 KB JavaScript. Logotip brendbukdagi rasmdan vektorga o‘tkazilgan."),
+                ("Natija", "O‘qiladigan sahifa (HTML va CSS) 35 KB gzip. JavaScript yuklanmasa ham ishlaydi. Matn kontrasti hamma joyda 4.5:1 dan yuqori; to‘qima sharh va ma’lumot yo‘q."),
+            ],
+            "sayt-shuxrat": [
+                ("Maqsad", "«Baraka hamkor parranda» XK markasi uchun uch tilli brend sayti: mahsulot, ulgurji savdo va qayerdan sotib olish."),
+                ("Yechim", "SVG logo animatsiyasi, mahsulotlar va assortiment jadvali, ulgurji buyurtma arizasi, xarita, Veo bilan jonli video. Matn bitta faylda; ruscha va inglizcha sahifalar skript bilan yasaladi."),
+                ("Natija", "Namuna holatida topshirilgan: mijozdan keladigan ma’lumot joylari maxsus rejimda belgilanadi, soxta sharh qo‘yilmagan."),
+            ],
+            "sayt-oltinkol": [
+                ("Maqsad", "Charm-poyabzal kichik sanoat zonasida do‘kon sotish va investor jalb qilish."),
+                ("Yechim", "Do‘konlar, kredit va to‘lov hisoblagichi, imtiyozlar, investorlar va rezidentlar sahifalari. Arizalar, do‘konlar va foydalanuvchilarni boshqaradigan admin panel."),
+                ("Natija", "14 ta bo‘lim, o‘zbek, rus va ingliz tilida."),
+            ],
+            "sayt-minges": [
+                ("Maqsad", "Ulug‘nor GES (600 kVt, ishlab turibdi) va Baliqchi GES (1 000 kVt) ni tanishtirish va mini-GES qurish xizmatini sotish."),
+                ("Yechim", "Freymvorksiz statik sayt. «Qanday ishlaydi» bo‘limi 3D model o‘rniga generatsiya qilingan izometrik SVG (~53 KB). Soha yangiliklari sayt yig‘ilayotganda yoziladi; o‘zbek va rus tilida."),
+                ("Natija", "Telefonda birinchi ochilishda taxminan 170 KB (gzip), rasm yuklanmaydi. Har o‘zgarishni CI tekshirib, o‘zi chiqaradi."),
+            ],
+        },
         "tg_h2": "Telegram bot va mini app",
         "tg_tagi": "Mijoz alohida ilova o‘rnatmaydi: katalog, qidiruv va ro‘yxat Telegram ichida ochiladi.",
         "kino_alt": ("KINO TV mini app bosh sahifasi: tanlangan serial va bo‘limlar", "KINO TV: serial sahifasi, qismlar ro‘yxati"),
@@ -168,6 +206,44 @@ T = {
             ("Task app", "Works offline and syncs on its own when the connection returns.", "https://github.com/linverno-tm/task-manager"),
         ],
         "kod": "Code",
+        "batafsil": "Details",
+        "case": {
+            "mijoz": [
+                ("Goal", "Customers who bought on installments see their contract, next payment and limit without visiting the store, and the store can send them notices and offers directly."),
+                ("Solution", "Flutter and Riverpod, each feature in four layers (model, data, state, screen). Sign-in with an SMS code, the token kept in the phone’s secure storage. Data comes from Hamkor CRM’s customer API. First written in Expo (React Native), fully moved to Flutter on 7 October."),
+                ("Result", "One codebase for Android, iPhone and web. Tests run offline against sample responses. The app is being prepared for the stores."),
+            ],
+            "kino": [
+                ("Goal", "Watching long series in Telegram comfortably: find the right episode fast and never lose where you stopped."),
+                ("Solution", "The bot (Python, aiogram 3, SQLite) turns posts in a private storage channel into the catalog on its own: the admin only uploads videos, the bot assigns codes. Videos are sent as copies, with no size limit. The mini app is plain HTML/CSS/JS on Cloudflare Pages, with the catalog cached at the edge."),
+                ("Result", "701 series and films in 8 sections. The mini app continues from the next episode and keeps a saved list."),
+            ],
+            "qogoz": [
+                ("Goal", "A poster catalog for a friend’s bot, @QogozBinoTVbot, without touching its code or using its token."),
+                ("Solution", "A script builds the catalog from the bot itself: it sends /start for each code and reads the reply. The mini app searches live in Cyrillic and Latin, filters by section and genre, and opens the bot for the chosen series."),
+                ("Result", "No bot token needed. A full rebuild takes about 10 minutes; new codes are added quickly on their own."),
+            ],
+            "sayt-hamkor": [
+                ("Goal", "Introduce a four-branch chain: the company, the offer, each branch and every way to reach it. The main constraint: fast on slow connections."),
+                ("Solution", "Next.js 16, React 19, Tailwind v4 and no animation library: all motion is CSS plus about 1 KB of JavaScript. The logo was traced to vector from the brand book artwork."),
+                ("Result", "The readable page (HTML and CSS) is 35 KB gzipped and works without JavaScript. Every text pair is above 4.5:1 contrast; no invented reviews or facts."),
+            ],
+            "sayt-shuxrat": [
+                ("Goal", "A three-language brand site for the “Baraka hamkor parranda” poultry brand: products, wholesale and where to buy."),
+                ("Solution", "SVG logo animation, products and a full range table, a wholesale order form, a map and a live video made with Veo. The text lives in one file; Russian and English pages are generated by a script."),
+                ("Result", "Delivered as a concept: places waiting for the client’s data are marked in a review mode, and no fake reviews were added."),
+            ],
+            "sayt-oltinkol": [
+                ("Goal", "Sell shops and attract investors for a small leather and footwear industrial zone."),
+                ("Solution", "Pages for shops, a credit and payment calculator, incentives, investors and residents, plus an admin panel for applications, shops and users."),
+                ("Result", "14 sections in Uzbek, Russian and English."),
+            ],
+            "sayt-minges": [
+                ("Goal", "Present Ulug‘nor GES (600 kW, running) and Baliqchi GES (1,000 kW) and sell the service of building small hydro plants."),
+                ("Solution", "A static site without a framework. The “How it works” section is a generated isometric SVG (~53 KB) instead of a 3D model. Industry news is written in at build time; Uzbek and Russian."),
+                ("Result", "About 170 KB gzipped on a phone’s first visit, with no images loaded. CI checks and publishes every change."),
+            ],
+        },
         "tg_h2": "Telegram bots and mini apps",
         "tg_tagi": "Nothing to install: the catalog, search and lists open right inside Telegram.",
         "kino_alt": ("KINO TV mini app home: featured series and sections", "KINO TV: series page with the episode list"),
@@ -262,11 +338,17 @@ def page(k):
         ekr.append(f'<figure><a class="ramka" href="{root}img/{n}-1600.webp" aria-label="{e(t["toliq"])}: {e(cap)}">'
                    f'{picture(root, n, alt, "(min-width: 1100px) 58vw, 150vw")}</a><figcaption class="izoh">{e(cap)}</figcaption></figure>')
 
+    PLYUS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>'
+
+    def batafsil(slug):
+        q = "".join(f'<div><h4>{e(a)}</h4><p>{e(b)}</p></div>' for a, b in t["case"][slug])
+        return f'<details class="batafsil"><summary>{e(t["batafsil"])}{PLYUS}</summary><div class="batafsil-ichi">{q}</div></details>'
+
     def tg_ish(slug, nom, matn, alts, href, link):
         tel = "".join(f'<figure><div class="telefon">{picture(root, f"{slug}-{s}", a, "(min-width: 900px) 21vw, 46vw")}</div></figure>'
                       for s, a in zip(("bosh", "serial"), alts))
         return (f'<article class="ish"><div class="telefonlar">{tel}</div><h3>{e(nom)}</h3><p>{e(matn)}</p>'
-                f'<a class="havola" href="{href}" rel="noopener">{e(link)}</a></article>')
+                f'<a class="havola" href="{href}" rel="noopener">{e(link)}</a>{batafsil(slug)}</article>')
 
     saytlar = []
     for n, nom, belgi, matn, href, link, alt in t["saytlar"]:
@@ -277,7 +359,7 @@ def page(k):
             rasm = f'<a href="{href}" rel="noopener" tabindex="-1" aria-hidden="true">{rasm}</a>'
         havola = f'<a class="havola" href="{href}" rel="noopener">{e(link)}</a>' if href else ""
         saytlar.append(f'<article class="sayt">{rasm}'
-                       f'<h3>{e(nom)}{b}</h3><p>{e(matn)}</p>{havola}</article>')
+                       f'<h3>{e(nom)}{b}</h3><p>{e(matn)}</p>{havola}{batafsil(n)}</article>')
 
     mob_tel = "".join(f'<figure><div class="telefon">{picture(root, n, a, "(min-width: 1000px) 19vw, 64vw")}</div></figure>'
                       for n, a in zip(("mobil-bosh", "mobil-katalog", "mobil-tolovlar"), t["mob_alt"]))
@@ -368,6 +450,7 @@ def page(k):
       <h3>{e(t['mob_h3'])}</h3>
       <p>{e(t['mob_p'])}</p>
       <dl class="faktlar">{mob_fakt}</dl>
+      {batafsil("mijoz")}
     </div>
   </div>
   <div class="mobil-boshqa">

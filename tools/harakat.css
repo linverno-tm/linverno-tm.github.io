@@ -8,8 +8,6 @@ body::before {
     radial-gradient(closest-side at 72% 62%, rgb(56 140 140 / .12), transparent),
     radial-gradient(closest-side at 50% 90%, rgb(212 174 106 / .05), transparent);
 }
-html.harakat body::before { animation: nur 36s ease-in-out infinite alternate; }
-@keyframes nur { to { transform: translate3d(9vmax, -7vmax, 0) rotate(24deg); } }
 
 /* scroll chizig'i */
 .progress { display: none; }
@@ -41,7 +39,7 @@ section { scroll-margin-top: 88px; }
 .aylan-ichi > span { display: block; height: 1.08em; white-space: nowrap; }
 .statik { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (prefers-reduced-motion: no-preference) {
-  .aylan-ichi { animation: aylan 12.5s cubic-bezier(.7, 0, .2, 1) infinite; }
+  .aylan-ichi { animation: aylan 12.5s 1.5s cubic-bezier(.7, 0, .2, 1) infinite; }
 }
 @keyframes aylan {
   0%, 16% { translate: 0 0; }
@@ -168,4 +166,45 @@ html.harakat .xizmat:not(.korindi)::before { transform: scaleX(0); }
 /* sahifalar orasida silliq o'tish */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
+}
+
+/* loyiha tafsiloti: muammo/maqsad -> yechim -> natija */
+:root { interpolate-size: allow-keywords; }
+.batafsil { margin-top: 18px; }
+.batafsil summary {
+  list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px; padding: 8px 16px 8px 20px; border: 1px solid var(--chiziq-kuchli); border-radius: 999px;
+  font-weight: 520; font-size: 0.95rem; transition: border-color .2s, background-color .2s;
+}
+.batafsil summary::-webkit-details-marker { display: none; }
+.batafsil summary:hover { border-color: var(--zar); }
+.batafsil summary svg { width: 18px; height: 18px; color: var(--zar); transition: rotate .35s cubic-bezier(.2, .7, .1, 1); }
+.batafsil[open] summary { border-color: var(--zar); background: rgb(212 174 106 / .10); }
+.batafsil[open] summary svg { rotate: 45deg; }
+.batafsil-ichi { display: grid; gap: 4px; padding-top: 20px; }
+.batafsil-ichi > div { position: relative; padding: 0 0 18px 22px; border-left: 1px solid var(--chiziq-kuchli); }
+.batafsil-ichi > div:last-child { border-left-color: transparent; padding-bottom: 4px; }
+.batafsil-ichi > div::before {
+  content: ""; position: absolute; left: -5px; top: .35em; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--tun); border: 2px solid var(--zar);
+}
+.batafsil-ichi > div:last-child::before { background: var(--zar); }
+.batafsil-ichi h4 { margin: 0; font-size: 0.95rem; font-weight: 560; color: var(--zar-och); line-height: 1.4; }
+.batafsil-ichi p { margin-top: 4px; color: var(--xira); font-size: 1rem; max-width: 36rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .batafsil::details-content {
+    block-size: 0; overflow: clip;
+    transition: block-size .55s cubic-bezier(.2, .7, .1, 1), content-visibility .55s allow-discrete;
+  }
+  .batafsil[open]::details-content { block-size: auto; }
+}
+
+/* yotiq telefon: birinchi ekran sig'sin */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero h1 { font-size: clamp(1.9rem, 4.4vw, 2.75rem); }
+  .tepa .top { padding-block: 8px; }
+  .top .btn span { display: none; }
+  .top .btn { padding: 0; width: 44px; }
+  .suzuvchi { width: 24%; top: 6%; }
+  .lenta { margin-top: 56px; }
 }
