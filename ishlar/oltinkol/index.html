@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oltinko‘l charm-poyabzal zonasi — Muhammadabdulloh Tojiddinov</title>
+<meta name="description" content="Charm-poyabzal kichik sanoat zonasi uchun sayt va admin panel.">
+<meta name="theme-color" content="#101113">
+<link rel="canonical" href="https://linverno-tm.github.io/ishlar/oltinkol/">
+<link rel="alternate" hreflang="uz" href="https://linverno-tm.github.io/ishlar/oltinkol/">
+<link rel="alternate" hreflang="en" href="https://linverno-tm.github.io/en/ishlar/oltinkol/">
+<link rel="alternate" hreflang="x-default" href="https://linverno-tm.github.io/ishlar/oltinkol/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://linverno-tm.github.io/ishlar/oltinkol/">
+<meta property="og:title" content="Oltinko‘l charm-poyabzal zonasi — Muhammadabdulloh Tojiddinov">
+<meta property="og:description" content="Charm-poyabzal kichik sanoat zonasi uchun sayt va admin panel.">
+<meta property="og:image" content="https://linverno-tm.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/onest.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face {
+  font-family: "Onest";
+  src: url("/onest.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: optional;
+}
+
+:root {
+  --fon: #101113;
+  --sirt: #17181b;
+  --chiziq: #26282d;
+  --chiziq-2: #3a3d44;
+  --matn: #ececee;
+  --matn-2: #c9cbd1;
+  --xira: #9b9ea6;
+  --kenglik: 1120px;
+  --matn-kenglik: 680px;
+  --gutter: max(20px, 4vw);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--fon); color: var(--matn);
+  font-family: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 1.0625rem; line-height: 1.65; font-weight: 400;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+}
+img, video { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration-color: var(--chiziq-2); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-color: currentColor; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.015em; text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+:focus-visible { outline: 2px solid var(--matn); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { width: min(100% - 2 * var(--gutter), var(--kenglik)); margin-inline: auto; }
+.ustun { max-width: var(--matn-kenglik); }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 10; background: var(--matn); color: var(--fon); padding: 10px 14px; border-radius: 6px; text-decoration: none; }
+.skip:focus { top: 12px; }
+
+/* tepa */
+.tepa { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 28px; }
+.tepa .nom { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
+.tepa nav { display: flex; gap: 2px; margin-right: -10px; }
+.tepa nav a { text-decoration: none; color: var(--xira); padding: 10px; border-radius: 6px; }
+.tepa nav a:hover, .tepa nav a[aria-current] { color: var(--matn); }
+@media (max-width: 440px) { .tepa .nom .familiya { display: none; } }
+
+/* tanishtiruv */
+.kirish { padding-block: clamp(48px, 9vw, 112px) clamp(48px, 7vw, 88px); }
+.kirish h1 { font-size: clamp(2rem, 4.2vw, 2.75rem); line-height: 1.12; letter-spacing: -0.025em; }
+.kirish p { color: var(--xira); font-size: 1.1875rem; line-height: 1.6; margin-top: 20px; }
+.kirish p b { color: var(--matn); font-weight: 500; }
+.amallar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 32px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 20px; border-radius: 8px;
+  background: var(--matn); color: var(--fon); font-weight: 500; text-decoration: none; transition: background-color .15s;
+}
+.btn:hover { background: #fff; }
+.btn svg { width: 18px; height: 18px; }
+.amallar > a:not(.btn) { color: var(--xira); }
+.amallar > a:not(.btn):hover { color: var(--matn); }
+
+/* bo'lim sarlavhasi */
+.bolim { padding-top: clamp(64px, 9vw, 112px); scroll-margin-top: 16px; }
+.bolim > h2 { font-size: 1rem; font-weight: 500; color: var(--xira); letter-spacing: 0; padding-bottom: 16px; border-bottom: 1px solid var(--chiziq); margin-bottom: 32px; }
+
+/* ishlar to'ri */
+.ishlar { display: grid; gap: 48px 32px; }
+@media (min-width: 760px) { .ishlar { grid-template-columns: 1fr 1fr; } .ishlar .birinchi { grid-column: 1 / -1; } }
+.ish { text-decoration: none; display: block; }
+.ish h3 { font-size: 1.125rem; font-weight: 600; }
+.ish .qator { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 16px; }
+.ish .yil { color: var(--xira); font-size: .95rem; white-space: nowrap; }
+.ish p { color: var(--xira); margin-top: 4px; font-size: 1rem; }
+.birinchi h3 { font-size: 1.375rem; }
+
+/* kadr: rasm uchun bir xil ramka */
+.kadr {
+  position: relative; overflow: hidden; border-radius: 12px; background: var(--sirt);
+  border: 1px solid var(--chiziq); aspect-ratio: 16 / 10;
+}
+.kadr > picture > img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+.kadr.uzun > picture > img { height: auto; object-fit: initial; }
+.birinchi .kadr { aspect-ratio: 16 / 9; }
+.kadr.tel { display: flex; justify-content: center; align-items: flex-start; gap: 4%; padding: 7% 8% 0; }
+.kadr.tel picture { flex: 0 1 30%; }
+.kadr.tel img { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--chiziq-2); }
+.kadr.tel picture:nth-child(2) { margin-top: 5%; }
+.birinchi .kadr.tel { padding: 5% 10% 0; gap: 3%; }
+.birinchi .kadr.tel picture { flex-basis: 22%; }
+.ish .kadr img { transition: scale .5s cubic-bezier(.2, .7, .1, 1), translate .5s cubic-bezier(.2, .7, .1, 1); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ish:hover .kadr:not(.uzun):not(.tel) > picture > img { scale: 1.015; }
+  .ish:hover .kadr.uzun > picture > img { translate: 0 -12%; transition-duration: 2.4s; }
+  .ish:hover .kadr.tel picture img { translate: 0 -8px; }
+}
+
+/* boshqa ishlar ro'yxati */
+.royxat { list-style: none; margin: 0; padding: 0; }
+.royxat li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 2px 24px; padding: 18px 0; border-bottom: 1px solid var(--chiziq); }
+.royxat li:first-child { padding-top: 0; }
+.royxat .sana { color: var(--xira); font-size: .95rem; padding-top: 1px; }
+.royxat b, .royxat a { font-weight: 600; }
+.royxat span { color: var(--xira); display: block; font-size: 1rem; }
+@media (max-width: 560px) { .royxat li { grid-template-columns: 1fr; } }
+
+/* aloqa */
+.aloqa p { color: var(--xira); font-size: 1.1875rem; }
+.aloqa p + p { margin-top: 12px; }
+.aloqa p a { color: var(--matn); }
+
+footer { margin-top: clamp(80px, 12vw, 140px); padding-block: 28px 40px; border-top: 1px solid var(--chiziq); color: var(--xira); font-size: .95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+footer a { color: var(--xira); }
+footer nav { display: flex; gap: 20px; }
+
+/* ---------- loyiha sahifasi ---------- */
+.orqaga { display: inline-block; color: var(--xira); text-decoration: none; padding-block: 8px; }
+.orqaga:hover { color: var(--matn); }
+.loyiha-bosh { padding-block: clamp(24px, 5vw, 56px) 40px; }
+.loyiha-bosh h1 { font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; margin-top: 24px; }
+.loyiha-bosh .lid { color: var(--xira); font-size: 1.25rem; line-height: 1.55; margin-top: 16px; }
+.meta { display: grid; gap: 20px 32px; margin: 40px 0 0; padding-top: 24px; border-top: 1px solid var(--chiziq); }
+@media (min-width: 640px) { .meta { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .meta { grid-template-columns: repeat(4, 1fr); } }
+.meta dt { color: var(--xira); font-size: .9rem; }
+.meta dd { margin: 4px 0 0; }
+.bosh-kadr .kadr { aspect-ratio: 16 / 9; }
+
+.maqola { padding-top: clamp(48px, 7vw, 80px); }
+.maqola h2 { font-size: 1.375rem; margin-top: 56px; }
+.maqola > h2:first-child { margin-top: 0; }
+.maqola p { margin-top: 16px; color: var(--matn-2); }
+.maqola ul { margin: 16px 0 0; padding-left: 1.2em; color: var(--matn-2); }
+.maqola li { margin-top: 10px; padding-left: 4px; }
+.maqola li::marker { color: var(--xira); }
+.maqola figure { margin: 48px 0; }
+.maqola figcaption { color: var(--xira); font-size: .95rem; margin-top: 12px; max-width: var(--matn-kenglik); }
+.maqola .izoh { color: var(--xira); font-size: .95rem; margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--chiziq); }
+.ramka { border-radius: 12px; overflow: hidden; border: 1px solid var(--chiziq); background: var(--sirt); }
+.telefonlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 220px)); gap: 20px; }
+.telefonlar .ramka { border-radius: 22px; }
+.sahifa-butun { max-height: min(78vh, 760px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.video-ramka { position: relative; }
+.video-ramka video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.pauza { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgb(16 17 19 / .75); color: #fff; cursor: pointer; display: grid; place-items: center; }
+.pauza svg { width: 16px; height: 16px; }
+
+.keyingi { margin-top: clamp(72px, 10vw, 120px); padding-top: 24px; border-top: 1px solid var(--chiziq); }
+.keyingi small { color: var(--xira); font-size: .95rem; }
+.keyingi a { display: grid; gap: 20px; text-decoration: none; margin-top: 12px; }
+.keyingi h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.025em; }
+.keyingi p { color: var(--xira); margin-top: 8px; }
+@media (min-width: 760px) { .keyingi a { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+/* sahifalar orasida o'tish */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-group(*) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .7, .1, 1); }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#asosiy">Asosiy qismga o‘tish</a>
+<header class="wrap tepa">
+  <a class="nom" href="/">Muhammadabdulloh<span class="familiya"> Tojiddinov</span></a>
+  <nav aria-label="Asosiy menyu">
+    <a href="/#ishlar">Ishlar</a>
+    <a href="/#aloqa">Aloqa</a>
+    <a href="/en/ishlar/oltinkol/" hreflang="en" lang="en" aria-label="English">EN</a>
+  </nav>
+</header>
+<main id="asosiy">
+<article>
+<header class="wrap loyiha-bosh">
+  <a class="orqaga" href="/#ishlar">Barcha ishlar</a>
+  <div class="ustun"><h1>Oltinko‘l charm-poyabzal zonasi</h1><p class="lid">Charm-poyabzal kichik sanoat zonasi uchun sayt va admin panel.</p></div>
+  <dl class="meta"><div><dt>Davr</dt><dd>Oktabr 2026</dd></div><div><dt>Rol</dt><dd>Muallif: dizayn va dasturlash</dd></div><div><dt>Texnologiyalar</dt><dd>HTML, CSS, JavaScript</dd></div><div><dt>Holat</dt><dd>Konsept<br><a href="https://linverno-tm.github.io/oltinkol-zona/">linverno-tm.github.io/oltinkol-zona</a></dd></div></dl>
+</header>
+<div class="wrap bosh-kadr"><div class="kadr uzun" style="view-transition-name: kadr-oltinkol"><picture><source type="image/avif" srcset="/img/uzun-oltinkol-640.avif 640w, /img/uzun-oltinkol-1100.avif 1100w" sizes="(min-width: 1160px) 1120px, 100vw"><source type="image/webp" srcset="/img/uzun-oltinkol-640.webp 640w, /img/uzun-oltinkol-1100.webp 1100w" sizes="(min-width: 1160px) 1120px, 100vw"><img src="/img/uzun-oltinkol-640.webp" width="1100" height="3438" alt="Oltinko‘l zonasi sayti, bosh sahifa" decoding="async" fetchpriority="high"></picture></div></div>
+<div class="wrap maqola"><div class="ustun"><h2>Vazifa</h2><p>Zonadagi do‘konlarni sotish va investor jalb qilish.</p><h2>Yechim</h2><p>Do‘konlar, kredit va to‘lov hisoblagichi, imtiyozlar, investorlar va rezidentlar uchun sahifalar. Arizalar, do‘konlar va foydalanuvchilarni boshqarish uchun admin panel.</p></div><figure><div class="ramka sahifa-butun" tabindex="0" role="region" aria-label="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."><picture><source type="image/avif" srcset="/img/uzun-oltinkol-640.avif 640w, /img/uzun-oltinkol-1100.avif 1100w" sizes="(min-width: 1160px) 1100px, 100vw"><source type="image/webp" srcset="/img/uzun-oltinkol-640.webp 640w, /img/uzun-oltinkol-1100.webp 1100w" sizes="(min-width: 1160px) 1100px, 100vw"><img src="/img/uzun-oltinkol-640.webp" width="1100" height="3438" alt="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring." decoding="async" loading="lazy"></picture></div><figcaption>Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring.</figcaption></figure><div class="ustun"><h2>Natija</h2><p>14 ta bo‘lim, o‘zbek, rus va ingliz tilida.</p></div></div>
+<nav class="wrap keyingi" aria-label="Keyingi loyiha"><small>Keyingi loyiha</small>
+  <a href="/ishlar/hamkor-crm/"><div><h2>Hamkor CRM</h2><p>Savdo va nasiya tizimi</p></div><div class="kadr" style="view-transition-name: kadr-hamkor-crm"><picture><source type="image/avif" srcset="/img/crm-bosh-960.avif 960w, /img/crm-bosh-1600.avif 1600w, /img/crm-bosh-2400.avif 2400w" sizes="(min-width: 760px) 544px, 100vw"><source type="image/webp" srcset="/img/crm-bosh-960.webp 960w, /img/crm-bosh-1600.webp 1600w, /img/crm-bosh-2400.webp 2400w" sizes="(min-width: 760px) 544px, 100vw"><img src="/img/crm-bosh-960.webp" width="2400" height="1500" alt="Hamkor CRM bosh sahifasi: kassalar, nasiya qarzi va oylik foyda grafigi; summalar yopilgan" decoding="async" loading="lazy"></picture></div></a>
+</nav>
+</article>
+</main>
+<footer><div class="wrap"><span>© 2026 Muhammadabdulloh Tojiddinov</span>
+<nav aria-label="Havolalar"><a href="https://t.me/m_tojiddinov7">Telegram</a><a href="https://github.com/linverno-tm">GitHub</a><a href="https://github.com/linverno-tm/linverno-tm.github.io">Sayt manbasi</a></nav></div></footer>
+<script>(() => {
+  // Video: ko'ringanda o'ynaydi, tugma bilan to'xtaydi; kam harakat so'ralgan bo'lsa o'zi o'ynamaydi
+  const v = document.querySelector("video[data-src]");
+  if (!v) return;
+  const b = v.parentElement.querySelector(".pauza");
+  const kam = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
+  const PAUZA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+  let qolda = false, yuklandi = false;
+  const yukla = () => { if (!yuklandi) { v.src = v.dataset.src; yuklandi = true; } };
+  const ikon = () => { b.innerHTML = v.paused ? PLAY : PAUZA; b.setAttribute("aria-label", v.paused ? b.dataset.davom : b.dataset.pauza); };
+  b.hidden = false;
+  v.addEventListener("play", ikon); v.addEventListener("pause", ikon); ikon();
+  b.addEventListener("click", () => { qolda = true; yukla(); v.paused ? v.play() : v.pause(); });
+  if (!kam) new IntersectionObserver(([x]) => {
+    if (qolda) return;
+    if (x.isIntersecting) { yukla(); v.play().catch(() => {}); } else v.pause();
+  }, { rootMargin: "200px 0px" }).observe(v);
+})();
+</script>
+</body>
+</html>

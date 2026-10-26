@@ -1,542 +1,621 @@
-"""Saytni yig'adi: index.html (o'zbekcha) va en/index.html (inglizcha).
+"""Saytni yig'adi.
 
     python tools/build.py
 
-Matn shu faylda, uslub tools/uslub.css da, skript tools/skript.js da (ikkalasi sahifa ichiga qo'yiladi),
-rasmlar img/ da (o'lchamlari tools/rasmlar.json da).
+Chiqadi: index.html, ishlar/<slug>/index.html (o'zbekcha) va en/... (inglizcha), sitemap.xml.
+Matn shu faylda; uslub tools/uslub.css, skript tools/skript.js (ikkalasi sahifa ichiga qo'yiladi);
+rasm o'lchamlari tools/rasmlar.json da.
 """
 import html
 import json
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-T_ = lambda *p: os.path.join(ROOT, "tools", *p)
-RASM = json.load(open(T_("rasmlar.json"), encoding="utf-8"))
-CSS = open(T_("uslub.css"), encoding="utf-8").read()
-JS = open(T_("skript.js"), encoding="utf-8").read()
-QR = open(T_("qr-path.txt"), encoding="utf-8").read().strip()
-SAYT = "https://linverno-tm.github.io/"
+RASM = json.load(open(os.path.join(ROOT, "tools", "rasmlar.json"), encoding="utf-8"))
+CSS = open(os.path.join(ROOT, "tools", "uslub.css"), encoding="utf-8").read()
+JS = open(os.path.join(ROOT, "tools", "skript.js"), encoding="utf-8").read()
+SAYT = "https://linverno-tm.github.io"
 TG = "https://t.me/m_tojiddinov7"
+GITHUB = "https://github.com/linverno-tm"
+MANBA = "https://github.com/linverno-tm/linverno-tm.github.io"
 
-# Loyiha ranglari (R G B)
-RANG = {"crm": "139 92 246", "mijoz": "167 139 250", "kino": "245 179 1", "qogoz": "47 129 247",
-        "hamkor": "223 208 31", "shuxrat": "200 162 74", "oltinkol": "249 115 22", "minges": "34 197 154",
-        "media": "251 113 133", "buklet": "236 72 153", "boshqa": "148 163 184", "avto": "45 212 191"}
+TG_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>'
 
-T = {
+# --------------------------------------------------------------------------------------------
+# Umumiy matn
+# --------------------------------------------------------------------------------------------
+U = {
     "uz": {
-        "lang": "uz",
-        "title": "Muhammadabdulloh Tojiddinov — CRM, mobil ilova, Telegram bot va sayt",
-        "desc": "Biznes uchun CRM, mobil ilova, Telegram bot, mini app va sayt yarataman. Hamkor CRM muallifi: to‘rtta filialning 1C bazasini bitta tizimga birlashtirgan muddatli to‘lov savdo tizimi.",
+        "title": "Muhammadabdulloh Tojiddinov — dasturchi",
+        "desc": "Biznes uchun savdo va nasiya tizimlari, mobil ilovalar, Telegram botlar va saytlar yozaman. Hamkor CRM muallifi.",
         "skip": "Asosiy qismga o‘tish",
-        "nav": [("#ishlar", "Ishlar"), ("#aloqa", "Aloqa")],
-        "til_link": "en/", "til_label": "EN", "til_aria": "English version",
-        "tg_btn": "Telegram’da yozish",
-        "kasb": "Hamkor CRM muallifi",
-        "h1_bosh": "Biznesingiz uchun", "h1_oxir": "yarataman.",
-        "h1_sozlar": ["CRM", "mobil ilova", "Telegram bot", "mini app", "sayt"],
-        "h1_statik": "CRM, mobil ilova, Telegram bot, mini app va sayt",
-        "lid": "<b>To‘rtta filialning alohida 1C bazasini bitta tizimga birlashtirdim.</b> Savdo, nasiya, kassa va ombor endi bir joyda va internet uzilsa ham ishlaydi. G‘oyadan ishlaydigan dasturgacha hammasini o‘zim yozaman.",
-        "cta2": "Ishlarni ko‘rish",
-        "t_crm_chip": "Savdo tizimi · 1C o‘rnida",
-        "t_crm_p": "Savdo, nasiya shartnomalari, to‘lovlar, kassa, ombor va hisobotlar. Bosing — batafsil.",
-        "t_son_chip": "Hamkor CRM",
-        "t_son_p": "o‘zgarish bir oyda: sentabr–oktabr 2026",
-        "t_tez_chip": "Bu sayt",
-        "t_tez": ["Tezlik", "Qulaylik", "Amaliyot", "SEO"],
-        "t_tez_p": "Lighthouse, kompyuter versiyasi",
-        "t_chat_chip": "Telegram bot",
-        "t_chat_p": "KINO TV botining haqiqiy javobi",
-        "t_tel_chip": "Mobil ilova",
-        "t_tel_h": "Hamkor — mijozlar ilovasi",
-        "t_tel_p": "Flutter: Android va iPhone uchun bitta kod.",
-        "t_xiz_chip": "Nima qilaman",
-        "t_xiz": ["Savdo va nasiya CRM", "Mobil ilova", "Telegram bot", "Mini app", "Sayt", "Avtomatlashtirish", "Video va dizayn"],
-        "t_xiz_p": "1C, Telegram, Excel va PDF bilan bog‘layman; takrorlanadigan qo‘l ishini dasturga topshiraman.",
-        "lenta": ["Hamkor CRM", "Mijozlar ilovasi", "KINO TV", "Qog‘oz Bino", "Hamkor Savdo", "Shuxrat o‘g‘li", "Oltinko‘l", "MINI GES", "ChatForge"],
-        "ishlar_h": "Ishlar",
-        "ishlar_p": "Hammasi haqiqiy loyiha. Plitkani bosing — maqsad, yechim va natija ochiladi.",
-        "batafsil": "Batafsil", "yopish": "Yopish", "konsept": "konsept", "kod": "Kodi",
-        "qadam": ("Muammo", "Yechim", "Natija"), "qadam_m": ("Maqsad", "Yechim", "Natija"),
-        "crm_alt": ("Hamkor CRM: bosh sahifa, summalar yopilgan", "Hamkor CRM: mijozlar ro‘yxati, ism va summalar yopilgan"),
-        "ishlar": [
-            {"id": "crm", "chip": "Savdo tizimi", "nom": "Hamkor CRM",
-             "tavsif": "1C o‘rnini bosgan muddatli to‘lov savdo tizimi. Sentabr 2026 dan ishlab chiqyapman, platforma meniki.",
-             "teglar": ["Next.js", "PostgreSQL", "Tauri", "1C sinxron", "Oflayn"],
-             "qadamlar": [
-                 "To‘rtta do‘kon to‘rtta alohida 1C bazasida ishlardi va bir-birini ko‘rmasdi. Bir do‘konda qora ro‘yxatga tushgan mijoz keyingisida yana nasiyaga tovar olishi mumkin edi.",
-                 "Hammasi uchun bitta tizim: savdo, nasiya shartnomalari, to‘lovlar, kassa, ombor, ish haqi va hisobotlar. 1C bilan ikki tomonlama sinxronlanadi, shuning uchun o‘tish davrida ikkalasi yonma-yon ishladi.",
-                 "Bir oyda 1 373 ta o‘zgarish, 230 dan ortiq ekran, 65 ta hisobot. Mijozlar ilovasi shu bazaga ulangan. Shu platformani sizning savdongizga ham moslab beraman."],
-             "faktlar": [
-                 ("Internet uzilsa ham ishlaydi", "Kompyuterdagi shifrlangan nusxa bilan har bir oyna ochilaveradi. Amallar navbatga yoziladi va aloqa tiklanganda o‘zi yuboriladi."),
-                 ("Windows dasturi", "Chekni so‘ramasdan chop etadi va o‘zi yangilanadi."),
-                 ("Har bir yangilanish oldin sinovdan o‘tadi", "Savdo, shartnoma, to‘lov va hisobotlar vaqtinchalik bazada tekshiriladi, keyin ishga chiqadi."),
-                 ("Mijoz telefonida ham", "Shartnoma, to‘lov grafigi va qolgan qarzni mijoz o‘z ilovasida ko‘radi.")],
-             "rasmlar": [("crm-mijozlar", "Mijozlar va ularning ishonch bahosi"), ("crm-qarz", "Muddati o‘tgan qarzlar"), ("crm-kassa", "Kassalar filiallar kesimida")],
-             "izoh": "Ekranlar demo bazadan; summalar, ismlar va filial nomlari yopilgan.",
-             "havolalar": [("https://hamkorcrm.uz/", "hamkorcrm.uz")]},
-            {"id": "mijoz", "chip": "Mobil ilova", "nom": "Hamkor — mijozlar ilovasi",
-             "tavsif": "Mijoz shartnomalari, qolgan qarz, keyingi to‘lov va to‘lov tarixi telefonda; katalogdan muddatli to‘lovga buyurtma va do‘kon bilan chat.",
-             "teglar": ["Flutter", "Riverpod", "Android", "iPhone"], "maqsad": True,
-             "qadamlar": [
-                 "Muddatli to‘lov bilan xarid qilgan mijoz shartnomasi, keyingi to‘lovi va limitini do‘konga bormasdan ko‘rsin; do‘kon esa unga xabar va aksiyani to‘g‘ridan-to‘g‘ri yuborsin.",
-                 "Flutter va Riverpod; har bo‘lim to‘rt qatlamda (model, ma’lumot, holat, ekran). Kirish SMS kod bilan, token telefonning xavfsiz xotirasida. Avval Expo (React Native) da yozilgan edi, 7-oktabrda to‘liq Flutter’ga ko‘chirildi.",
-                 "Android, iPhone va web uchun bitta kod; uch tilda (o‘zbek kirill va lotin, rus), yorug‘ va qorong‘i mavzu. Ilova do‘konlarga chiqarishga tayyorlanmoqda."],
-             "tel": ["mobil-bosh", "mobil-katalog", "mobil-tolovlar"],
-             "rasmlar": [("mobil-bosh", "Bosh sahifa: summalar ilovaning o‘zida yashirilgan"), ("mobil-katalog", "Katalog va oylik to‘lov"), ("mobil-tolovlar", "To‘lovlar tarixi")],
-             "izoh": "Demo mijoz; ism va summalar yopilgan.", "havolalar": []},
-            {"id": "kino", "chip": "Telegram bot · mini app", "nom": "KINO TV",
-             "tavsif": "Seriallar va kinolar uchun bot va mini app: bo‘limlar, qidiruv, qismlar; to‘xtagan joydan davom ettiradi.",
-             "teglar": ["Python", "aiogram 3", "SQLite", "Cloudflare Pages"], "maqsad": True,
-             "qadamlar": [
-                 "Ko‘p qismli serialni Telegram’da qulay ko‘rish: kerakli qismni tez topish va qayerda to‘xtaganini yo‘qotmaslik.",
-                 "Bot yopiq ombor kanaldagi postlarni o‘zi katalogga yozadi: admin faqat video joylaydi, kodni bot beradi. Video nusxa sifatida yuboriladi, hajm chegarasi yo‘q. Mini app yig‘ishsiz HTML/CSS/JS, katalog Cloudflare chekkasida keshlanadi.",
-                 "Katalogda 158 ta serial va 543 ta kino, 8 ta bo‘lim. Mini app keyingi qismdan davom ettiradi va saqlanganlar ro‘yxatini yuritadi."],
-             "tel": ["kino-bosh", "kino-serial"],
-             "rasmlar": [("kino-bosh", "Bosh sahifa"), ("kino-serial", "Serial va qismlar")],
-             "havolalar": [("https://t.me/linvkino_bot", "@linvkino_bot")]},
-            {"id": "qogoz", "chip": "Mini app", "nom": "Qog‘oz Bino",
-             "tavsif": "Telegram kanal uchun mini app: yangi qismlar, eng ko‘p ko‘rilganlar, qidiruv va «Mening ro‘yxatim».",
-             "teglar": ["HTML/CSS/JS", "Telegram Web App", "Python"], "maqsad": True,
-             "qadamlar": [
-                 "Do‘stning @QogozBinoTVbot boti uchun posterli katalog — botning kodiga tegmasdan va tokenisiz.",
-                 "Katalogni botning o‘zidan yig‘adigan skript: har kodga /start yuboradi va javobni o‘qiydi. Mini app kirill va lotinda jonli qidiradi, bo‘lim va janr bo‘yicha saralaydi.",
-                 "Bot tokeni ishlatilmaydi. To‘liq yig‘ish taxminan 10 daqiqa, yangi kodlar alohida tez qo‘shiladi."],
-             "tel": ["qogoz-bosh", "qogoz-serial"],
-             "rasmlar": [("qogoz-bosh", "Bosh sahifa"), ("qogoz-serial", "Serial va qismlar")],
-             "havolalar": [("https://qogoz-bino.pages.dev/", "qogoz-bino.pages.dev")]},
-            {"id": "hamkor", "chip": "Sayt", "nom": "Hamkor Savdo",
-             "tavsif": "To‘rt filialli savdo tarmog‘i sayti: katalog, filiallar va muddatli to‘lovga ariza. Sichqonchani olib boring — sayt aylanadi.",
-             "teglar": ["Next.js 16", "React 19", "Tailwind v4"], "maqsad": True,
-             "qadamlar": [
-                 "To‘rt filialli tarmoqni tanishtirish: kompaniya, taklif, har filial va bog‘lanish yo‘llari. Asosiy shart: sekin internetda ham tez ochilsin.",
-                 "Animatsiya kutubxonasisiz: hamma harakat CSS va taxminan 1 KB JavaScript. Logotip brendbukdagi rasmdan vektorga o‘tkazilgan.",
-                 "O‘qiladigan sahifa (HTML va CSS) 35 KB gzip, JavaScript’siz ham ishlaydi. Matn kontrasti hamma joyda 4.5:1 dan yuqori; to‘qima sharh va ma’lumot yo‘q."],
-             "uzun": "uzun-hamkor", "havolalar": [("https://hamkorsavdo.uz/", "hamkorsavdo.uz")]},
-            {"id": "shuxrat", "chip": "Sayt", "nom": "Shuxrat o‘g‘li", "belgi": True,
-             "tavsif": "Parranda brendi uchun uch tilli sayt: mahsulotlar, ulgurji buyurtma, Veo bilan yaratilgan jonli video.",
-             "teglar": ["HTML/CSS/JS", "SVG animatsiya", "Veo"], "maqsad": True,
-             "qadamlar": [
-                 "«Baraka hamkor parranda» XK markasi uchun brend sayti: mahsulot, ulgurji savdo va qayerdan sotib olish.",
-                 "SVG logo animatsiyasi, assortiment jadvali, ulgurji buyurtma arizasi, xarita va jonli video. Matn bitta faylda; ruscha va inglizcha sahifalar skript bilan yasaladi.",
-                 "Namuna holatida topshirilgan: mijozdan keladigan ma’lumot joylari maxsus rejimda belgilanadi, soxta sharh qo‘yilmagan."],
-             "uzun": "uzun-shuxrat", "havolalar": [("https://linverno-tm.github.io/shuxrat-ogli-v2/", "Saytni ochish")]},
-            {"id": "oltinkol", "chip": "Sayt", "nom": "Oltinko‘l charm-poyabzal zonasi", "belgi": True,
-             "tavsif": "Kichik sanoat zonasi sayti: do‘konlar, to‘lov hisoblagichi, investorlar va rezidentlar uchun bo‘limlar, admin panel.",
-             "teglar": ["HTML/CSS/JS", "Admin panel", "3 til"], "maqsad": True,
-             "qadamlar": [
-                 "Charm-poyabzal kichik sanoat zonasida do‘kon sotish va investor jalb qilish.",
-                 "Do‘konlar, kredit va to‘lov hisoblagichi, imtiyozlar, investorlar va rezidentlar sahifalari; arizalar, do‘konlar va foydalanuvchilarni boshqaradigan admin panel.",
-                 "14 ta bo‘lim, o‘zbek, rus va ingliz tilida."],
-             "uzun": "uzun-oltinkol", "havolalar": [("https://linverno-tm.github.io/oltinkol-zona/", "Saytni ochish")]},
-            {"id": "minges", "chip": "Sayt", "nom": "MINI GES",
-             "tavsif": "Kichik gidroelektrostansiyalar sayti: loyihalar, qanday ishlashi, xizmatlar va ariza.",
-             "teglar": ["Statik sayt", "SVG", "CI"], "maqsad": True,
-             "qadamlar": [
-                 "Ulug‘nor GES (600 kVt, ishlab turibdi) va Baliqchi GES (1 000 kVt) ni tanishtirish va mini-GES qurish xizmatini sotish.",
-                 "Freymvorksiz statik sayt. «Qanday ishlaydi» bo‘limi 3D model o‘rniga izometrik SVG (~53 KB). Soha yangiliklari sayt yig‘ilayotganda yoziladi; o‘zbek va rus tilida.",
-                 "Telefonda birinchi ochilishda taxminan 170 KB (gzip), rasm yuklanmaydi. Har o‘zgarishni CI tekshirib, o‘zi chiqaradi."],
-             "uzun": "uzun-minges", "havolalar": [("https://linverno-tm.github.io/mini-ges-site/", "Saytni ochish")]},
-        ],
-        "boshqa_chip": "Mobil ilovalar", "boshqa_h": "Boshqa ilovalarim",
-        "boshqa": [("ChatForge", "Flutter’da messenjer: shaxsiy yozishmalar, kerakli odamga push-xabarnoma.", "https://github.com/linverno-tm/chatforge"),
-                   ("Ommaviy SMS", "Android: Excel yoki CSV ro‘yxatdan SMS; telefon o‘chib yonsa ham navbat yo‘qolmaydi.", "https://github.com/linverno-tm/bulk-sms"),
-                   ("Vazifalar ilovasi", "Internet yo‘qda ham ishlaydi, aloqa tiklanganda o‘zi sinxronlanadi.", "https://github.com/linverno-tm/task-manager")],
-        "media_chip": "Video", "media_h": "Veo bilan jonli video",
-        "media_p": "Shuxrat o‘g‘li sayti uchun. Remotion’da esa matn va raqamli motion roliklar yig‘aman.",
-        "veo_pauza": "Videoni to‘xtatish", "veo_davom": "Videoni davom ettirish",
-        "buklet_chip": "Bosma dizayn", "buklet_h": "Yevrobuklet, Hamkor Savdo",
-        "buklet_p": "A4, uch buklama, bosmaga tayyor vektor fayl.",
-        "buklet_alt": "Hamkor Savdo yevrobukleti: «24 oygacha muddatli to‘lov», tovarlar va oylik to‘lovlar",
-        "avto_chip": "Avtomatlashtirish", "avto_h": "Qo‘l ishini dasturga topshirish",
-        "avto": [("Narx kuzatuvi", "Raqobatchilarning Telegram guruhlaridagi e’lonlari narxlarga aylanadi; har do‘konga kunlik PDF faqat yangi va o‘zgargan narxlar bilan."),
-                 ("Kameral hisobot", "Hisob-faktura va kassa cheklaridan soliq tekshiruvi uchun hisobotni o‘zi yig‘adigan dastur."),
-                 ("O‘z ulagichlarim", "YouTube va Pinterest bilan ishlaydigan MCP serverlar: kanal va kontent ishini sun’iy intellekt orqali bajarish.")],
-        "aloqa_h": "Loyihangiz bormi? Telegram’da yozing.",
-        "aloqa_p": "Qisqacha yozing: biznesingiz nima bilan shug‘ullanadi va nimani tezlashtirmoqchisiz. O‘zim javob beraman.",
-        "qr": "Telefon kamerasi bilan skanerlang",
-        "footer_til": "English",
+        "ishlar": "Ishlar", "aloqa": "Aloqa",
+        "til": "English", "til_qisqa": "EN", "til_kod": "en",
+        "kirish_1": "Biznes uchun dastur yozaman: savdo va nasiya tizimlari, mobil ilovalar, Telegram botlar va saytlar. Dizayndan serverga chiqarishgacha o‘zim qilaman.",
+        "kirish_2": "Hozir <b>Hamkor CRM</b> ustida ishlayapman. Bu to‘rt filialli savdo tarmog‘i uchun 1C o‘rnini bosgan tizim va uning mijozlar ilovasi.",
+        "tg": "Telegram’da yozish",
+        "tanlangan": "Tanlangan ishlar",
+        "boshqa": "Boshqa ishlar",
+        "aloqa_1": "Loyihangiz bo‘lsa, Telegram’da yozing: <a href=\"" + TG + "\">@m_tojiddinov7</a>.",
+        "aloqa_2": "Qisqacha yozing: biznesingiz nima bilan shug‘ullanadi va nimani tezlashtirmoqchisiz.",
+        "manba": "Sayt manbasi",
+        "orqaga": "Barcha ishlar",
+        "keyingi": "Keyingi loyiha",
+        "meta": ("Davr", "Rol", "Texnologiyalar", "Holat"),
+        "rol": "Muallif: dizayn va dasturlash",
+        "konsept": "Konsept",
+        "pauza": "Videoni to‘xtatish", "davom": "Videoni davom ettirish",
+        "oy": ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"],
+        "hozir": "hozir",
+        "kod": "Kodi",
     },
     "en": {
-        "lang": "en",
-        "title": "Muhammadabdulloh Tojiddinov — CRMs, mobile apps, Telegram bots and websites",
-        "desc": "I build CRMs, mobile apps, Telegram bots, mini apps and websites for businesses. Author of Hamkor CRM, an installment-sales system that joined four stores’ 1C databases into one.",
+        "title": "Muhammadabdulloh Tojiddinov — software developer",
+        "desc": "I build sales and installment systems, mobile apps, Telegram bots and websites for businesses. Author of Hamkor CRM.",
         "skip": "Skip to content",
-        "nav": [("#ishlar", "Work"), ("#aloqa", "Contact")],
-        "til_link": "../", "til_label": "UZ", "til_aria": "O‘zbekcha versiya",
-        "tg_btn": "Message on Telegram",
-        "kasb": "Author of Hamkor CRM",
-        "h1_bosh": "I build", "h1_oxir": "for businesses.",
-        "h1_sozlar": ["CRMs", "mobile apps", "Telegram bots", "mini apps", "websites"],
-        "h1_statik": "CRMs, mobile apps, Telegram bots, mini apps and websites",
-        "lid": "<b>I joined four stores’ separate 1C databases into one system.</b> Sales, installments, cash and stock now live in one place and keep working when the internet drops. From idea to working software, I write it all myself.",
-        "cta2": "See the work",
-        "t_crm_chip": "Sales system · replaces 1C",
-        "t_crm_p": "Sales, installment contracts, payments, cash, stock and reports. Click for details.",
-        "t_son_chip": "Hamkor CRM",
-        "t_son_p": "changes in one month: September–October 2026",
-        "t_tez_chip": "This site",
-        "t_tez": ["Speed", "Access", "Practices", "SEO"],
-        "t_tez_p": "Lighthouse, desktop",
-        "t_chat_chip": "Telegram bot",
-        "t_chat_p": "a real reply from the KINO TV bot (in Uzbek)",
-        "t_tel_chip": "Mobile app",
-        "t_tel_h": "Hamkor — the customer app",
-        "t_tel_p": "Flutter: one codebase for Android and iPhone.",
-        "t_xiz_chip": "What I do",
-        "t_xiz": ["Sales & installment CRM", "Mobile apps", "Telegram bots", "Mini apps", "Websites", "Automation", "Video & design"],
-        "t_xiz_p": "I connect 1C, Telegram, Excel and PDF, and hand repetitive manual work over to software.",
-        "lenta": ["Hamkor CRM", "Customer app", "KINO TV", "Qog‘oz Bino", "Hamkor Savdo", "Shuxrat o‘g‘li", "Oltinko‘l", "MINI GES", "ChatForge"],
-        "ishlar_h": "Work",
-        "ishlar_p": "Every one is a real project. Click a tile to see the goal, the solution and the result.",
-        "batafsil": "Details", "yopish": "Close", "konsept": "concept", "kod": "Code",
-        "qadam": ("Problem", "Solution", "Result"), "qadam_m": ("Goal", "Solution", "Result"),
-        "crm_alt": ("Hamkor CRM home screen, amounts hidden", "Hamkor CRM customer list, names and amounts hidden"),
-        "ishlar": [
-            {"id": "crm", "chip": "Sales system", "nom": "Hamkor CRM",
-             "tavsif": "An installment-sales system that replaced 1C. In development since September 2026; I own the platform.",
-             "teglar": ["Next.js", "PostgreSQL", "Tauri", "1C sync", "Offline"],
-             "qadamlar": [
-                 "Four stores ran on four separate 1C databases that couldn’t see each other. A customer blacklisted in one store could get new credit in the next.",
-                 "One system for all of them: sales, installment contracts, payments, cash, warehouse, payroll and reports. It syncs with 1C both ways, so the two ran side by side during the switch.",
-                 "1,373 changes, 230+ screens and 65 reports in one month. The customer app is connected to the same database. I can adapt the platform to your business."],
-             "faktlar": [
-                 ("Works without internet", "An encrypted local copy keeps every window usable. Actions queue up and sync back on their own when the line returns."),
-                 ("Windows app", "Prints receipts silently and updates itself."),
-                 ("Every release is tested first", "Sales, contracts, payments and reports run on a throw-away database before a build goes live."),
-                 ("On the customer’s phone too", "Customers see their contract, payment schedule and remaining debt in their own app.")],
-             "rasmlar": [("crm-mijozlar", "Customers and their trust score"), ("crm-qarz", "Overdue debt"), ("crm-kassa", "Cash by branch")],
-             "izoh": "Screens from a demo database; amounts, names and branch names are hidden.",
-             "havolalar": [("https://hamkorcrm.uz/", "hamkorcrm.uz")]},
-            {"id": "mijoz", "chip": "Mobile app", "nom": "Hamkor — the customer app",
-             "tavsif": "Contracts, remaining debt, next payment and payment history on the phone; installment orders from the catalog and a chat with the store.",
-             "teglar": ["Flutter", "Riverpod", "Android", "iPhone"], "maqsad": True,
-             "qadamlar": [
-                 "Customers who bought on installments see their contract, next payment and limit without visiting the store, and the store can send them notices and offers directly.",
-                 "Flutter and Riverpod, each feature in four layers (model, data, state, screen). Sign-in with an SMS code, the token kept in the phone’s secure storage. First written in Expo (React Native), fully moved to Flutter on 7 October.",
-                 "One codebase for Android, iPhone and web; three languages (Uzbek Cyrillic and Latin, Russian), light and dark themes. The app is being prepared for the stores."],
-             "tel": ["mobil-bosh", "mobil-katalog", "mobil-tolovlar"],
-             "rasmlar": [("mobil-bosh", "Home: amounts hidden by the app itself"), ("mobil-katalog", "Catalog with the monthly payment"), ("mobil-tolovlar", "Payment history")],
-             "izoh": "Demo customer; name and amounts are hidden.", "havolalar": []},
-            {"id": "kino", "chip": "Telegram bot · mini app", "nom": "KINO TV",
-             "tavsif": "A bot and mini app for series and films: sections, search, episodes; continues where you stopped.",
-             "teglar": ["Python", "aiogram 3", "SQLite", "Cloudflare Pages"], "maqsad": True,
-             "qadamlar": [
-                 "Watching long series in Telegram comfortably: find the right episode fast and never lose where you stopped.",
-                 "The bot turns posts in a private storage channel into the catalog on its own: the admin only uploads videos, the bot assigns codes. Videos are sent as copies, with no size limit. The mini app is plain HTML/CSS/JS with the catalog cached at Cloudflare’s edge.",
-                 "158 series and 543 films in 8 sections. The mini app continues from the next episode and keeps a saved list."],
-             "tel": ["kino-bosh", "kino-serial"],
-             "rasmlar": [("kino-bosh", "Home"), ("kino-serial", "Series and episodes")],
-             "havolalar": [("https://t.me/linvkino_bot", "@linvkino_bot")]},
-            {"id": "qogoz", "chip": "Mini app", "nom": "Qog‘oz Bino",
-             "tavsif": "A mini app for a Telegram channel: new episodes, most watched, search and a personal list.",
-             "teglar": ["HTML/CSS/JS", "Telegram Web App", "Python"], "maqsad": True,
-             "qadamlar": [
-                 "A poster catalog for a friend’s bot, @QogozBinoTVbot, without touching its code or using its token.",
-                 "A script builds the catalog from the bot itself: it sends /start for each code and reads the reply. The mini app searches live in Cyrillic and Latin and filters by section and genre.",
-                 "No bot token needed. A full rebuild takes about 10 minutes; new codes are added quickly on their own."],
-             "tel": ["qogoz-bosh", "qogoz-serial"],
-             "rasmlar": [("qogoz-bosh", "Home"), ("qogoz-serial", "Series and episodes")],
-             "havolalar": [("https://qogoz-bino.pages.dev/", "qogoz-bino.pages.dev")]},
-            {"id": "hamkor", "chip": "Website", "nom": "Hamkor Savdo",
-             "tavsif": "Site for a four-branch retail chain: catalog, branches and an installment application. Hover — the site scrolls.",
-             "teglar": ["Next.js 16", "React 19", "Tailwind v4"], "maqsad": True,
-             "qadamlar": [
-                 "Introduce a four-branch chain: the company, the offer, each branch and every way to reach it. The main constraint: fast on slow connections.",
-                 "No animation library: all motion is CSS plus about 1 KB of JavaScript. The logo was traced to vector from the brand book artwork.",
-                 "The readable page (HTML and CSS) is 35 KB gzipped and works without JavaScript. Every text pair is above 4.5:1 contrast; no invented reviews or facts."],
-             "uzun": "uzun-hamkor", "havolalar": [("https://hamkorsavdo.uz/", "hamkorsavdo.uz")]},
-            {"id": "shuxrat", "chip": "Website", "nom": "Shuxrat o‘g‘li", "belgi": True,
-             "tavsif": "A three-language site for a poultry brand: products, wholesale orders and a live video made with Veo.",
-             "teglar": ["HTML/CSS/JS", "SVG animation", "Veo"], "maqsad": True,
-             "qadamlar": [
-                 "A brand site for the “Baraka hamkor parranda” poultry brand: products, wholesale and where to buy.",
-                 "SVG logo animation, a full range table, a wholesale order form, a map and a live video. The text lives in one file; Russian and English pages are generated by a script.",
-                 "Delivered as a concept: places waiting for the client’s data are marked in a review mode, and no fake reviews were added."],
-             "uzun": "uzun-shuxrat", "havolalar": [("https://linverno-tm.github.io/shuxrat-ogli-v2/", "Open the site")]},
-            {"id": "oltinkol", "chip": "Website", "nom": "Oltinko‘l leather and footwear zone", "belgi": True,
-             "tavsif": "Site for a small industrial zone: shops, a payment calculator, pages for investors and residents, an admin panel.",
-             "teglar": ["HTML/CSS/JS", "Admin panel", "3 languages"], "maqsad": True,
-             "qadamlar": [
-                 "Sell shops and attract investors for a small leather and footwear industrial zone.",
-                 "Pages for shops, a credit and payment calculator, incentives, investors and residents, plus an admin panel for applications, shops and users.",
-                 "14 sections in Uzbek, Russian and English."],
-             "uzun": "uzun-oltinkol", "havolalar": [("https://linverno-tm.github.io/oltinkol-zona/", "Open the site")]},
-            {"id": "minges", "chip": "Website", "nom": "MINI GES",
-             "tavsif": "Site for small hydro-power plants: projects, how it works, services and an application form.",
-             "teglar": ["Static site", "SVG", "CI"], "maqsad": True,
-             "qadamlar": [
-                 "Present Ulug‘nor GES (600 kW, running) and Baliqchi GES (1,000 kW) and sell the service of building small hydro plants.",
-                 "A static site without a framework. “How it works” is an isometric SVG (~53 KB) instead of a 3D model. Industry news is written in at build time; Uzbek and Russian.",
-                 "About 170 KB gzipped on a phone’s first visit, with no images loaded. CI checks and publishes every change."],
-             "uzun": "uzun-minges", "havolalar": [("https://linverno-tm.github.io/mini-ges-site/", "Open the site")]},
-        ],
-        "boshqa_chip": "Mobile apps", "boshqa_h": "Other apps I built",
-        "boshqa": [("ChatForge", "A Flutter messenger: one-to-one chats, push notifications to the right person.", "https://github.com/linverno-tm/chatforge"),
-                   ("Bulk SMS", "Android: SMS from an Excel or CSV list; the queue survives a phone restart.", "https://github.com/linverno-tm/bulk-sms"),
-                   ("Task app", "Works offline and syncs on its own when the connection returns.", "https://github.com/linverno-tm/task-manager")],
-        "media_chip": "Video", "media_h": "Live video made with Veo",
-        "media_p": "For the Shuxrat o‘g‘li site. For type and number driven motion clips I use Remotion.",
-        "veo_pauza": "Pause video", "veo_davom": "Play video",
-        "buklet_chip": "Print design", "buklet_h": "Tri-fold booklet, Hamkor Savdo",
-        "buklet_p": "A4, three panels, print-ready vector file.",
-        "buklet_alt": "Hamkor Savdo tri-fold booklet: “installments up to 24 months”, products and monthly payments",
-        "avto_chip": "Automation", "avto_h": "Handing manual work to software",
-        "avto": [("Price watch", "Competitors’ posts in Telegram groups become prices; each store gets a daily PDF with only the new and changed prices."),
-                 ("Tax audit report", "A program that builds the tax-audit report from invoices and cash receipts on its own."),
-                 ("My own connectors", "MCP servers for YouTube and Pinterest, so channel and content work can be done through AI.")],
-        "aloqa_h": "Have a project? Message me on Telegram.",
-        "aloqa_p": "A few lines are enough: what your business does and what you want to speed up. I answer myself.",
-        "qr": "Scan with your phone camera",
-        "footer_til": "O‘zbekcha",
+        "ishlar": "Work", "aloqa": "Contact",
+        "til": "O‘zbekcha", "til_qisqa": "UZ", "til_kod": "uz",
+        "kirish_1": "I build software for businesses: sales and installment systems, mobile apps, Telegram bots and websites. I do the whole thing myself, from design to deployment.",
+        "kirish_2": "Right now I’m working on <b>Hamkor CRM</b>, a system that replaced 1C for a four-branch retail chain, and its customer app.",
+        "tg": "Message on Telegram",
+        "tanlangan": "Selected work",
+        "boshqa": "Other work",
+        "aloqa_1": "If you have a project, message me on Telegram: <a href=\"" + TG + "\">@m_tojiddinov7</a>.",
+        "aloqa_2": "A few lines are enough: what your business does and what you want to speed up.",
+        "manba": "Site source",
+        "orqaga": "All work",
+        "keyingi": "Next project",
+        "meta": ("Period", "Role", "Stack", "Status"),
+        "rol": "Author: design and development",
+        "konsept": "Concept",
+        "pauza": "Pause video", "davom": "Play video",
+        "oy": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        "hozir": "present",
+        "kod": "Code",
     },
 }
 
-# KINO TV botining haqiqiy salomlashuvi (kino-bot/bot/korinish.py: salom_matn, salom_kb; ism bo'lmasa «do'stim»)
-CHAT = [("men", "/start"),
-        ("yoz", ""),
-        ("bot", "Salom, <b>do‘stim</b>! 🍿<br>Bu yerda <b>158</b> ta serial va <b>543</b> ta kino — hammasi o‘zbek tilida, bepul.<br>Nomini yoki kodini yozing — darhol topib beraman."),
-        ("kb", "")]
-KB = [("🎬 Katalog", True), ("🔥 Trendda", False), ("🆕 Yangilar", False), ("✨ Siz uchun", False), ("🎲 Tasodifiy", False), ("📂 Bo‘limlar", False), ("⭐ Ro‘yxatim", False)]
+# --------------------------------------------------------------------------------------------
+# Loyihalar. kadr: ("keng", rasm) | ("tel", [rasmlar]) | ("uzun", rasm)
+# Bloklar: ("h", matn) | ("p", matn) | ("ul", [..]) | ("rasm", nom, izoh) | ("tel", [(nom, izoh)])
+#          | ("butun", nom, izoh) | ("video", izoh)
+# --------------------------------------------------------------------------------------------
+LOYIHALAR = [
+    {"slug": "hamkor-crm", "boshi": (2026, 9), "oxiri": None, "kadr": ("keng", "crm-bosh"),
+     "stack": "Next.js, TypeScript, PostgreSQL 16, Tauri v2",
+     "havola": ("https://hamkorcrm.uz/", "hamkorcrm.uz"),
+     "uz": {"nom": "Hamkor CRM", "tur": "Savdo va nasiya tizimi",
+            "lid": "To‘rt filialli savdo tarmog‘i uchun 1C o‘rnini bosgan muddatli to‘lov savdo tizimi.",
+            "holat": "Ishlatilmoqda",
+            "alt": "Hamkor CRM bosh sahifasi: kassalar, nasiya qarzi va oylik foyda grafigi; summalar yopilgan",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Tarmoqdagi to‘rtta do‘kon to‘rtta alohida 1C bazasida ishlardi va ular bir-birini ko‘rmasdi. Bir do‘konda qora ro‘yxatga tushgan mijoz boshqasida yana nasiyaga tovar olishi mumkin edi, umumiy hisobot uchun esa ma’lumotni to‘rt joydan yig‘ish kerak edi."),
+                ("h", "Yechim"),
+                ("p", "Hamma do‘kon uchun bitta baza va bitta tizim: savdo, nasiya shartnomalari, to‘lov grafigi, kassa, ombor, ish haqi va hisobotlar. Tizim 1C bilan ikki tomonlama sinxronlanadi, shuning uchun o‘tish davrida ikkalasi yonma-yon ishladi."),
+                ("rasm", "crm-mijozlar", "Mijozlar ro‘yxati: ishonch bahosi, shartnomalar va muddati o‘tgan qarz."),
+                ("ul", ["Internet uzilsa ham ishlaydi: kompyuterdagi shifrlangan nusxa bilan oynalar ochilaveradi, amallar navbatga yoziladi va aloqa tiklanganda yuboriladi.",
+                        "Xodimlar Windows dasturida ishlaydi (Tauri v2): chek so‘ramasdan chop etiladi, dastur o‘zi yangilanadi.",
+                        "Har bir yangilanish ishga chiqishidan oldin vaqtinchalik PostgreSQL bazada savdo, shartnoma, to‘lov va hisobot ssenariylari bilan tekshiriladi.",
+                        "Mijozlar o‘z shartnomasi va to‘lovlarini alohida mobil ilovada ko‘radi; ilova shu bazaga ulangan."]),
+                ("rasm", "crm-qarz", "Muddati o‘tgan qarzlar kechikish kunlari bo‘yicha, undiruvchi uchun qo‘ng‘iroq natijasi bilan."),
+                ("rasm", "crm-kassa", "Kassalardagi qoldiq filiallar va to‘lov turlari kesimida."),
+                ("h", "Natija"),
+                ("p", "25-sentabrdan 26-oktabrgacha 1 421 ta commit va 244 ta sahifa. Platforma meniki, shuning uchun uni boshqa savdo tarmog‘iga ham moslab bera olaman."),
+            ],
+            "izoh": "Skrinshotlar demo bazadan olingan; summalar, ismlar va filial nomlari yopilgan."},
+     "en": {"nom": "Hamkor CRM", "tur": "Sales and installment system",
+            "lid": "An installment-sales system that replaced 1C for a four-branch retail chain.",
+            "holat": "In use",
+            "alt": "Hamkor CRM home screen: cash, installment debt and a monthly profit chart; amounts hidden",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "The chain’s four stores ran on four separate 1C databases that couldn’t see each other. A customer blacklisted in one store could get new credit in the next, and any combined report meant collecting data from four places."),
+                ("h", "What I built"),
+                ("p", "One database and one system for every store: sales, installment contracts, payment schedules, cash, warehouse, payroll and reports. It syncs with 1C both ways, so the two ran side by side during the switch."),
+                ("rasm", "crm-mijozlar", "Customer list: trust score, contracts and overdue debt."),
+                ("ul", ["It works without internet: an encrypted local copy keeps every window usable, actions queue up and are sent when the connection returns.",
+                        "Staff use a Windows app built with Tauri v2: receipts print silently and the app updates itself.",
+                        "Before a release goes live, sales, contract, payment and report scenarios run against a throw-away PostgreSQL database.",
+                        "Customers see their contracts and payments in a separate mobile app connected to the same database."]),
+                ("rasm", "crm-qarz", "Overdue debt grouped by days late, with the collector’s call result."),
+                ("rasm", "crm-kassa", "Cash balances by branch and payment type."),
+                ("h", "Result"),
+                ("p", "1,421 commits and 244 pages between 25 September and 26 October. I own the platform, so I can adapt it to another retail chain."),
+            ],
+            "izoh": "Screenshots come from a demo database; amounts, names and branch names are hidden."}},
 
-TG_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>'
-OQ = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
-X = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>'
-YULDUZ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="{c}" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg>'
-LENTA_RANG = ["#b9a2ff", "#c4b5fd", "#ffc93d", "#6cb2ff", "#dfd01f", "#c8a24a", "#f97316", "#4fe0b6", "#94a3b8"]
+    {"slug": "mijozlar-ilovasi", "boshi": (2026, 10), "oxiri": None, "kadr": ("tel", ["mobil-bosh", "mobil-katalog", "mobil-tolovlar"]),
+     "stack": "Flutter, Dart, Riverpod",
+     "uz": {"nom": "Hamkor mijozlar ilovasi", "tur": "Mobil ilova, Android va iPhone",
+            "lid": "Muddatli to‘lov bilan xarid qilgan mijozlar uchun telefon ilovasi.",
+            "holat": "Do‘konlarga chiqarishga tayyorlanmoqda",
+            "alt": "Hamkor mijozlar ilovasi: bosh sahifa, katalog va to‘lovlar tarixi",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Shartnomasi, keyingi to‘lovi yoki qolgan qarzini bilish uchun mijoz do‘konga borishi yoki qo‘ng‘iroq qilishi kerak edi. Do‘konda esa eslatma va aksiyalarni mijozga to‘g‘ridan-to‘g‘ri yetkazish yo‘li yo‘q edi."),
+                ("h", "Yechim"),
+                ("p", "Ilova Hamkor CRM’ning mijoz API’siga ulanadi. Kirish telefon raqami va SMS kod bilan; token telefonning xavfsiz xotirasida (iOS Keychain, Android Keystore) saqlanadi."),
+                ("tel", [("mobil-bosh", "Bosh sahifa. Summalarni ilovaning o‘zi yashiradi."), ("mobil-katalog", "Katalog: narx oylik to‘lov bilan."), ("mobil-tolovlar", "To‘lovlar tarixi oylar bo‘yicha.")]),
+                ("ul", ["Har bo‘lim to‘rt qatlamda: model, ma’lumot, holat va ekran. Ekran API’ga to‘g‘ridan-to‘g‘ri murojaat qilmaydi.",
+                        "Testlar internetsiz ishlaydi: server o‘rniga namuna javoblar beriladi.",
+                        "Birinchi versiya Expo (React Native) da yozilgan edi; 7-oktabrda ekranlar va API o‘zgarmagan holda Flutter’ga ko‘chirildi.",
+                        "O‘zbek (kirill va lotin) va rus tilida, yorug‘ va qorong‘i mavzu."]),
+                ("h", "Natija"),
+                ("p", "Android, iPhone va web uchun bitta kod. Ilova hozir do‘konlarga chiqarishga tayyorlanmoqda."),
+            ],
+            "izoh": "Demo mijoz; ism va summalar yopilgan."},
+     "en": {"nom": "Hamkor customer app", "tur": "Mobile app, Android and iPhone",
+            "lid": "A phone app for customers who bought on installments.",
+            "holat": "Being prepared for the stores",
+            "alt": "Hamkor customer app: home, catalog and payment history",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "To check their contract, next payment or remaining debt, customers had to visit the store or call. The store had no direct way to send them reminders and offers."),
+                ("h", "What I built"),
+                ("p", "The app talks to Hamkor CRM’s customer API. Sign-in is a phone number and an SMS code; the token lives in the phone’s secure storage (iOS Keychain, Android Keystore)."),
+                ("tel", [("mobil-bosh", "Home. The app hides amounts itself."), ("mobil-katalog", "Catalog priced by monthly payment."), ("mobil-tolovlar", "Payment history by month.")]),
+                ("ul", ["Each feature has four layers: model, data, state and screen. Screens never call the API directly.",
+                        "Tests run offline against sample responses instead of a server.",
+                        "The first version was written in Expo (React Native); on 7 October it moved to Flutter with the same screens and API.",
+                        "Uzbek (Cyrillic and Latin) and Russian, light and dark themes."]),
+                ("h", "Result"),
+                ("p", "One codebase for Android, iPhone and web. The app is now being prepared for the stores."),
+            ],
+            "izoh": "Demo customer; name and amounts are hidden."}},
+
+    {"slug": "kino-tv", "boshi": (2026, 10), "oxiri": (2026, 10), "kadr": ("tel", ["kino-bosh", "kino-serial"]),
+     "stack": "Python, aiogram 3, SQLite, Cloudflare Pages",
+     "havola": ("https://t.me/linvkino_bot", "@linvkino_bot"),
+     "uz": {"nom": "KINO TV", "tur": "Telegram bot va mini app",
+            "lid": "Seriallar va kinolar uchun Telegram bot va mini app.",
+            "alt": "KINO TV mini app: bosh sahifa va serial sahifasi",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Ko‘p qismli serialni Telegram’da ko‘rish noqulay: kerakli qismni topish qiyin, qayerda to‘xtaganingiz esdan chiqadi. Admin uchun esa har bir yangi qism qo‘l ishi edi."),
+                ("h", "Yechim"),
+                ("p", "Admin yopiq ombor kanalga video joylaydi, bot postni o‘zi o‘qib katalogga yozadi va kod beradi. Video foydalanuvchiga nusxa sifatida yuboriladi, shuning uchun hajm chegarasi yo‘q."),
+                ("tel", [("kino-bosh", "Mini app bosh sahifasi."), ("kino-serial", "Serial sahifasi va qismlar.")]),
+                ("ul", ["Mini app yig‘ishsiz HTML, CSS va JavaScript; Cloudflare Pages’da turadi, katalog chekkada 60 soniya keshlanadi.",
+                        "Qaysi qismda to‘xtaganingizni eslab qoladi va keyingisidan davom ettiradi; saqlanganlar ro‘yxati bor.",
+                        "Bot va mini app bitta API’dan foydalanadi."]),
+                ("h", "Natija"),
+                ("p", "Katalogda 158 ta serial va 543 ta kino, 8 ta bo‘lim."),
+            ]},
+     "en": {"nom": "KINO TV", "tur": "Telegram bot and mini app",
+            "lid": "A Telegram bot and mini app for series and films.",
+            "alt": "KINO TV mini app: home and a series page",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "Watching a long series in Telegram is awkward: the right episode is hard to find and you lose where you stopped. For the admin, every new episode was manual work."),
+                ("h", "What I built"),
+                ("p", "The admin posts a video to a private storage channel; the bot reads the post, adds it to the catalog and assigns a code. Videos are sent to users as copies, so there is no size limit."),
+                ("tel", [("kino-bosh", "Mini app home."), ("kino-serial", "Series page with episodes.")]),
+                ("ul", ["The mini app is plain HTML, CSS and JavaScript on Cloudflare Pages, with the catalog cached at the edge for 60 seconds.",
+                        "It remembers where you stopped and continues from the next episode; there is a saved list.",
+                        "The bot and the mini app share one API."]),
+                ("h", "Result"),
+                ("p", "158 series and 543 films in 8 sections."),
+            ]}},
+
+    {"slug": "qogoz-bino", "boshi": (2026, 10), "oxiri": (2026, 10), "kadr": ("tel", ["qogoz-bosh", "qogoz-serial"]),
+     "stack": "HTML, CSS, JavaScript, Python",
+     "havola": ("https://qogoz-bino.pages.dev/", "qogoz-bino.pages.dev"),
+     "uz": {"nom": "Qog‘oz Bino", "tur": "Telegram mini app",
+            "lid": "Do‘stimning @QogozBinoTVbot boti uchun posterli katalog.",
+            "alt": "Qog‘oz Bino mini app: yangi qismlar va serial sahifasi",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Botda serial ko‘p, lekin ularni ko‘rib tanlash uchun katalog yo‘q edi. Shart: botning kodiga tegmaslik va uning tokenini ishlatmaslik."),
+                ("h", "Yechim"),
+                ("p", "Katalogni botning o‘zidan yig‘adigan skript yozdim: u har bir kodga /start yuboradi va javobni o‘qiydi. Mini app shu katalog bilan ishlaydi; serial tanlansa, kartani va qismlarni botning o‘zi beradi."),
+                ("tel", [("qogoz-bosh", "Yangi qismlar va haftaning eng ko‘p ko‘rilganlari."), ("qogoz-serial", "Serial sahifasi.")]),
+                ("ul", ["Kirill va lotinda jonli qidiruv, bo‘lim va janr bo‘yicha saralash.",
+                        "To‘liq yig‘ish taxminan 10 daqiqa; yangi kodlar alohida tez qo‘shiladi."]),
+                ("h", "Natija"),
+                ("p", "Mini app BotFather’dagi menyu tugmasi orqali ochiladi; botning o‘z kodiga hech narsa qo‘shilmagan."),
+            ]},
+     "en": {"nom": "Qog‘oz Bino", "tur": "Telegram mini app",
+            "lid": "A poster catalog for my friend’s bot, @QogozBinoTVbot.",
+            "alt": "Qog‘oz Bino mini app: new episodes and a series page",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "The bot had plenty of series but no catalog to browse them. The constraint: don’t touch the bot’s code and don’t use its token."),
+                ("h", "What I built"),
+                ("p", "A script builds the catalog from the bot itself: it sends /start for each code and reads the reply. The mini app runs on that catalog; picking a series hands over to the bot, which sends the card and episodes."),
+                ("tel", [("qogoz-bosh", "New episodes and the week’s most watched."), ("qogoz-serial", "Series page.")]),
+                ("ul", ["Live search in Cyrillic and Latin, filters by section and genre.",
+                        "A full rebuild takes about 10 minutes; new codes can be added quickly on their own."]),
+                ("h", "Result"),
+                ("p", "The mini app opens from the bot’s menu button in BotFather; nothing was added to the bot’s own code."),
+            ]}},
+
+    {"slug": "hamkor-savdo", "boshi": (2026, 8), "oxiri": None, "kadr": ("uzun", "uzun-hamkor"),
+     "stack": "Next.js 16, React 19, TypeScript, Tailwind CSS v4",
+     "havola": ("https://hamkorsavdo.uz/", "hamkorsavdo.uz"),
+     "uz": {"nom": "Hamkor Savdo", "tur": "Brend sayti",
+            "lid": "To‘rt filialli savdo tarmog‘ining brend sayti, narx kuzatuvi va bosma materiallar.",
+            "holat": "Ishlab turibdi",
+            "alt": "Hamkor Savdo sayti, bosh sahifa",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Kompaniyani, uning taklifini, har bir filialni va bog‘lanish yo‘llarini bitta saytda ko‘rsatish. Asosiy shart: sekin mobil internetda ham tez ochilsin."),
+                ("h", "Yechim"),
+                ("p", "Animatsiya kutubxonasi ishlatilmadi: barcha harakat CSS va taxminan 1 KB JavaScript. Sahifa JavaScript yetib kelmasdan ham to‘liq o‘qiladi va ishlaydi: mobil menyu oddiy <details> elementida, telefon va manzillar oddiy havolalar."),
+                ("ul", ["Ranglar, shriftlar va logotip brendbukdan olingan; logotip rasmdan vektorga o‘tkazilgan.",
+                        "Matn kontrasti hamma joyda kamida 4.5:1.",
+                        "E’lon qilinmagan ma’lumot, masalan ish vaqti yoki kafolat muddati, to‘qib qo‘yilmagan."]),
+                ("butun", "uzun-hamkor", "Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."),
+                ("h", "Yonidagi ishlar"),
+                ("p", "Narx kuzatuvi: raqobatchilarning Telegram guruhlaridagi e’lonlaridan narxlar ajratib olinadi, har bir do‘konga kunlik PDF faqat yangi va o‘zgargan narxlar bilan boradi."),
+                ("rasm", "buklet", "Yevrobuklet, A4, uch buklama; bosmaga tayyor vektor fayl."),
+                ("h", "Natija"),
+                ("p", "O‘qiladigan sahifa (HTML va CSS) gzip bilan 35 KB."),
+            ]},
+     "en": {"nom": "Hamkor Savdo", "tur": "Brand website",
+            "lid": "The brand site for a four-branch retail chain, plus price watching and print.",
+            "holat": "Live",
+            "alt": "Hamkor Savdo website, home page",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "Show the company, its offer, every branch and every way to reach it on one site. The main constraint: fast on slow mobile connections."),
+                ("h", "What I built"),
+                ("p", "No animation library: all motion is CSS plus about 1 KB of JavaScript. The page is fully readable and usable before any JavaScript arrives: the mobile menu is a plain <details> element, phone numbers and addresses are plain links."),
+                ("ul", ["Colours, fonts and the logo come from the brand book; the logo was traced to vector from the bitmap.",
+                        "Every text pair has at least 4.5:1 contrast.",
+                        "Unpublished facts such as opening hours or warranty length were not made up."]),
+                ("butun", "uzun-hamkor", "The full home page; scroll inside the frame."),
+                ("h", "Alongside"),
+                ("p", "Price watching: prices are pulled from competitors’ posts in Telegram groups, and each store gets a daily PDF with only the new and changed prices."),
+                ("rasm", "buklet", "Tri-fold A4 booklet, print-ready vector file."),
+                ("h", "Result"),
+                ("p", "The readable page (HTML and CSS) is 35 KB gzipped."),
+            ]}},
+
+    {"slug": "mini-ges", "boshi": (2026, 10), "oxiri": (2026, 10), "kadr": ("uzun", "uzun-minges"),
+     "stack": "HTML, CSS, JavaScript, GSAP, GitHub Actions",
+     "havola": ("https://linverno-tm.github.io/mini-ges-site/", "linverno-tm.github.io/mini-ges-site"),
+     "uz": {"nom": "MINI GES", "tur": "Sayt",
+            "lid": "Kichik gidroelektrostansiyalar va ularni qurish xizmati uchun sayt.",
+            "alt": "MINI GES sayti, bosh sahifa",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Ulug‘nor GES (600 kVt, ishlab turibdi) va Baliqchi GES (1 000 kVt) ni tanishtirish va mini-GES qurish xizmatini sotish."),
+                ("h", "Yechim"),
+                ("p", "Freymvorksiz statik sayt. «Qanday ishlaydi» bo‘limi 3D model o‘rniga generatsiya qilingan izometrik SVG (taxminan 53 KB), shuning uchun arzon telefonda ham silliq ishlaydi."),
+                ("ul", ["Soha yangiliklari sahifa ochilganda emas, sayt yig‘ilayotganda yoziladi: begona saytga so‘rov ketmaydi.",
+                        "Har bir o‘zgarishni CI tekshiradi va GitHub Pages’ga o‘zi chiqaradi.",
+                        "O‘zbek va rus tilida."]),
+                ("butun", "uzun-minges", "Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."),
+                ("h", "Natija"),
+                ("p", "Telefonda birinchi ochilishda taxminan 170 KB (gzip), birorta rasm yuklanmaydi."),
+            ]},
+     "en": {"nom": "MINI GES", "tur": "Website",
+            "lid": "A site for small hydro-power plants and the service of building them.",
+            "alt": "MINI GES website, home page",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "Present Ulug‘nor GES (600 kW, running) and Baliqchi GES (1,000 kW), and sell the service of building small hydro plants."),
+                ("h", "What I built"),
+                ("p", "A static site without a framework. The “How it works” section is a generated isometric SVG (about 53 KB) instead of a 3D model, so it stays smooth on cheap phones."),
+                ("ul", ["Industry news is written in at build time, not fetched when the page opens, so no request goes to a third-party site.",
+                        "CI checks every change and publishes it to GitHub Pages.",
+                        "Uzbek and Russian."]),
+                ("butun", "uzun-minges", "The full home page; scroll inside the frame."),
+                ("h", "Result"),
+                ("p", "About 170 KB gzipped on a phone’s first visit, with no images loaded."),
+            ]}},
+
+    {"slug": "shuxrat-ogli", "boshi": (2026, 10), "oxiri": (2026, 10), "kadr": ("uzun", "uzun-shuxrat"), "konsept": True,
+     "stack": "HTML, CSS, JavaScript, SVG, Veo",
+     "havola": ("https://linverno-tm.github.io/shuxrat-ogli-v2/", "linverno-tm.github.io/shuxrat-ogli-v2"),
+     "uz": {"nom": "Shuxrat o‘g‘li", "tur": "Brend sayti",
+            "lid": "«Baraka hamkor parranda» XK markasi uchun uch tilli brend sayti.",
+            "alt": "Shuxrat o‘g‘li sayti, bosh sahifa",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Mahsulotlarni ko‘rsatish, ulgurji xaridorni ariza qoldirishga olib kelish va qayerdan sotib olish mumkinligini aniq aytish."),
+                ("h", "Yechim"),
+                ("p", "SVG logo animatsiyasi, mahsulotlar va assortiment jadvali, ulgurji buyurtma arizasi va xarita. Matn bitta faylda yoziladi, ruscha va inglizcha sahifalar skript bilan yasaladi."),
+                ("video", "Bosh qismdagi jonli video Veo bilan yaratilgan."),
+                ("butun", "uzun-shuxrat", "Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."),
+                ("h", "Natija"),
+                ("p", "Namuna sifatida topshirilgan. Mijozdan keladigan ma’lumot joylari maxsus ko‘rish rejimida belgilangan; soxta sharh yoki raqam qo‘yilmagan."),
+            ]},
+     "en": {"nom": "Shuxrat o‘g‘li", "tur": "Brand website",
+            "lid": "A three-language brand site for the “Baraka hamkor parranda” poultry brand.",
+            "alt": "Shuxrat o‘g‘li website, home page",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "Show the products, bring wholesale buyers to the order form and say clearly where to buy."),
+                ("h", "What I built"),
+                ("p", "An SVG logo animation, products and a range table, a wholesale order form and a map. The text is written in one file; the Russian and English pages are generated by a script."),
+                ("video", "The live video in the header was made with Veo."),
+                ("butun", "uzun-shuxrat", "The full home page; scroll inside the frame."),
+                ("h", "Result"),
+                ("p", "Delivered as a concept. Places waiting for the client’s data are marked in a review mode; no fake reviews or numbers were added."),
+            ]}},
+
+    {"slug": "oltinkol", "boshi": (2026, 10), "oxiri": (2026, 10), "kadr": ("uzun", "uzun-oltinkol"), "konsept": True,
+     "stack": "HTML, CSS, JavaScript",
+     "havola": ("https://linverno-tm.github.io/oltinkol-zona/", "linverno-tm.github.io/oltinkol-zona"),
+     "uz": {"nom": "Oltinko‘l charm-poyabzal zonasi", "tur": "Sayt va admin panel",
+            "lid": "Charm-poyabzal kichik sanoat zonasi uchun sayt va admin panel.",
+            "alt": "Oltinko‘l zonasi sayti, bosh sahifa",
+            "bloklar": [
+                ("h", "Vazifa"),
+                ("p", "Zonadagi do‘konlarni sotish va investor jalb qilish."),
+                ("h", "Yechim"),
+                ("p", "Do‘konlar, kredit va to‘lov hisoblagichi, imtiyozlar, investorlar va rezidentlar uchun sahifalar. Arizalar, do‘konlar va foydalanuvchilarni boshqarish uchun admin panel."),
+                ("butun", "uzun-oltinkol", "Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."),
+                ("h", "Natija"),
+                ("p", "14 ta bo‘lim, o‘zbek, rus va ingliz tilida."),
+            ]},
+     "en": {"nom": "Oltinko‘l leather and footwear zone", "tur": "Website and admin panel",
+            "lid": "A site and admin panel for a small leather and footwear industrial zone.",
+            "alt": "Oltinko‘l zone website, home page",
+            "bloklar": [
+                ("h", "The problem"),
+                ("p", "Sell the zone’s shops and attract investors."),
+                ("h", "What I built"),
+                ("p", "Pages for shops, a credit and payment calculator, incentives, investors and residents, plus an admin panel for applications, shops and users."),
+                ("butun", "uzun-oltinkol", "The full home page; scroll inside the frame."),
+                ("h", "Result"),
+                ("p", "14 sections in Uzbek, Russian and English."),
+            ]}},
+]
+
+BOSHQA = [
+    {"sana": (2026, 9), "url": "https://github.com/linverno-tm/accounting-report",
+     "uz": ("Kameral hisobot", "Hisob-faktura va kassa cheklaridan soliq tekshiruvi uchun hisobotni o‘zi yig‘adigan dastur."),
+     "en": ("Tax audit report", "Builds the tax-audit report from invoices and cash receipts.")},
+    {"sana": (2026, 2), "url": "https://github.com/linverno-tm/chatforge",
+     "uz": ("ChatForge", "Flutter’da messenjer: shaxsiy yozishmalar, kerakli odamga push-xabarnoma."),
+     "en": ("ChatForge", "A Flutter messenger: one-to-one chats, push notifications to the right person.")},
+    {"sana": (2026, 2), "url": "https://github.com/linverno-tm/bulk-sms",
+     "uz": ("Ommaviy SMS", "Android ilova: Excel yoki CSV ro‘yxatdan SMS yuboradi; telefon o‘chib yonsa ham navbat yo‘qolmaydi."),
+     "en": ("Bulk SMS", "An Android app that sends SMS from an Excel or CSV list; the queue survives a restart.")},
+    {"sana": (2026, 1), "url": "https://github.com/linverno-tm/task-manager",
+     "uz": ("Vazifalar ilovasi", "Internetsiz ishlaydi, aloqa tiklanganda o‘zi sinxronlanadi."),
+     "en": ("Task manager", "Works offline and syncs on its own when the connection returns.")},
+    {"sana": None, "url": None,
+     "uz": ("O‘z MCP serverlarim", "YouTube va Pinterest bilan ishlash uchun: kanal va kontent ishini sun’iy intellekt orqali bajarish."),
+     "en": ("My MCP servers", "For YouTube and Pinterest, so channel and content work can be done through AI.")},
+]
 
 
 def e(s):
     return html.escape(s, quote=True)
 
 
-def picture(root, name, alt, sizes, lazy=True, high=False):
+def picture(name, alt, sizes, lazy=True, high=False):
     m = RASM[name]
     ws = sorted(m["widths"])
     def srcset(ext):
-        return ", ".join(f"{root}img/{name}-{w}.{ext} {w}w" for w in ws)
+        return ", ".join(f"/img/{name}-{w}.{ext} {w}w" for w in ws)
     w0, h0 = ws[-1], round(m["h"] * ws[-1] / m["w"])
     attrs = f'width="{w0}" height="{h0}" alt="{e(alt)}" decoding="async"'
-    if lazy:
-        attrs += ' loading="lazy"'
-    if high:
-        attrs += ' fetchpriority="high"'
+    attrs += ' loading="lazy"' if lazy else ""
+    attrs += ' fetchpriority="high"' if high else ""
     return (f'<picture><source type="image/avif" srcset="{srcset("avif")}" sizes="{sizes}">'
             f'<source type="image/webp" srcset="{srcset("webp")}" sizes="{sizes}">'
-            f'<img src="{root}img/{name}-{ws[0]}.webp" {attrs}></picture>')
+            f'<img src="/img/{name}-{ws[0]}.webp" {attrs}></picture>')
 
 
-def yorliq(matn):
-    return f'<span class="yorliq"><i></i>{e(matn)}</span>'
+def sana(til, ym):
+    return f"{U[til]['oy'][ym[1] - 1]} {ym[0]}"
 
 
-def page(k):
-    t = T[k]
-    root = "" if k == "uz" else "../"
-    url = SAYT if k == "uz" else SAYT + "en/"
-    css = CSS.replace("{ROOT}", root)
-    boshqa_til = "en" if k == "uz" else "uz"
-    nav = "".join(f'<a class="bolim" href="{h}">{e(l)}</a>' for h, l in t["nav"])
-    ish = {x["id"]: x for x in t["ishlar"]}
+def davr(til, p):
+    b = sana(til, p["boshi"])
+    if p["oxiri"] is None:
+        return f"{b} – {U[til]['hozir']}"
+    return b if p["oxiri"] == p["boshi"] else f"{b} – {sana(til, p['oxiri'])}"
 
-    sozlar = t["h1_sozlar"] + t["h1_sozlar"][:1]
-    h1 = (f'<span class="q">{e(t["h1_bosh"])}</span>'
-          f'<span class="q aylan" aria-hidden="true"><span class="aylan-ichi">'
-          + "".join(f"<span>{e(x)}</span>" for x in sozlar) +
-          f'</span></span><span class="statik">{e(t["h1_statik"])}</span>'
-          f'<span class="q">{e(t["h1_oxir"])}</span>')
 
-    halqa = "".join(
-        f'<div class="halqa"><svg viewBox="0 0 58 58" aria-hidden="true"><circle class="orqa" cx="29" cy="29" r="24"/>'
-        f'<circle class="old" cx="29" cy="29" r="24"/></svg><b>100</b>{e(x)}</div>' for x in t["t_tez"])
+def kadr(p, til, sizes, lazy=True, high=False):
+    tur, x = p["kadr"]
+    vt = f' style="view-transition-name: kadr-{p["slug"]}"'
+    alt = p[til]["alt"]
+    if tur == "tel":
+        ichki = "".join(picture(n, alt if i == 0 else "", "(min-width: 760px) 170px, 28vw", lazy, high and i == 0) for i, n in enumerate(x))
+        return f'<div class="kadr tel"{vt}>{ichki}</div>'
+    cls = "kadr uzun" if tur == "uzun" else "kadr"
+    return f'<div class="{cls}"{vt}>{picture(x, alt, sizes, lazy, high)}</div>'
 
-    chat = []
-    for i, (kim, matn) in enumerate(CHAT):
-        if kim == "yoz":
-            chat.append(f'<div class="yozmoqda" style="--k:{i}" aria-hidden="true"><i></i><i></i><i></i></div>')
-        elif kim == "kb":
-            chat.append(f'<div class="tugmachalar" style="--k:{i}">' + "".join(
-                f'<span{" class=keng" if keng else ""}>{e(x)}</span>' for x, keng in KB) + "</div>")
-        else:
-            chat.append(f'<div class="xabar {kim}" style="--k:{i}">{matn}</div>')
 
-    lenta_bir = "".join(f'<span class="soz{" kontur" if i % 2 else ""}">{e(x)}</span>{YULDUZ.format(c=LENTA_RANG[i % len(LENTA_RANG)])}'
-                        for i, x in enumerate(t["lenta"]))
+def yol(til, slug=None):
+    b = "/" if til == "uz" else "/en/"
+    return b if slug is None else f"{b}ishlar/{slug}/"
 
-    # --- ish plitkalari ---
-    def ish_plitka(x, vizual):
-        belgi = f'<span class="yorliq">{e(t["konsept"])}</span>' if x.get("belgi") else ""
-        teg = "".join(f"<span>{e(s)}</span>" for s in x["teglar"])
-        return (f'<article class="plitka ish ish-{x["id"]}" style="--rang:{RANG[x["id"]]}" data-oyna="oyna-{x["id"]}">'
-                f'<div class="ish-bosh">{yorliq(x["chip"])}{belgi}</div>'
-                f'<h3>{e(x["nom"])}</h3><p class="tavsif">{e(x["tavsif"])}</p><div class="teglar">{teg}</div>'
-                f'<button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-{x["id"]}">{e(t["batafsil"])}{OQ}</button>'
-                f'<div class="vizual">{vizual}</div></article>')
 
-    def tel_qator(nomlar, sizes):
-        return '<div class="telefon-qator">' + "".join(
-            f'<div class="tel">{picture(root, n, "", sizes)}</div>' for n in nomlar) + "</div>"
-
-    plitkalar = [
-        ish_plitka(ish["crm"], f'<div class="ramka">{picture(root, "crm-mijozlar", t["crm_alt"][1], "(min-width: 1100px) 62vw, 100vw")}</div>'),
-        ish_plitka(ish["mijoz"], tel_qator(ish["mijoz"]["tel"], "(min-width: 1100px) 10vw, 30vw")),
-        ish_plitka(ish["kino"], tel_qator(ish["kino"]["tel"], "(min-width: 1100px) 13vw, 40vw")),
-        ish_plitka(ish["qogoz"], tel_qator(ish["qogoz"]["tel"], "(min-width: 1100px) 13vw, 40vw")),
-        f'<article class="plitka ish ish-boshqa" style="--rang:{RANG["boshqa"]}"><div class="ish-bosh">{yorliq(t["boshqa_chip"])}</div>'
-        f'<h3>{e(t["boshqa_h"])}</h3><ul>' + "".join(
-            f'<li><b>{e(a)}</b><span>{e(b)}</span><a href="{h}" rel="noopener">{e(t["kod"])}: {e(a)}</a></li>' for a, b, h in t["boshqa"]) + "</ul></article>",
-    ]
-    for sid in ("hamkor", "shuxrat", "oltinkol", "minges"):
-        x = ish[sid]
-        plitkalar.append(ish_plitka(x, f'<div class="ramka oqim">{picture(root, x["uzun"], "", "(min-width: 700px) 48vw, 100vw")}</div>'))
-    plitkalar.append(
-        f'<article class="plitka ish ish-media" style="--rang:{RANG["media"]}"><div class="ish-bosh">{yorliq(t["media_chip"])}</div>'
-        f'<h3>{e(t["media_h"])}</h3><p class="tavsif">{e(t["media_p"])}</p><div class="vizual"><div class="ramka video-ramka">'
-        f'<video muted loop playsinline preload="none" poster="{root}img/veo-kadr-800.webp" width="960" height="540" data-src="{root}media/veo-tovuq.mp4" aria-label="{e(t["media_h"])}"></video>'
-        f'<button class="pauza" type="button" hidden data-pauza="{e(t["veo_pauza"])}" data-davom="{e(t["veo_davom"])}" aria-label="{e(t["veo_pauza"])}"></button></div></div></article>')
-    plitkalar.append(
-        f'<article class="plitka ish ish-buklet" style="--rang:{RANG["buklet"]}"><div class="ish-bosh">{yorliq(t["buklet_chip"])}</div>'
-        f'<h3>{e(t["buklet_h"])}</h3><p class="tavsif">{e(t["buklet_p"])}</p><div class="vizual"><div class="ramka">'
-        f'{picture(root, "buklet", t["buklet_alt"], "(min-width: 1100px) 56vw, 100vw")}</div></div></article>')
-    plitkalar.append(
-        f'<article class="plitka ish ish-avto" style="--rang:{RANG["avto"]}"><div class="ish-bosh">{yorliq(t["avto_chip"])}</div>'
-        f'<h3>{e(t["avto_h"])}</h3><ul>' + "".join(f'<li><b>{e(a)}</b><span>{e(b)}</span></li>' for a, b in t["avto"]) + "</ul></article>")
-
-    # --- loyiha oynalari ---
-    oynalar = []
-    for x in t["ishlar"]:
-        q = t["qadam_m"] if x.get("maqsad") else t["qadam"]
-        qadam = "".join(f'<div class="qadam"><h3>{e(a)}</h3><p>{e(b)}</p></div>' for a, b in zip(q, x["qadamlar"]))
-        if x.get("tel"):
-            rasm = '<div class="oyna-rasmlar tel">' + "".join(
-                f'<figure><div class="ramka">{picture(root, n, c, "(min-width: 800px) 280px, 45vw")}</div><figcaption>{e(c)}</figcaption></figure>'
-                for n, c in x["rasmlar"]) + "</div>"
-        elif x.get("uzun"):
-            rasm = (f'<div class="oyna-rasmlar"><figure><div class="ramka uzun-ramka" tabindex="0" role="region" aria-label="{e(x["nom"])}">'
-                    f'{picture(root, x["uzun"], x["nom"], "(min-width: 1000px) 920px, 100vw")}</div></figure></div>')
-        else:
-            rasm = '<div class="oyna-rasmlar">' + "".join(
-                f'<figure><div class="ramka">{picture(root, n, c, "(min-width: 1000px) 920px, 100vw")}</div><figcaption>{e(c)}</figcaption></figure>'
-                for n, c in x["rasmlar"]) + "</div>"
-        fakt = ""
-        if x.get("faktlar"):
-            fakt = '<dl class="oyna-faktlar">' + "".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in x["faktlar"]) + "</dl>"
-        havola = "".join(f'<a class="btn btn-shaffof" href="{h}" rel="noopener">{e(l)}{OQ}</a>' for h, l in x["havolalar"])
-        izoh = f'<p class="izoh">{e(x["izoh"])}</p>' if x.get("izoh") else ""
-        oynalar.append(
-            f'<dialog class="oyna" id="oyna-{x["id"]}" style="--rang:{RANG[x["id"]]}" aria-labelledby="oyna-{x["id"]}-h">'
-            f'<div class="oyna-ichi"><div class="oyna-bosh"><div>{yorliq(x["chip"])}<h2 id="oyna-{x["id"]}-h">{e(x["nom"])}</h2></div>'
-            f'<button class="yop" type="button" aria-label="{e(t["yopish"])}">{X}</button></div>'
-            f'<p class="lid">{e(x["tavsif"])}</p><div class="qadamlar">{qadam}</div>{fakt}{rasm}{izoh}'
-            f'<div class="oyna-oxir">{havola}<a class="btn btn-oq" href="{TG}" rel="noopener">{TG_ICON}{e(t["tg_btn"])}</a></div></div></dialog>')
-
+def sahifa(til, title, desc, url_yol, boshqa_yol, body):
+    u = U[til]
+    alt_uz = url_yol if til == "uz" else boshqa_yol
+    alt_en = url_yol if til == "en" else boshqa_yol
     return f"""<!doctype html>
-<html lang="{t['lang']}">
+<html lang="{til}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{e(t['title'])}</title>
-<meta name="description" content="{e(t['desc'])}">
-<meta name="theme-color" content="#07080c">
-<link rel="canonical" href="{url}">
-<link rel="alternate" hreflang="uz" href="{SAYT}">
-<link rel="alternate" hreflang="en" href="{SAYT}en/">
-<link rel="alternate" hreflang="x-default" href="{SAYT}">
+<title>{e(title)}</title>
+<meta name="description" content="{e(desc)}">
+<meta name="theme-color" content="#101113">
+<link rel="canonical" href="{SAYT}{url_yol}">
+<link rel="alternate" hreflang="uz" href="{SAYT}{alt_uz}">
+<link rel="alternate" hreflang="en" href="{SAYT}{alt_en}">
+<link rel="alternate" hreflang="x-default" href="{SAYT}{alt_uz}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="{url}">
-<meta property="og:title" content="{e(t['title'])}">
-<meta property="og:description" content="{e(t['desc'])}">
-<meta property="og:image" content="{SAYT}og.png">
+<meta property="og:url" content="{SAYT}{url_yol}">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(desc)}">
+<meta property="og:image" content="{SAYT}/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{root}apple-touch-icon.png">
-<link rel="preload" href="{root}unbounded.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{root}onest.woff2" as="font" type="font/woff2" crossorigin>
-<style>{css}</style>
-<script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("harakat");</script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/onest.woff2" as="font" type="font/woff2" crossorigin>
+<style>{CSS}</style>
 </head>
 <body>
-<a class="skip" href="#asosiy">{e(t['skip'])}</a>
-<header class="tepa"><div class="wrap">
-  <a class="belgi-nom" href="{root or './'}"><span class="monogram" aria-hidden="true">MT</span><span class="ism"><b>Muhammadabdulloh Tojiddinov</b><small>{e(t['kasb'])}</small></span><span class="sr">Muhammadabdulloh Tojiddinov</span></a>
-  <nav aria-label="{'Bo‘limlar' if k == 'uz' else 'Sections'}">{nav}</nav>
-  <a class="til" href="{t['til_link']}" hreflang="{boshqa_til}" lang="{boshqa_til}" aria-label="{e(t['til_aria'])}">{t['til_label']}</a>
-  <a class="btn btn-oq" href="{TG}" rel="noopener" aria-label="{e(t['tg_btn'])}">{TG_ICON}<span>{e(t['tg_btn'])}</span></a>
-</div></header>
+<a class="skip" href="#asosiy">{e(u['skip'])}</a>
+<header class="wrap tepa">
+  <a class="nom" href="{yol(til)}">Muhammadabdulloh<span class="familiya"> Tojiddinov</span></a>
+  <nav aria-label="{'Asosiy menyu' if til == 'uz' else 'Main'}">
+    <a href="{yol(til)}#ishlar">{e(u['ishlar'])}</a>
+    <a href="{yol(til)}#aloqa">{e(u['aloqa'])}</a>
+    <a href="{boshqa_yol}" hreflang="{u['til_kod']}" lang="{u['til_kod']}" aria-label="{e(u['til'])}">{u['til_qisqa']}</a>
+  </nav>
+</header>
 <main id="asosiy">
-<section class="wrap boshi" aria-labelledby="h1">
-  <div class="bento">
-    <div class="plitka t-hero">
-      <div>{yorliq(t['kasb'])}</div>
-      <div><h1 id="h1">{h1}</h1><p class="lid">{t['lid']}</p>
-      <div class="tugmalar"><a class="btn btn-oq" href="{TG}" rel="noopener">{TG_ICON}{e(t['tg_btn'])}</a><a class="btn btn-shaffof" href="#ishlar">{e(t['cta2'])}</a></div></div>
-    </div>
-    <div class="plitka t-crm" data-oyna="oyna-crm">
-      {yorliq(t['t_crm_chip'])}
-      <h2>Hamkor CRM</h2><p>{e(t['t_crm_p'])}</p>
-      <div class="ekran-quti"><div class="ekran">{picture(root, "crm-bosh", t["crm_alt"][0], "(min-width: 1100px) 46vw, 110vw", lazy=False, high=True)}</div></div>
-      <button class="sr" type="button" aria-haspopup="dialog" aria-controls="oyna-crm">{e(t['batafsil'])}: Hamkor CRM</button>
-    </div>
-    <div class="plitka t-son">
-      {yorliq(t['t_son_chip'])}
-      <div><div class="katta-son" data-son="1373">{'1 373' if k == 'uz' else '1,373'}</div><p>{e(t['t_son_p'])}</p></div>
-    </div>
-    <div class="plitka t-tez">
-      {yorliq(t['t_tez_chip'])}
-      <div class="halqalar">{halqa}</div>
-      <p class="izoh-kichik">{e(t['t_tez_p'])}</p>
-    </div>
-    <div class="plitka t-chat">
-      {yorliq(t['t_chat_chip'])}
-      <div class="chat">
-        <div class="chat-bosh"><span class="av" aria-hidden="true">TV</span><span><b>KINO TV</b><small>@linvkino_bot · {e(t['t_chat_p'])}</small></span></div>
-        {''.join(chat)}
-      </div>
-    </div>
-    <div class="plitka t-tel" data-oyna="oyna-mijoz">
-      {yorliq(t['t_tel_chip'])}
-      <h2>{e(t['t_tel_h'])}</h2><p class="kichik-p">{e(t['t_tel_p'])}</p>
-      <div class="telefon-quti"><div class="telefon-kichik">{picture(root, "mobil-bosh", "", "(min-width: 1100px) 16vw, 50vw", lazy=False)}</div></div>
-      <button class="sr" type="button" aria-haspopup="dialog" aria-controls="oyna-mijoz">{e(t['batafsil'])}: {e(t['t_tel_h'])}</button>
-    </div>
-    <div class="plitka t-xiz">
-      {yorliq(t['t_xiz_chip'])}
-      <ul>{''.join(f'<li>{e(x)}</li>' for x in t['t_xiz'])}</ul>
-      <p>{e(t['t_xiz_p'])}</p>
-    </div>
-  </div>
-</section>
-<div class="lenta" aria-hidden="true"><div class="lenta-ichi">{lenta_bir}{lenta_bir}</div></div>
-<section class="wrap bolim ishlar" id="ishlar" aria-labelledby="ishlar-h">
-  <div class="bolim-sarlavha"><h2 id="ishlar-h">{e(t['ishlar_h'])}</h2><p>{e(t['ishlar_p'])}</p></div>
-  <div class="bento">{''.join(plitkalar)}</div>
-</section>
-<section class="wrap bolim" id="aloqa" aria-labelledby="aloqa-h">
-  <div class="plitka t-aloqa">
-    <div>
-      <h2 id="aloqa-h">{e(t['aloqa_h'])}</h2>
-      <p>{e(t['aloqa_p'])}</p>
-      <div class="tugmalar"><a class="btn btn-oq" href="{TG}" rel="noopener">{TG_ICON}{e(t['tg_btn'])}</a></div>
-      <a class="dastak" href="{TG}" rel="noopener">@m_tojiddinov7</a>
-      <div class="havolalar"><a href="https://hamkorcrm.uz/" rel="noopener">hamkorcrm.uz</a><a href="https://github.com/linverno-tm" rel="noopener">GitHub</a></div>
-    </div>
-    <div class="qr" aria-hidden="true"><div class="kod"><svg viewBox="0 0 27 27"><path d="{QR}"/></svg></div><small>{e(t['qr'])}</small></div>
-  </div>
-</section>
+{body}
 </main>
-{''.join(oynalar)}
-<footer><div class="wrap"><span>© 2026 Muhammadabdulloh Tojiddinov</span><a href="{t['til_link']}" hreflang="{boshqa_til}">{e(t['footer_til'])}</a></div></footer>
+<footer><div class="wrap"><span>© 2026 Muhammadabdulloh Tojiddinov</span>
+<nav aria-label="{'Havolalar' if til == 'uz' else 'Links'}"><a href="{TG}">Telegram</a><a href="{GITHUB}">GitHub</a><a href="{MANBA}">{e(u['manba'])}</a></nav></div></footer>
 <script>{JS}</script>
 </body>
 </html>
 """
 
 
-for k, out in (("uz", "index.html"), ("en", os.path.join("en", "index.html"))):
-    p = os.path.join(ROOT, out)
-    os.makedirs(os.path.dirname(p), exist_ok=True)
+def bosh(til):
+    u = U[til]
+    kartalar = []
+    for i, p in enumerate(LOYIHALAR):
+        t = p[til]
+        keng = i < 2
+        sizes = "(min-width: 1160px) 1120px, 100vw" if keng else "(min-width: 760px) 544px, 100vw"
+        yil = str(p["boshi"][0])
+        tur = t["tur"] + (f", {u['konsept'].lower()}" if p.get("konsept") else "")
+        kartalar.append(
+            f'<a class="ish{" birinchi" if keng else ""}" href="{yol(til, p["slug"])}">'
+            f'{kadr(p, til, sizes, lazy=i > 2, high=i == 0)}'
+            f'<div class="qator"><h3>{e(t["nom"])}</h3><span class="yil">{yil}</span></div><p>{e(tur)}</p></a>')
+    boshqa = []
+    for b in BOSHQA:
+        nom, izoh = b[til]
+        s = sana(til, b["sana"]) if b["sana"] else ""
+        nom_html = f'<a href="{b["url"]}">{e(nom)}</a>' if b["url"] else f"<b>{e(nom)}</b>"
+        boshqa.append(f'<li><span class="sana">{e(s)}</span><div>{nom_html}<span>{e(izoh)}</span></div></li>')
+    body = f"""<section class="wrap kirish" aria-labelledby="h1">
+  <div class="ustun">
+    <h1 id="h1">Muhammadabdulloh Tojiddinov</h1>
+    <p>{e(u['kirish_1'])}</p>
+    <p>{u['kirish_2']}</p>
+    <div class="amallar"><a class="btn" href="{TG}">{TG_ICON}{e(u['tg'])}</a><a href="https://hamkorcrm.uz/">hamkorcrm.uz</a><a href="{GITHUB}">GitHub</a></div>
+  </div>
+</section>
+<section class="wrap bolim" id="ishlar" aria-labelledby="ishlar-h" style="padding-top:0">
+  <h2 id="ishlar-h">{e(u['tanlangan'])}</h2>
+  <div class="ishlar">{''.join(kartalar)}</div>
+</section>
+<section class="wrap bolim" aria-labelledby="boshqa-h">
+  <h2 id="boshqa-h">{e(u['boshqa'])}</h2>
+  <ul class="royxat">{''.join(boshqa)}</ul>
+</section>
+<section class="wrap bolim aloqa" id="aloqa" aria-labelledby="aloqa-h">
+  <h2 id="aloqa-h">{e(u['aloqa'])}</h2>
+  <div class="ustun"><p>{u['aloqa_1']}</p><p>{e(u['aloqa_2'])}</p>
+  <div class="amallar"><a class="btn" href="{TG}">{TG_ICON}{e(u['tg'])}</a></div></div>
+</section>"""
+    boshqa_til = "en" if til == "uz" else "uz"
+    return sahifa(til, u["title"], u["desc"], yol(til), yol(boshqa_til), body)
+
+
+def blok(til, b):
+    k = b[0]
+    if k == "h":
+        return f"<h2>{e(b[1])}</h2>"
+    if k == "p":
+        return f"<p>{e(b[1])}</p>"
+    if k == "ul":
+        return "<ul>" + "".join(f"<li>{e(x)}</li>" for x in b[1]) + "</ul>"
+    if k == "rasm":
+        return (f'<figure><div class="ramka">{picture(b[1], b[2], "(min-width: 1160px) 1120px, 100vw")}</div>'
+                f"<figcaption>{e(b[2])}</figcaption></figure>")
+    if k == "tel":
+        ich = "".join(f'<figure style="margin:0"><div class="ramka">{picture(n, c, "(min-width: 760px) 220px, 45vw")}</div><figcaption>{e(c)}</figcaption></figure>' for n, c in b[1])
+        return f'<div class="telefonlar" style="margin:48px 0">{ich}</div>'
+    if k == "butun":
+        return (f'<figure><div class="ramka sahifa-butun" tabindex="0" role="region" aria-label="{e(b[2])}">'
+                f'{picture(b[1], b[2], "(min-width: 1160px) 1100px, 100vw")}</div><figcaption>{e(b[2])}</figcaption></figure>')
+    if k == "video":
+        u = U[til]
+        return (f'<figure><div class="ramka video-ramka"><video muted loop playsinline preload="none" poster="/img/veo-kadr-800.webp" '
+                f'width="960" height="540" data-src="/media/veo-tovuq.mp4" aria-label="{e(b[1])}"></video>'
+                f'<button class="pauza" type="button" hidden data-pauza="{e(u["pauza"])}" data-davom="{e(u["davom"])}" aria-label="{e(u["pauza"])}"></button></div>'
+                f"<figcaption>{e(b[1])}</figcaption></figure>")
+    raise ValueError(k)
+
+
+def loyiha(til, i):
+    u, p = U[til], LOYIHALAR[i]
+    t = p[til]
+    nxt = LOYIHALAR[(i + 1) % len(LOYIHALAR)]
+    m1, m2, m3, m4 = u["meta"]
+    holat = u["konsept"] if p.get("konsept") else t.get("holat")
+    meta = (f"<div><dt>{m1}</dt><dd>{e(davr(til, p))}</dd></div>"
+            f"<div><dt>{m2}</dt><dd>{e(u['rol'])}</dd></div>"
+            f"<div><dt>{m3}</dt><dd>{e(p['stack'])}</dd></div>")
+    if holat or p.get("havola"):
+        h = e(holat) if holat else ""
+        if p.get("havola"):
+            h += ("<br>" if h else "") + f'<a href="{p["havola"][0]}">{e(p["havola"][1])}</a>'
+        meta += f"<div><dt>{m4}</dt><dd>{h}</dd></div>"
+    # maqola: matn ustunda, rasmlar keng
+    qism, ustun = [], []
+    for b in t["bloklar"]:
+        if b[0] in ("h", "p", "ul"):
+            ustun.append(blok(til, b))
+        else:
+            if ustun:
+                qism.append(f'<div class="ustun">{"".join(ustun)}</div>'); ustun = []
+            qism.append(blok(til, b))
+    if t.get("izoh"):
+        ustun.append(f'<p class="izoh">{e(t["izoh"])}</p>')
+    if ustun:
+        qism.append(f'<div class="ustun">{"".join(ustun)}</div>')
+    nt = nxt[til]
+    body = f"""<article>
+<header class="wrap loyiha-bosh">
+  <a class="orqaga" href="{yol(til)}#ishlar">{e(u['orqaga'])}</a>
+  <div class="ustun"><h1>{e(t['nom'])}</h1><p class="lid">{e(t['lid'])}</p></div>
+  <dl class="meta">{meta}</dl>
+</header>
+<div class="wrap bosh-kadr">{kadr(p, til, "(min-width: 1160px) 1120px, 100vw", lazy=False, high=True)}</div>
+<div class="wrap maqola">{''.join(qism)}</div>
+<nav class="wrap keyingi" aria-label="{e(u['keyingi'])}"><small>{e(u['keyingi'])}</small>
+  <a href="{yol(til, nxt['slug'])}"><div><h2>{e(nt['nom'])}</h2><p>{e(nt['tur'])}</p></div>{kadr(nxt, til, "(min-width: 760px) 544px, 100vw")}</a>
+</nav>
+</article>"""
+    boshqa_til = "en" if til == "uz" else "uz"
+    return sahifa(til, f"{t['nom']} — Muhammadabdulloh Tojiddinov", t["lid"], yol(til, p["slug"]), yol(boshqa_til, p["slug"]), body)
+
+
+def yoz(rel, matn):
+    p = os.path.join(ROOT, rel)
+    os.makedirs(os.path.dirname(p) or ROOT, exist_ok=True)
     with open(p, "w", encoding="utf-8", newline="\n") as f:
-        f.write(page(k))
-    print(out, os.path.getsize(p), "bayt")
+        f.write(matn)
+    return p
+
+
+fayllar = []
+for til in ("uz", "en"):
+    pre = "" if til == "uz" else "en/"
+    fayllar.append(yoz(f"{pre}index.html", bosh(til)))
+    for i, p in enumerate(LOYIHALAR):
+        fayllar.append(yoz(f"{pre}ishlar/{p['slug']}/index.html", loyiha(til, i)))
+
+urls = [yol("uz")] + [yol("uz", p["slug"]) for p in LOYIHALAR]
+sm = ['<?xml version="1.0" encoding="UTF-8"?>',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+for u_ in urls:
+    en = "/en" + u_
+    for a, b in ((u_, en), (en, u_)):
+        sm.append(f'  <url><loc>{SAYT}{a}</loc><xhtml:link rel="alternate" hreflang="{"en" if b == en else "uz"}" href="{SAYT}{b}"/></url>')
+sm.append("</urlset>")
+yoz("sitemap.xml", "\n".join(sm) + "\n")
+for f in fayllar:
+    print(os.path.relpath(f, ROOT), os.path.getsize(f))

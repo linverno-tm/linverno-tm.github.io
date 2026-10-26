@@ -3,606 +3,243 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Muhammadabdulloh Tojiddinov — CRMs, mobile apps, Telegram bots and websites</title>
-<meta name="description" content="I build CRMs, mobile apps, Telegram bots, mini apps and websites for businesses. Author of Hamkor CRM, an installment-sales system that joined four stores’ 1C databases into one.">
-<meta name="theme-color" content="#07080c">
+<title>Muhammadabdulloh Tojiddinov — software developer</title>
+<meta name="description" content="I build sales and installment systems, mobile apps, Telegram bots and websites for businesses. Author of Hamkor CRM.">
+<meta name="theme-color" content="#101113">
 <link rel="canonical" href="https://linverno-tm.github.io/en/">
 <link rel="alternate" hreflang="uz" href="https://linverno-tm.github.io/">
 <link rel="alternate" hreflang="en" href="https://linverno-tm.github.io/en/">
 <link rel="alternate" hreflang="x-default" href="https://linverno-tm.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://linverno-tm.github.io/en/">
-<meta property="og:title" content="Muhammadabdulloh Tojiddinov — CRMs, mobile apps, Telegram bots and websites">
-<meta property="og:description" content="I build CRMs, mobile apps, Telegram bots, mini apps and websites for businesses. Author of Hamkor CRM, an installment-sales system that joined four stores’ 1C databases into one.">
+<meta property="og:title" content="Muhammadabdulloh Tojiddinov — software developer">
+<meta property="og:description" content="I build sales and installment systems, mobile apps, Telegram bots and websites for businesses. Author of Hamkor CRM.">
 <meta property="og:image" content="https://linverno-tm.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<link rel="preload" href="../unbounded.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../onest.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/onest.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face {
-  font-family: "Unbounded";
-  src: url("../unbounded.woff2") format("woff2");
-  font-weight: 400 800;
-  font-display: optional;
-}
-@font-face {
   font-family: "Onest";
-  src: url("../onest.woff2") format("woff2");
+  src: url("/onest.woff2") format("woff2");
   font-weight: 300 700;
   font-display: optional;
 }
 
 :root {
-  --fon: #07080c;
-  --plitka: rgb(255 255 255 / .035);
-  --plitka-2: rgb(255 255 255 / .06);
-  --chiziq: rgb(255 255 255 / .09);
-  --chiziq-2: rgb(255 255 255 / .22);
-  --matn: #f2f2f6;
-  --xira: #a3a5b6;
-  --oq: #f2f2f6;
-  --r-katta: 28px;
-  --r: 18px;
-  --gap: clamp(10px, 1.2vw, 16px);
-  --gutter: max(16px, 3vw);
-  --max: 1360px;
-  --display: "Unbounded", "Segoe UI", system-ui, sans-serif;
-  --body: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fon: #101113;
+  --sirt: #17181b;
+  --chiziq: #26282d;
+  --chiziq-2: #3a3d44;
+  --matn: #ececee;
+  --matn-2: #c9cbd1;
+  --xira: #9b9ea6;
+  --kenglik: 1120px;
+  --matn-kenglik: 680px;
+  --gutter: max(20px, 4vw);
   color-scheme: dark;
-  interpolate-size: allow-keywords;
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--fon); color: var(--matn);
-  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; font-weight: 400;
-  -webkit-font-smoothing: antialiased; overflow-x: clip;
+  font-family: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 1.0625rem; line-height: 1.65; font-weight: 400;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
 }
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(60vmax 40vmax at 15% -10%, rgb(139 92 246 / .16), transparent 70%),
-    radial-gradient(50vmax 35vmax at 100% 10%, rgb(47 129 247 / .10), transparent 70%);
-}
-img, video, svg { display: block; max-width: 100%; }
-img, video { height: auto; }
-a { color: inherit; }
+img, video { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration-color: var(--chiziq-2); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-color: currentColor; }
 p { margin: 0; }
-h1, h2, h3, h4 { margin: 0; font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; text-wrap: balance; }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.015em; text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
-button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--oq); outline-offset: 3px; border-radius: 10px; }
+:focus-visible { outline: 2px solid var(--matn); outline-offset: 3px; border-radius: 4px; }
 
-.wrap { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
-.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--oq); color: var(--fon); padding: 10px 14px; border-radius: 10px; text-decoration: none; }
+.wrap { width: min(100% - 2 * var(--gutter), var(--kenglik)); margin-inline: auto; }
+.ustun { max-width: var(--matn-kenglik); }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 10; background: var(--matn); color: var(--fon); padding: 10px 14px; border-radius: 6px; text-decoration: none; }
 .skip:focus { top: 12px; }
-.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* ---------- tepa panel ---------- */
-.tepa { position: sticky; top: 0; z-index: 40; padding-block: 12px; transition: background-color .3s, border-color .3s; border-bottom: 1px solid transparent; }
-.tepa.yopishgan { background: rgb(7 8 12 / .72); backdrop-filter: blur(16px) saturate(1.3); border-color: var(--chiziq); }
-.tepa .wrap { display: flex; align-items: center; gap: 12px; }
-.belgi-nom { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
-.monogram {
-  width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; flex: none;
-  font-family: var(--display); font-weight: 700; font-size: .95rem; letter-spacing: -0.04em; color: var(--fon);
-  background: conic-gradient(from 210deg, #a78bfa, #f5b301, #2f81f7, #22c59a, #a78bfa);
-}
-.belgi-nom b { font-weight: 600; font-size: 1rem; line-height: 1.2; }
-.belgi-nom small { display: block; color: var(--xira); font-size: .8rem; font-weight: 400; }
-@media (max-width: 620px) { .belgi-nom .ism { display: none; } }
-.tepa nav { display: flex; align-items: center; gap: 4px; }
-.tepa nav a.bolim { text-decoration: none; color: var(--xira); padding: 10px 14px; border-radius: 999px; font-size: .95rem; transition: color .2s, background-color .2s; }
-.tepa nav a.bolim:hover { color: var(--matn); background: var(--plitka-2); }
-@media (max-width: 860px) { .tepa nav a.bolim { display: none; } }
-.til { min-width: 44px; min-height: 44px; display: grid; place-items: center; border: 1px solid var(--chiziq-2); border-radius: 999px; text-decoration: none; font-size: .9rem; font-weight: 600; }
-.til:hover { border-color: var(--matn); }
+/* tepa */
+.tepa { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 28px; }
+.tepa .nom { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
+.tepa nav { display: flex; gap: 2px; margin-right: -10px; }
+.tepa nav a { text-decoration: none; color: var(--xira); padding: 10px; border-radius: 6px; }
+.tepa nav a:hover, .tepa nav a[aria-current] { color: var(--matn); }
+@media (max-width: 440px) { .tepa .nom .familiya { display: none; } }
 
-/* ---------- tugmalar ---------- */
+/* tanishtiruv */
+.kirish { padding-block: clamp(48px, 9vw, 112px) clamp(48px, 7vw, 88px); }
+.kirish h1 { font-size: clamp(2rem, 4.2vw, 2.75rem); line-height: 1.12; letter-spacing: -0.025em; }
+.kirish p { color: var(--xira); font-size: 1.1875rem; line-height: 1.6; margin-top: 20px; }
+.kirish p b { color: var(--matn); font-weight: 500; }
+.amallar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 32px; }
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 52px; padding: 0 24px; border-radius: 999px; border: 0; cursor: pointer;
-  text-decoration: none; font-weight: 600; font-size: 1rem; line-height: 1.2; white-space: nowrap;
-  transition: background-color .2s, color .2s, border-color .2s, translate .25s;
+  display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 20px; border-radius: 8px;
+  background: var(--matn); color: var(--fon); font-weight: 500; text-decoration: none; transition: background-color .15s;
 }
-.btn svg { width: 20px; height: 20px; flex: none; }
-.btn-oq { background: var(--oq); color: #0a0b10; }
-.btn-oq:hover { background: #fff; }
-.btn-oq svg { color: #229ed9; }
-.btn-shaffof { background: transparent; color: var(--matn); border: 1px solid var(--chiziq-2); }
-.btn-shaffof:hover { border-color: var(--matn); }
-.tepa .btn { min-height: 44px; padding: 0 18px; font-size: .92rem; }
-@media (max-width: 520px) { .tepa .btn span { display: none; } .tepa .btn { width: 44px; padding: 0; } }
+.btn:hover { background: #fff; }
+.btn svg { width: 18px; height: 18px; }
+.amallar > a:not(.btn) { color: var(--xira); }
+.amallar > a:not(.btn):hover { color: var(--matn); }
 
-/* ---------- plitka ---------- */
-.bento { display: grid; gap: var(--gap); grid-template-columns: repeat(12, minmax(0, 1fr)); }
-.plitka {
-  --rang: 255 255 255;
-  position: relative; overflow: hidden; isolation: isolate;
-  border-radius: var(--r-katta); border: 1px solid var(--chiziq);
-  background: linear-gradient(180deg, rgb(255 255 255 / .05), rgb(255 255 255 / .018));
-  --pad: clamp(20px, 2.2vw, 30px);
-  padding: var(--pad);
-  grid-column: span 12;
-}
-.plitka::before {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: radial-gradient(640px circle at var(--mx, 20%) var(--my, 0%), rgb(var(--rang) / .20), transparent 62%);
-  transition: opacity .4s; opacity: .85;
-}
-.plitka:hover::before { opacity: 1; }
-.plitka::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; padding: 1px;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--rang) / .55), transparent 70%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
-  opacity: 0; transition: opacity .4s;
-}
-.plitka:hover::after { opacity: 1; }
-.yorliq {
-  display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--xira);
-  padding: 6px 12px 6px 10px; border-radius: 999px; border: 1px solid var(--chiziq); background: rgb(0 0 0 / .2);
-  align-self: flex-start; width: fit-content;
-}
-.yorliq i { width: 8px; height: 8px; border-radius: 50%; background: rgb(var(--rang)); box-shadow: 0 0 0 4px rgb(var(--rang) / .18); }
+/* bo'lim sarlavhasi */
+.bolim { padding-top: clamp(64px, 9vw, 112px); scroll-margin-top: 16px; }
+.bolim > h2 { font-size: 1rem; font-weight: 500; color: var(--xira); letter-spacing: 0; padding-bottom: 16px; border-bottom: 1px solid var(--chiziq); margin-bottom: 32px; }
 
-/* ---------- birinchi ekran bentosi ---------- */
-.boshi { padding-top: clamp(12px, 2vw, 24px); }
-.t-hero { --rang: 139 92 246; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; min-height: 520px; }
-.t-hero h1 { font-size: clamp(2.2rem, 4.6vw, 4.4rem); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700; margin-bottom: 22px; }
-.t-hero h1 .q { display: block; }
-.aylan { display: block; height: 1.12em; overflow: hidden; }
-.aylan-ichi { display: block; }
-.aylan-ichi > span { display: block; height: 1.12em; white-space: nowrap; }
-.aylan-ichi > span:nth-child(5n+1) { color: #b9a2ff; }
-.aylan-ichi > span:nth-child(5n+2) { color: #c4b5fd; }
-.aylan-ichi > span:nth-child(5n+3) { color: #6cb2ff; }
-.aylan-ichi > span:nth-child(5n+4) { color: #ffc93d; }
-.aylan-ichi > span:nth-child(5n+5) { color: #4fe0b6; }
-.statik { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-@media (prefers-reduced-motion: no-preference) {
-  .aylan-ichi { animation: aylan 12.5s 1.6s cubic-bezier(.75, 0, .2, 1) infinite; }
-}
-@keyframes aylan {
-  0%, 16% { translate: 0 0; } 20%, 36% { translate: 0 -1.12em; } 40%, 56% { translate: 0 -2.24em; }
-  60%, 76% { translate: 0 -3.36em; } 80%, 96% { translate: 0 -4.48em; } 100% { translate: 0 -5.6em; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .aylan { display: none; }
-  .statik { position: static; width: auto; height: auto; overflow: visible; clip-path: none; white-space: normal; display: block; color: #b9a2ff; }
-}
-.t-hero .lid { color: var(--xira); font-size: 1.125rem; max-width: 36rem; }
-.t-hero .lid b { color: var(--matn); font-weight: 600; }
-.tugmalar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+/* ishlar to'ri */
+.ishlar { display: grid; gap: 48px 32px; }
+@media (min-width: 760px) { .ishlar { grid-template-columns: 1fr 1fr; } .ishlar .birinchi { grid-column: 1 / -1; } }
+.ish { text-decoration: none; display: block; }
+.ish h3 { font-size: 1.125rem; font-weight: 600; }
+.ish .qator { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 16px; }
+.ish .yil { color: var(--xira); font-size: .95rem; white-space: nowrap; }
+.ish p { color: var(--xira); margin-top: 4px; font-size: 1rem; }
+.birinchi h3 { font-size: 1.375rem; }
 
-.t-crm { --rang: 139 92 246; cursor: pointer; display: flex; flex-direction: column; }
-.t-crm h2, .t-kichik h2 { font-size: 1.25rem; margin-top: 14px; }
-.t-crm p { color: var(--xira); font-size: .98rem; margin-top: 6px; max-width: 26rem; }
-.ekran-quti {
-  margin: 22px calc(-1 * var(--pad)) calc(-1 * var(--pad)) 0; height: clamp(170px, 18vw, 240px); overflow: hidden;
-  perspective: 1400px; mask-image: linear-gradient(#000 55%, transparent);
+/* kadr: rasm uchun bir xil ramka */
+.kadr {
+  position: relative; overflow: hidden; border-radius: 12px; background: var(--sirt);
+  border: 1px solid var(--chiziq); aspect-ratio: 16 / 10;
 }
-.t-crm .ekran {
-  border-radius: 14px 0 0 0; overflow: hidden; border: 1px solid var(--chiziq-2); border-right: 0;
-  transform-origin: 0 0; transform: rotateX(14deg) rotateY(-10deg) translateY(10px);
-  transition: transform .7s cubic-bezier(.2, .7, .1, 1);
-}
-.t-crm:hover .ekran { transform: rotateX(4deg) rotateY(-3deg) translateY(0); }
-
-.t-son { --rang: 245 179 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; }
-.katta-son { font-family: var(--display); font-size: clamp(2.2rem, 3.6vw, 3.2rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; margin-top: 18px; }
-.t-son p { color: var(--xira); font-size: .92rem; margin-top: 8px; }
-
-.t-tez { --rang: 34 197 154; min-height: 180px; }
-.halqalar { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
-.halqa { display: grid; justify-items: center; gap: 6px; font-size: .78rem; color: var(--xira); }
-.halqa svg { width: 50px; height: 50px; rotate: -90deg; }
-.halqa circle { fill: none; stroke-width: 5; }
-.halqa .orqa { stroke: rgb(255 255 255 / .08); }
-.halqa .old { stroke: #4fe0b6; stroke-linecap: round; stroke-dasharray: 151; stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s cubic-bezier(.2, .7, .1, 1); }
-html.harakat .t-tez:not(.korindi) .old { stroke-dashoffset: 151; }
-.halqa b { position: relative; margin-top: -41px; margin-bottom: 15px; font-family: var(--display); font-size: .78rem; color: var(--matn); }
-.t-tez .izoh-kichik { color: var(--xira); font-size: .85rem; margin-top: 12px; }
-
-.t-chat { --rang: 47 129 247; min-height: 360px; display: flex; flex-direction: column; }
-.chat { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; font-size: .92rem; flex: 1; justify-content: flex-end; }
-.chat-bosh { display: flex; align-items: center; gap: 10px; }
-.chat-bosh .av { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #ffc93d, #f59e0b); display: grid; place-items: center; color: #1b1300; font-weight: 700; font-size: .8rem; }
-.chat-bosh b { display: block; font-size: .95rem; }
-.chat-bosh small { color: var(--xira); font-size: .8rem; }
-.xabar { max-width: 88%; padding: 10px 14px; border-radius: 18px; line-height: 1.45; }
-.xabar.men { align-self: flex-end; background: #2b5278; border-bottom-right-radius: 6px; }
-.xabar.bot { align-self: flex-start; background: #182533; border-bottom-left-radius: 6px; }
-.xabar.bot b { color: #fff; }
-.tugmachalar { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-width: 88%; }
-.tugmachalar span { text-align: center; padding: 8px 6px; border-radius: 10px; background: rgb(255 255 255 / .07); font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tugmachalar span.keng { grid-column: span 2; background: rgb(47 129 247 / .35); }
-.yozmoqda { align-self: flex-start; display: flex; gap: 4px; padding: 12px 14px; border-radius: 18px; background: #182533; }
-.yozmoqda i { width: 6px; height: 6px; border-radius: 50%; background: var(--xira); animation: nuqta 1s infinite; }
-.yozmoqda i:nth-child(2) { animation-delay: .15s; } .yozmoqda i:nth-child(3) { animation-delay: .3s; }
-@keyframes nuqta { 50% { translate: 0 -4px; opacity: .4; } }
-html.harakat .t-chat .chat > * { opacity: 0; translate: 0 10px; }
-html.harakat .t-chat.korindi .chat > * { animation: xabar 14s infinite; animation-delay: calc(var(--k) * 1.1s); }
-@keyframes xabar {
-  0% { opacity: 0; translate: 0 10px; } 4%, 86% { opacity: 1; translate: 0 0; } 92%, 100% { opacity: 0; translate: 0 -6px; }
-}
-html.harakat .t-chat.korindi .chat > .yozmoqda { animation: yoz 14s infinite; animation-delay: calc(var(--k) * 1.1s); }
-@keyframes yoz { 0% { opacity: 0; } 2%, 8% { opacity: 1; } 10%, 100% { opacity: 0; height: 0; padding: 0; margin: -5px 0; } }
-
-.t-tel { --rang: 167 139 250; cursor: pointer; display: flex; flex-direction: column; }
-.telefon-quti { margin: 22px 0 calc(-1 * var(--pad)); height: 230px; overflow: hidden; mask-image: linear-gradient(#000 60%, transparent); display: flex; justify-content: center; flex: 1; align-items: flex-start; }
-.t-tel .telefon-kichik {
-  width: min(62%, 220px); border-radius: 26px; overflow: hidden; border: 1px solid var(--chiziq-2);
-  box-shadow: 0 30px 70px -20px rgb(0 0 0 / .9); transition: translate .7s cubic-bezier(.2, .7, .1, 1); translate: 0 6px;
-}
-.t-tel:hover .telefon-kichik { translate: 0 -10px; }
-html.harakat .t-tel .telefon-kichik img { animation: suz 6s ease-in-out infinite; }
-@keyframes suz { 50% { transform: translateY(-8px); } }
-
-.t-xiz { --rang: 251 113 133; min-height: 360px; }
-.t-xiz ul { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.t-xiz li { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--chiziq); background: rgb(0 0 0 / .18); font-size: .92rem; transition: border-color .2s, background-color .2s; }
-.t-xiz li:hover { border-color: var(--chiziq-2); background: var(--plitka-2); }
-.t-xiz p { color: var(--xira); font-size: .95rem; margin-top: 18px; }
-
-@media (min-width: 700px) {
-  .t-hero { grid-column: span 12; }
-  .t-crm { grid-column: span 12; }
-  .t-son { grid-column: span 6; } .t-tez { grid-column: span 6; }
-  .t-chat { grid-column: span 6; } .t-tel { grid-column: span 6; }
-  .t-xiz { grid-column: span 12; min-height: 0; }
-}
-@media (min-width: 1100px) {
-  .boshi .bento { grid-template-rows: auto auto auto; }
-  .t-hero { grid-column: 1 / 8; grid-row: 1 / 3; }
-  .t-crm { grid-column: 8 / 13; grid-row: 1 / 2; }
-  .t-son { grid-column: 8 / 10; grid-row: 2 / 3; }
-  .t-tez { grid-column: 10 / 13; grid-row: 2 / 3; }
-  .t-chat { grid-column: 1 / 5; } .t-tel { grid-column: 5 / 9; } .t-xiz { grid-column: 9 / 13; min-height: 360px; }
+.kadr > picture > img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+.kadr.uzun > picture > img { height: auto; object-fit: initial; }
+.birinchi .kadr { aspect-ratio: 16 / 9; }
+.kadr.tel { display: flex; justify-content: center; align-items: flex-start; gap: 4%; padding: 7% 8% 0; }
+.kadr.tel picture { flex: 0 1 30%; }
+.kadr.tel img { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--chiziq-2); }
+.kadr.tel picture:nth-child(2) { margin-top: 5%; }
+.birinchi .kadr.tel { padding: 5% 10% 0; gap: 3%; }
+.birinchi .kadr.tel picture { flex-basis: 22%; }
+.ish .kadr img { transition: scale .5s cubic-bezier(.2, .7, .1, 1), translate .5s cubic-bezier(.2, .7, .1, 1); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ish:hover .kadr:not(.uzun):not(.tel) > picture > img { scale: 1.015; }
+  .ish:hover .kadr.uzun > picture > img { translate: 0 -12%; transition-duration: 2.4s; }
+  .ish:hover .kadr.tel picture img { translate: 0 -8px; }
 }
 
-/* ---------- loyihalar lentasi ---------- */
-.lenta { overflow: hidden; margin-block: clamp(56px, 8vw, 96px) 0; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.lenta-ichi { display: flex; align-items: center; width: max-content; }
-.lenta .soz { font-family: var(--display); font-size: clamp(1.8rem, 4.6vw, 3.8rem); font-weight: 700; letter-spacing: -0.04em; white-space: nowrap; line-height: 1.1; margin-right: .55em; }
-.lenta .kontur { color: transparent; -webkit-text-stroke: 1.2px rgb(242 242 246 / .45); }
-.lenta svg { width: clamp(16px, 2vw, 26px); height: auto; margin-right: .9em; flex: none; }
-html.harakat .lenta-ichi { animation: lenta 50s linear infinite; }
-.lenta:hover .lenta-ichi { animation-play-state: paused; }
-@keyframes lenta { to { translate: -50% 0; } }
+/* boshqa ishlar ro'yxati */
+.royxat { list-style: none; margin: 0; padding: 0; }
+.royxat li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 2px 24px; padding: 18px 0; border-bottom: 1px solid var(--chiziq); }
+.royxat li:first-child { padding-top: 0; }
+.royxat .sana { color: var(--xira); font-size: .95rem; padding-top: 1px; }
+.royxat b, .royxat a { font-weight: 600; }
+.royxat span { color: var(--xira); display: block; font-size: 1rem; }
+@media (max-width: 560px) { .royxat li { grid-template-columns: 1fr; } }
 
-/* ---------- ishlar ---------- */
-.bolim { padding-top: clamp(64px, 9vw, 120px); scroll-margin-top: 80px; }
-.bolim-sarlavha { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 32px; margin-bottom: clamp(20px, 3vw, 36px); }
-.bolim-sarlavha h2 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.04em; font-weight: 700; }
-.bolim-sarlavha p { color: var(--xira); max-width: 32rem; font-size: 1.05rem; }
+/* aloqa */
+.aloqa p { color: var(--xira); font-size: 1.1875rem; }
+.aloqa p + p { margin-top: 12px; }
+.aloqa p a { color: var(--matn); }
 
-.ish { display: flex; flex-direction: column; min-height: 420px; cursor: pointer; }
-.ish-bosh { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
-.ish h3 { font-size: clamp(1.3rem, 2vw, 1.75rem); margin-top: 14px; letter-spacing: -0.03em; }
-.ish .tavsif { color: var(--xira); margin-top: 8px; max-width: 34rem; font-size: 1rem; }
-.teglar { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-.teglar span { font-size: .78rem; padding: 4px 10px; border-radius: 999px; background: rgb(255 255 255 / .06); color: #cfd0db; }
-.ish .ochish {
-  margin-top: 18px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
-  min-height: 44px; padding: 0 16px 0 18px; border-radius: 999px; border: 1px solid var(--chiziq-2); background: rgb(0 0 0 / .25);
-  cursor: pointer; font-weight: 600; font-size: .92rem; transition: background-color .2s, border-color .2s;
-}
-.ish .ochish svg { width: 16px; height: 16px; transition: translate .3s; }
-.ish:hover .ochish { background: rgb(var(--rang) / .22); border-color: rgb(var(--rang) / .7); }
-.ish:hover .ochish svg { translate: 3px 0; }
-.ish .vizual { margin-top: auto; padding-top: 24px; position: relative; }
-.ish .vizual .ramka { border-radius: 14px; overflow: hidden; border: 1px solid var(--chiziq-2); background: #0d0f15; box-shadow: 0 30px 60px -24px rgb(0 0 0 / .8); }
-.ish .vizual .ramka img { width: 100%; }
-.oqim { aspect-ratio: 16 / 10; }
-.oqim img { transition: translate 1.4s cubic-bezier(.2, .7, .1, 1); }
-@media (hover: hover) { html.harakat .ish:hover .oqim img { translate: 0 -80%; transition: translate 9s cubic-bezier(.45, 0, .3, 1); } }
-@media (hover: none) { html.harakat .ish.korindi .oqim img { animation: oqim 18s 1s ease-in-out infinite alternate; } }
-@keyframes oqim { 0%, 8% { translate: 0 0; } 92%, 100% { translate: 0 -80%; } }
+footer { margin-top: clamp(80px, 12vw, 140px); padding-block: 28px 40px; border-top: 1px solid var(--chiziq); color: var(--xira); font-size: .95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+footer a { color: var(--xira); }
+footer nav { display: flex; gap: 20px; }
 
-.ish-crm .vizual .ramka { margin-right: calc(-1 * clamp(20px, 2.2vw, 30px) - 1px); border-right: 0; border-radius: 14px 0 0 14px; }
-.ish-crm .vizual .ramka img { aspect-ratio: 16 / 10; object-fit: cover; object-position: left top; }
-.telefon-qator { display: flex; gap: 10px; justify-content: center; align-items: flex-end; margin-bottom: calc(-1 * clamp(20px, 2.2vw, 30px) - 40px); }
-.telefon-qator .tel { flex: 1 1 0; max-width: 200px; border-radius: 22px; overflow: hidden; border: 1px solid var(--chiziq-2); box-shadow: 0 24px 50px -20px rgb(0 0 0 / .9); }
-.telefon-qator .tel:nth-child(2) { translate: 0 -28px; }
-html.harakat .telefon-qator .tel img { animation: suz 7s ease-in-out infinite; }
-html.harakat .telefon-qator .tel:nth-child(2) img { animation-delay: -2.3s; }
-html.harakat .telefon-qator .tel:nth-child(3) img { animation-delay: -4.6s; }
-.ish-boshqa ul, .ish-avto ul { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
-.ish-boshqa li, .ish-avto li { padding: 14px 16px; border-radius: 16px; background: rgb(0 0 0 / .22); border: 1px solid var(--chiziq); }
-.ish-boshqa li b, .ish-avto li b { display: block; font-weight: 600; }
-.ish-boshqa li span, .ish-avto li span { color: var(--xira); font-size: .92rem; display: block; margin-top: 2px; }
-.ish-boshqa li a { display: inline-block; margin-top: 6px; font-size: .9rem; color: #c4b5fd; text-underline-offset: 3px; }
-.ish-boshqa, .ish-avto { cursor: default; }
-.ish-avto ul { grid-template-columns: 1fr; }
+/* ---------- loyiha sahifasi ---------- */
+.orqaga { display: inline-block; color: var(--xira); text-decoration: none; padding-block: 8px; }
+.orqaga:hover { color: var(--matn); }
+.loyiha-bosh { padding-block: clamp(24px, 5vw, 56px) 40px; }
+.loyiha-bosh h1 { font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; margin-top: 24px; }
+.loyiha-bosh .lid { color: var(--xira); font-size: 1.25rem; line-height: 1.55; margin-top: 16px; }
+.meta { display: grid; gap: 20px 32px; margin: 40px 0 0; padding-top: 24px; border-top: 1px solid var(--chiziq); }
+@media (min-width: 640px) { .meta { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .meta { grid-template-columns: repeat(4, 1fr); } }
+.meta dt { color: var(--xira); font-size: .9rem; }
+.meta dd { margin: 4px 0 0; }
+.bosh-kadr .kadr { aspect-ratio: 16 / 9; }
+
+.maqola { padding-top: clamp(48px, 7vw, 80px); }
+.maqola h2 { font-size: 1.375rem; margin-top: 56px; }
+.maqola > h2:first-child { margin-top: 0; }
+.maqola p { margin-top: 16px; color: var(--matn-2); }
+.maqola ul { margin: 16px 0 0; padding-left: 1.2em; color: var(--matn-2); }
+.maqola li { margin-top: 10px; padding-left: 4px; }
+.maqola li::marker { color: var(--xira); }
+.maqola figure { margin: 48px 0; }
+.maqola figcaption { color: var(--xira); font-size: .95rem; margin-top: 12px; max-width: var(--matn-kenglik); }
+.maqola .izoh { color: var(--xira); font-size: .95rem; margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--chiziq); }
+.ramka { border-radius: 12px; overflow: hidden; border: 1px solid var(--chiziq); background: var(--sirt); }
+.telefonlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 220px)); gap: 20px; }
+.telefonlar .ramka { border-radius: 22px; }
+.sahifa-butun { max-height: min(78vh, 760px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 .video-ramka { position: relative; }
 .video-ramka video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.pauza { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 999px; border: 0; background: rgb(7 8 12 / .7); color: #fff; cursor: pointer; display: grid; place-items: center; }
-.pauza svg { width: 18px; height: 18px; }
-.ish-media, .ish-buklet { cursor: default; }
+.pauza { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgb(16 17 19 / .75); color: #fff; cursor: pointer; display: grid; place-items: center; }
+.pauza svg { width: 16px; height: 16px; }
 
-@media (min-width: 700px) {
-  .ishlar .ish { grid-column: span 6; }
-  .ishlar .ish-crm, .ishlar .ish-avto { grid-column: span 12; }
-}
-@media (min-width: 1100px) {
-  .ishlar .ish-crm { grid-column: span 8; min-height: 560px; }
-  .ishlar .ish-mijoz { grid-column: span 4; min-height: 560px; }
-  .ishlar .ish-kino, .ishlar .ish-qogoz, .ishlar .ish-boshqa { grid-column: span 4; }
-  .ishlar .ish-media { grid-column: span 5; } .ishlar .ish-buklet { grid-column: span 7; }
-  .ish-avto ul { grid-template-columns: repeat(3, 1fr); }
-}
-.ish-kino .telefon-qator, .ish-qogoz .telefon-qator { margin-bottom: calc(-1 * clamp(20px, 2.2vw, 30px) - 60px); }
+.keyingi { margin-top: clamp(72px, 10vw, 120px); padding-top: 24px; border-top: 1px solid var(--chiziq); }
+.keyingi small { color: var(--xira); font-size: .95rem; }
+.keyingi a { display: grid; gap: 20px; text-decoration: none; margin-top: 12px; }
+.keyingi h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.025em; }
+.keyingi p { color: var(--xira); margin-top: 8px; }
+@media (min-width: 760px) { .keyingi a { grid-template-columns: 1fr 1fr; align-items: center; } }
 
-/* ---------- loyiha oynasi ---------- */
-dialog.oyna {
-  --rang: 139 92 246;
-  width: min(1000px, 100% - 24px); max-height: min(92vh, 100% - 24px); padding: 0; margin: auto;
-  border: 1px solid var(--chiziq-2); border-radius: var(--r-katta); color: var(--matn);
-  background: linear-gradient(180deg, rgb(var(--rang) / .14), transparent 320px), #0c0d13;
-  box-shadow: 0 40px 120px -20px rgb(0 0 0 / .9); overflow: auto; overscroll-behavior: contain;
-}
-dialog.oyna::backdrop { background: rgb(4 5 8 / .7); backdrop-filter: blur(8px); }
-@media (prefers-reduced-motion: no-preference) {
-  dialog.oyna { transition: opacity .35s, translate .45s cubic-bezier(.2, .7, .1, 1), scale .45s cubic-bezier(.2, .7, .1, 1), display .45s allow-discrete, overlay .45s allow-discrete; }
-  dialog.oyna:not([open]) { opacity: 0; translate: 0 24px; scale: .97; }
-  @starting-style { dialog.oyna[open] { opacity: 0; translate: 0 24px; scale: .97; } }
-  dialog.oyna::backdrop { transition: opacity .35s, display .35s allow-discrete, overlay .35s allow-discrete; }
-  dialog.oyna:not([open])::backdrop { opacity: 0; }
-  @starting-style { dialog.oyna[open]::backdrop { opacity: 0; } }
-}
-.oyna-ichi { padding: clamp(22px, 3.4vw, 44px); }
-.oyna-bosh { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-.oyna h2 { font-size: clamp(1.6rem, 3.4vw, 2.6rem); margin-top: 14px; letter-spacing: -0.035em; }
-.yop { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--chiziq-2); background: rgb(0 0 0 / .3); cursor: pointer; display: grid; place-items: center; }
-.yop svg { width: 18px; height: 18px; }
-.yop:hover { border-color: var(--matn); }
-.oyna .lid { color: var(--xira); font-size: 1.1rem; margin-top: 12px; max-width: 46rem; }
-.qadamlar { display: grid; gap: 12px; margin-top: 28px; counter-reset: q; }
-.qadam { position: relative; padding: 20px 20px 22px; border-radius: 20px; background: rgb(255 255 255 / .04); border: 1px solid var(--chiziq); }
-.qadam h3 { font-size: 1rem; display: flex; align-items: center; gap: 10px; }
-.qadam h3::before { counter-increment: q; content: counter(q); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: .8rem; background: rgb(var(--rang) / .3); color: #fff; }
-.qadam p { color: #c9cad6; margin-top: 10px; font-size: .98rem; }
-@media (min-width: 800px) { .qadamlar { grid-template-columns: repeat(3, 1fr); } }
-.oyna-rasmlar { display: grid; gap: 12px; margin-top: 24px; }
-.oyna-rasmlar figure { margin: 0; }
-.oyna-rasmlar .ramka { border-radius: 14px; overflow: hidden; border: 1px solid var(--chiziq-2); background: #0d0f15; }
-.oyna-rasmlar figcaption { color: var(--xira); font-size: .85rem; margin-top: 8px; }
-.oyna-rasmlar.tel { grid-template-columns: repeat(auto-fill, minmax(140px, 230px)); justify-content: start; }
-.oyna-rasmlar.tel .ramka { border-radius: 22px; }
-.oyna-faktlar { display: grid; gap: 10px; margin: 24px 0 0; }
-.oyna-faktlar div { padding: 14px 16px; border-radius: 16px; border: 1px solid var(--chiziq); }
-.oyna-faktlar dt { font-weight: 600; }
-.oyna-faktlar dd { margin: 4px 0 0; color: var(--xira); font-size: .95rem; }
-@media (min-width: 800px) { .oyna-faktlar { grid-template-columns: 1fr 1fr; } }
-.oyna-oxir { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
-.oyna .izoh { color: var(--xira); font-size: .85rem; margin-top: 16px; }
-@media (max-width: 640px) {
-  dialog.oyna { width: 100%; max-width: 100%; max-height: 92dvh; margin: auto 0 0; border-radius: 26px 26px 0 0; border-bottom: 0; }
-  @media (prefers-reduced-motion: no-preference) {
-    dialog.oyna:not([open]) { translate: 0 60px; scale: 1; }
-    @starting-style { dialog.oyna[open] { translate: 0 60px; scale: 1; } }
-  }
-}
-html:has(dialog[open]) { overflow: hidden; }
-
-/* ---------- aloqa ---------- */
-.t-aloqa { --rang: 47 129 247; display: grid; gap: 28px; align-items: center; padding: clamp(28px, 5vw, 64px); }
-.t-aloqa h2 { font-size: clamp(2rem, 5.4vw, 4.4rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 700; }
-.t-aloqa p { color: var(--xira); font-size: 1.1rem; margin-top: 16px; max-width: 34rem; }
-.dastak { font-family: var(--display); font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 20px; }
-.dastak:hover { color: #6cb2ff; }
-.qr { justify-self: start; display: grid; gap: 10px; justify-items: center; text-align: center; }
-.qr .kod { width: 200px; padding: 14px; border-radius: 22px; background: #f2f2f6; }
-.qr .kod svg { width: 100%; height: auto; fill: #07080c; }
-.qr small { color: var(--xira); font-size: .85rem; max-width: 220px; }
-.havolalar { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; }
-.havolalar a { color: var(--xira); text-underline-offset: 4px; }
-.havolalar a:hover { color: var(--matn); }
-@media (min-width: 900px) { .t-aloqa { grid-template-columns: 1fr auto; } .qr { justify-self: end; } }
-@media (max-width: 899px) and (hover: none) { .qr { display: none; } }
-
-footer { padding-block: 48px 40px; color: var(--xira); font-size: .9rem; }
-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-footer a { color: var(--xira); }
-
-/* ---------- harakat ---------- */
-html.harakat .boshi .plitka { animation: kir .9s cubic-bezier(.2, .7, .1, 1) both; animation-delay: calc(var(--i, 0) * 70ms); }
-@keyframes kir { from { opacity: .2; translate: 0 26px; scale: .975; } }
-html.harakat :is(.ishlar .plitka, .bolim-sarlavha, .t-aloqa) { opacity: 0; translate: 0 40px; transition: opacity .8s cubic-bezier(.2, .7, .1, 1), translate .9s cubic-bezier(.2, .7, .1, 1); transition-delay: calc(var(--i, 0) * 80ms); }
-html.harakat .korindi { opacity: 1 !important; translate: 0 0 !important; }
-
-/* yotiq telefon */
-@media (max-height: 520px) and (orientation: landscape) {
-  .t-hero { min-height: 0; gap: 10px; padding-block: 16px; }
-  .t-hero h1 { font-size: clamp(1.6rem, 3.8vw, 2.2rem); margin-bottom: 10px; }
-  .t-hero .lid { font-size: .95rem; }
-  .t-hero .tugmalar { margin-top: 12px; }
-  .tepa { padding-block: 6px; }
-  .tepa .belgi-nom .ism { display: none; }
-  .tepa .btn span { display: none; }
-  .tepa .btn { width: 44px; padding: 0; }
-}
-
+/* sahifalar orasida o'tish */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
+  ::view-transition-group(*) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .7, .1, 1); }
 }
-
-.kichik-p { color: var(--xira); font-size: .95rem; margin-top: 6px; }
-.uzun-ramka { max-height: min(70vh, 640px); overflow: auto; overscroll-behavior: contain; }
-
-.ish-mijoz .telefon-qator { gap: 0; margin-bottom: calc(-1 * var(--pad) - 70px); }
-.ish-mijoz .telefon-qator .tel { max-width: 48%; flex: 0 0 48%; }
-.ish-mijoz .telefon-qator .tel:nth-child(1) { rotate: -7deg; translate: 18% 26px; z-index: 1; }
-.ish-mijoz .telefon-qator .tel:nth-child(2) { z-index: 2; translate: 0 -10px; }
-.ish-mijoz .telefon-qator .tel:nth-child(3) { rotate: 7deg; translate: -18% 26px; z-index: 1; }
-.ish-media .video-ramka video { aspect-ratio: 4 / 3; }
-.ishlar .ish-avto, .ishlar .ish-boshqa { min-height: 0; }
-
-.katta-son { white-space: nowrap; font-size: clamp(2rem, 3.2vw, 3.2rem); }
-.t-son .yorliq { white-space: nowrap; }
 </style>
-<script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("harakat");</script>
 </head>
 <body>
 <a class="skip" href="#asosiy">Skip to content</a>
-<header class="tepa"><div class="wrap">
-  <a class="belgi-nom" href="../"><span class="monogram" aria-hidden="true">MT</span><span class="ism"><b>Muhammadabdulloh Tojiddinov</b><small>Author of Hamkor CRM</small></span><span class="sr">Muhammadabdulloh Tojiddinov</span></a>
-  <nav aria-label="Sections"><a class="bolim" href="#ishlar">Work</a><a class="bolim" href="#aloqa">Contact</a></nav>
-  <a class="til" href="../" hreflang="uz" lang="uz" aria-label="O‘zbekcha versiya">UZ</a>
-  <a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener" aria-label="Message on Telegram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg><span>Message on Telegram</span></a>
-</div></header>
+<header class="wrap tepa">
+  <a class="nom" href="/en/">Muhammadabdulloh<span class="familiya"> Tojiddinov</span></a>
+  <nav aria-label="Main">
+    <a href="/en/#ishlar">Work</a>
+    <a href="/en/#aloqa">Contact</a>
+    <a href="/" hreflang="uz" lang="uz" aria-label="O‘zbekcha">UZ</a>
+  </nav>
+</header>
 <main id="asosiy">
-<section class="wrap boshi" aria-labelledby="h1">
-  <div class="bento">
-    <div class="plitka t-hero">
-      <div><span class="yorliq"><i></i>Author of Hamkor CRM</span></div>
-      <div><h1 id="h1"><span class="q">I build</span><span class="q aylan" aria-hidden="true"><span class="aylan-ichi"><span>CRMs</span><span>mobile apps</span><span>Telegram bots</span><span>mini apps</span><span>websites</span><span>CRMs</span></span></span><span class="statik">CRMs, mobile apps, Telegram bots, mini apps and websites</span><span class="q">for businesses.</span></h1><p class="lid"><b>I joined four stores’ separate 1C databases into one system.</b> Sales, installments, cash and stock now live in one place and keep working when the internet drops. From idea to working software, I write it all myself.</p>
-      <div class="tugmalar"><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a><a class="btn btn-shaffof" href="#ishlar">See the work</a></div></div>
-    </div>
-    <div class="plitka t-crm" data-oyna="oyna-crm">
-      <span class="yorliq"><i></i>Sales system · replaces 1C</span>
-      <h2>Hamkor CRM</h2><p>Sales, installment contracts, payments, cash, stock and reports. Click for details.</p>
-      <div class="ekran-quti"><div class="ekran"><picture><source type="image/avif" srcset="../img/crm-bosh-960.avif 960w, ../img/crm-bosh-1600.avif 1600w, ../img/crm-bosh-2400.avif 2400w" sizes="(min-width: 1100px) 46vw, 110vw"><source type="image/webp" srcset="../img/crm-bosh-960.webp 960w, ../img/crm-bosh-1600.webp 1600w, ../img/crm-bosh-2400.webp 2400w" sizes="(min-width: 1100px) 46vw, 110vw"><img src="../img/crm-bosh-960.webp" width="2400" height="1500" alt="Hamkor CRM home screen, amounts hidden" decoding="async" fetchpriority="high"></picture></div></div>
-      <button class="sr" type="button" aria-haspopup="dialog" aria-controls="oyna-crm">Details: Hamkor CRM</button>
-    </div>
-    <div class="plitka t-son">
-      <span class="yorliq"><i></i>Hamkor CRM</span>
-      <div><div class="katta-son" data-son="1373">1,373</div><p>changes in one month: September–October 2026</p></div>
-    </div>
-    <div class="plitka t-tez">
-      <span class="yorliq"><i></i>This site</span>
-      <div class="halqalar"><div class="halqa"><svg viewBox="0 0 58 58" aria-hidden="true"><circle class="orqa" cx="29" cy="29" r="24"/><circle class="old" cx="29" cy="29" r="24"/></svg><b>100</b>Speed</div><div class="halqa"><svg viewBox="0 0 58 58" aria-hidden="true"><circle class="orqa" cx="29" cy="29" r="24"/><circle class="old" cx="29" cy="29" r="24"/></svg><b>100</b>Access</div><div class="halqa"><svg viewBox="0 0 58 58" aria-hidden="true"><circle class="orqa" cx="29" cy="29" r="24"/><circle class="old" cx="29" cy="29" r="24"/></svg><b>100</b>Practices</div><div class="halqa"><svg viewBox="0 0 58 58" aria-hidden="true"><circle class="orqa" cx="29" cy="29" r="24"/><circle class="old" cx="29" cy="29" r="24"/></svg><b>100</b>SEO</div></div>
-      <p class="izoh-kichik">Lighthouse, desktop</p>
-    </div>
-    <div class="plitka t-chat">
-      <span class="yorliq"><i></i>Telegram bot</span>
-      <div class="chat">
-        <div class="chat-bosh"><span class="av" aria-hidden="true">TV</span><span><b>KINO TV</b><small>@linvkino_bot · a real reply from the KINO TV bot (in Uzbek)</small></span></div>
-        <div class="xabar men" style="--k:0">/start</div><div class="yozmoqda" style="--k:1" aria-hidden="true"><i></i><i></i><i></i></div><div class="xabar bot" style="--k:2">Salom, <b>do‘stim</b>! 🍿<br>Bu yerda <b>158</b> ta serial va <b>543</b> ta kino — hammasi o‘zbek tilida, bepul.<br>Nomini yoki kodini yozing — darhol topib beraman.</div><div class="tugmachalar" style="--k:3"><span class=keng>🎬 Katalog</span><span>🔥 Trendda</span><span>🆕 Yangilar</span><span>✨ Siz uchun</span><span>🎲 Tasodifiy</span><span>📂 Bo‘limlar</span><span>⭐ Ro‘yxatim</span></div>
-      </div>
-    </div>
-    <div class="plitka t-tel" data-oyna="oyna-mijoz">
-      <span class="yorliq"><i></i>Mobile app</span>
-      <h2>Hamkor — the customer app</h2><p class="kichik-p">Flutter: one codebase for Android and iPhone.</p>
-      <div class="telefon-quti"><div class="telefon-kichik"><picture><source type="image/avif" srcset="../img/mobil-bosh-520.avif 520w, ../img/mobil-bosh-780.avif 780w" sizes="(min-width: 1100px) 16vw, 50vw"><source type="image/webp" srcset="../img/mobil-bosh-520.webp 520w, ../img/mobil-bosh-780.webp 780w" sizes="(min-width: 1100px) 16vw, 50vw"><img src="../img/mobil-bosh-520.webp" width="780" height="1688" alt="" decoding="async"></picture></div></div>
-      <button class="sr" type="button" aria-haspopup="dialog" aria-controls="oyna-mijoz">Details: Hamkor — the customer app</button>
-    </div>
-    <div class="plitka t-xiz">
-      <span class="yorliq"><i></i>What I do</span>
-      <ul><li>Sales &amp; installment CRM</li><li>Mobile apps</li><li>Telegram bots</li><li>Mini apps</li><li>Websites</li><li>Automation</li><li>Video &amp; design</li></ul>
-      <p>I connect 1C, Telegram, Excel and PDF, and hand repetitive manual work over to software.</p>
-    </div>
+<section class="wrap kirish" aria-labelledby="h1">
+  <div class="ustun">
+    <h1 id="h1">Muhammadabdulloh Tojiddinov</h1>
+    <p>I build software for businesses: sales and installment systems, mobile apps, Telegram bots and websites. I do the whole thing myself, from design to deployment.</p>
+    <p>Right now I’m working on <b>Hamkor CRM</b>, a system that replaced 1C for a four-branch retail chain, and its customer app.</p>
+    <div class="amallar"><a class="btn" href="https://t.me/m_tojiddinov7"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a><a href="https://hamkorcrm.uz/">hamkorcrm.uz</a><a href="https://github.com/linverno-tm">GitHub</a></div>
   </div>
 </section>
-<div class="lenta" aria-hidden="true"><div class="lenta-ichi"><span class="soz">Hamkor CRM</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#b9a2ff" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">Customer app</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#c4b5fd" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">KINO TV</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffc93d" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">Qog‘oz Bino</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#6cb2ff" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">Hamkor Savdo</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#dfd01f" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">Shuxrat o‘g‘li</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#c8a24a" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">Oltinko‘l</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f97316" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">MINI GES</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4fe0b6" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">ChatForge</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#94a3b8" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">Hamkor CRM</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#b9a2ff" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">Customer app</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#c4b5fd" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">KINO TV</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffc93d" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">Qog‘oz Bino</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#6cb2ff" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">Hamkor Savdo</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#dfd01f" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">Shuxrat o‘g‘li</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#c8a24a" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">Oltinko‘l</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f97316" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz kontur">MINI GES</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4fe0b6" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg><span class="soz">ChatForge</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#94a3b8" d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.6 11.1 11.1 6.6 12 0Z"/></svg></div></div>
-<section class="wrap bolim ishlar" id="ishlar" aria-labelledby="ishlar-h">
-  <div class="bolim-sarlavha"><h2 id="ishlar-h">Work</h2><p>Every one is a real project. Click a tile to see the goal, the solution and the result.</p></div>
-  <div class="bento"><article class="plitka ish ish-crm" style="--rang:139 92 246" data-oyna="oyna-crm"><div class="ish-bosh"><span class="yorliq"><i></i>Sales system</span></div><h3>Hamkor CRM</h3><p class="tavsif">An installment-sales system that replaced 1C. In development since September 2026; I own the platform.</p><div class="teglar"><span>Next.js</span><span>PostgreSQL</span><span>Tauri</span><span>1C sync</span><span>Offline</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-crm">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="ramka"><picture><source type="image/avif" srcset="../img/crm-mijozlar-960.avif 960w, ../img/crm-mijozlar-1600.avif 1600w" sizes="(min-width: 1100px) 62vw, 100vw"><source type="image/webp" srcset="../img/crm-mijozlar-960.webp 960w, ../img/crm-mijozlar-1600.webp 1600w" sizes="(min-width: 1100px) 62vw, 100vw"><img src="../img/crm-mijozlar-960.webp" width="1600" height="1000" alt="Hamkor CRM customer list, names and amounts hidden" decoding="async" loading="lazy"></picture></div></div></article><article class="plitka ish ish-mijoz" style="--rang:167 139 250" data-oyna="oyna-mijoz"><div class="ish-bosh"><span class="yorliq"><i></i>Mobile app</span></div><h3>Hamkor — the customer app</h3><p class="tavsif">Contracts, remaining debt, next payment and payment history on the phone; installment orders from the catalog and a chat with the store.</p><div class="teglar"><span>Flutter</span><span>Riverpod</span><span>Android</span><span>iPhone</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-mijoz">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="telefon-qator"><div class="tel"><picture><source type="image/avif" srcset="../img/mobil-bosh-520.avif 520w, ../img/mobil-bosh-780.avif 780w" sizes="(min-width: 1100px) 10vw, 30vw"><source type="image/webp" srcset="../img/mobil-bosh-520.webp 520w, ../img/mobil-bosh-780.webp 780w" sizes="(min-width: 1100px) 10vw, 30vw"><img src="../img/mobil-bosh-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div><div class="tel"><picture><source type="image/avif" srcset="../img/mobil-katalog-520.avif 520w, ../img/mobil-katalog-780.avif 780w" sizes="(min-width: 1100px) 10vw, 30vw"><source type="image/webp" srcset="../img/mobil-katalog-520.webp 520w, ../img/mobil-katalog-780.webp 780w" sizes="(min-width: 1100px) 10vw, 30vw"><img src="../img/mobil-katalog-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div><div class="tel"><picture><source type="image/avif" srcset="../img/mobil-tolovlar-520.avif 520w, ../img/mobil-tolovlar-780.avif 780w" sizes="(min-width: 1100px) 10vw, 30vw"><source type="image/webp" srcset="../img/mobil-tolovlar-520.webp 520w, ../img/mobil-tolovlar-780.webp 780w" sizes="(min-width: 1100px) 10vw, 30vw"><img src="../img/mobil-tolovlar-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div></div></div></article><article class="plitka ish ish-kino" style="--rang:245 179 1" data-oyna="oyna-kino"><div class="ish-bosh"><span class="yorliq"><i></i>Telegram bot · mini app</span></div><h3>KINO TV</h3><p class="tavsif">A bot and mini app for series and films: sections, search, episodes; continues where you stopped.</p><div class="teglar"><span>Python</span><span>aiogram 3</span><span>SQLite</span><span>Cloudflare Pages</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-kino">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="telefon-qator"><div class="tel"><picture><source type="image/avif" srcset="../img/kino-bosh-520.avif 520w, ../img/kino-bosh-780.avif 780w" sizes="(min-width: 1100px) 13vw, 40vw"><source type="image/webp" srcset="../img/kino-bosh-520.webp 520w, ../img/kino-bosh-780.webp 780w" sizes="(min-width: 1100px) 13vw, 40vw"><img src="../img/kino-bosh-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div><div class="tel"><picture><source type="image/avif" srcset="../img/kino-serial-520.avif 520w, ../img/kino-serial-780.avif 780w" sizes="(min-width: 1100px) 13vw, 40vw"><source type="image/webp" srcset="../img/kino-serial-520.webp 520w, ../img/kino-serial-780.webp 780w" sizes="(min-width: 1100px) 13vw, 40vw"><img src="../img/kino-serial-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div></div></div></article><article class="plitka ish ish-qogoz" style="--rang:47 129 247" data-oyna="oyna-qogoz"><div class="ish-bosh"><span class="yorliq"><i></i>Mini app</span></div><h3>Qog‘oz Bino</h3><p class="tavsif">A mini app for a Telegram channel: new episodes, most watched, search and a personal list.</p><div class="teglar"><span>HTML/CSS/JS</span><span>Telegram Web App</span><span>Python</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-qogoz">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="telefon-qator"><div class="tel"><picture><source type="image/avif" srcset="../img/qogoz-bosh-520.avif 520w, ../img/qogoz-bosh-780.avif 780w" sizes="(min-width: 1100px) 13vw, 40vw"><source type="image/webp" srcset="../img/qogoz-bosh-520.webp 520w, ../img/qogoz-bosh-780.webp 780w" sizes="(min-width: 1100px) 13vw, 40vw"><img src="../img/qogoz-bosh-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div><div class="tel"><picture><source type="image/avif" srcset="../img/qogoz-serial-520.avif 520w, ../img/qogoz-serial-780.avif 780w" sizes="(min-width: 1100px) 13vw, 40vw"><source type="image/webp" srcset="../img/qogoz-serial-520.webp 520w, ../img/qogoz-serial-780.webp 780w" sizes="(min-width: 1100px) 13vw, 40vw"><img src="../img/qogoz-serial-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div></div></div></article><article class="plitka ish ish-boshqa" style="--rang:148 163 184"><div class="ish-bosh"><span class="yorliq"><i></i>Mobile apps</span></div><h3>Other apps I built</h3><ul><li><b>ChatForge</b><span>A Flutter messenger: one-to-one chats, push notifications to the right person.</span><a href="https://github.com/linverno-tm/chatforge" rel="noopener">Code: ChatForge</a></li><li><b>Bulk SMS</b><span>Android: SMS from an Excel or CSV list; the queue survives a phone restart.</span><a href="https://github.com/linverno-tm/bulk-sms" rel="noopener">Code: Bulk SMS</a></li><li><b>Task app</b><span>Works offline and syncs on its own when the connection returns.</span><a href="https://github.com/linverno-tm/task-manager" rel="noopener">Code: Task app</a></li></ul></article><article class="plitka ish ish-hamkor" style="--rang:223 208 31" data-oyna="oyna-hamkor"><div class="ish-bosh"><span class="yorliq"><i></i>Website</span></div><h3>Hamkor Savdo</h3><p class="tavsif">Site for a four-branch retail chain: catalog, branches and an installment application. Hover — the site scrolls.</p><div class="teglar"><span>Next.js 16</span><span>React 19</span><span>Tailwind v4</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-hamkor">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="ramka oqim"><picture><source type="image/avif" srcset="../img/uzun-hamkor-640.avif 640w, ../img/uzun-hamkor-1100.avif 1100w" sizes="(min-width: 700px) 48vw, 100vw"><source type="image/webp" srcset="../img/uzun-hamkor-640.webp 640w, ../img/uzun-hamkor-1100.webp 1100w" sizes="(min-width: 700px) 48vw, 100vw"><img src="../img/uzun-hamkor-640.webp" width="1100" height="3438" alt="" decoding="async" loading="lazy"></picture></div></div></article><article class="plitka ish ish-shuxrat" style="--rang:200 162 74" data-oyna="oyna-shuxrat"><div class="ish-bosh"><span class="yorliq"><i></i>Website</span><span class="yorliq">concept</span></div><h3>Shuxrat o‘g‘li</h3><p class="tavsif">A three-language site for a poultry brand: products, wholesale orders and a live video made with Veo.</p><div class="teglar"><span>HTML/CSS/JS</span><span>SVG animation</span><span>Veo</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-shuxrat">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="ramka oqim"><picture><source type="image/avif" srcset="../img/uzun-shuxrat-640.avif 640w, ../img/uzun-shuxrat-1100.avif 1100w" sizes="(min-width: 700px) 48vw, 100vw"><source type="image/webp" srcset="../img/uzun-shuxrat-640.webp 640w, ../img/uzun-shuxrat-1100.webp 1100w" sizes="(min-width: 700px) 48vw, 100vw"><img src="../img/uzun-shuxrat-640.webp" width="1100" height="3438" alt="" decoding="async" loading="lazy"></picture></div></div></article><article class="plitka ish ish-oltinkol" style="--rang:249 115 22" data-oyna="oyna-oltinkol"><div class="ish-bosh"><span class="yorliq"><i></i>Website</span><span class="yorliq">concept</span></div><h3>Oltinko‘l leather and footwear zone</h3><p class="tavsif">Site for a small industrial zone: shops, a payment calculator, pages for investors and residents, an admin panel.</p><div class="teglar"><span>HTML/CSS/JS</span><span>Admin panel</span><span>3 languages</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-oltinkol">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="ramka oqim"><picture><source type="image/avif" srcset="../img/uzun-oltinkol-640.avif 640w, ../img/uzun-oltinkol-1100.avif 1100w" sizes="(min-width: 700px) 48vw, 100vw"><source type="image/webp" srcset="../img/uzun-oltinkol-640.webp 640w, ../img/uzun-oltinkol-1100.webp 1100w" sizes="(min-width: 700px) 48vw, 100vw"><img src="../img/uzun-oltinkol-640.webp" width="1100" height="3438" alt="" decoding="async" loading="lazy"></picture></div></div></article><article class="plitka ish ish-minges" style="--rang:34 197 154" data-oyna="oyna-minges"><div class="ish-bosh"><span class="yorliq"><i></i>Website</span></div><h3>MINI GES</h3><p class="tavsif">Site for small hydro-power plants: projects, how it works, services and an application form.</p><div class="teglar"><span>Static site</span><span>SVG</span><span>CI</span></div><button class="ochish" type="button" aria-haspopup="dialog" aria-controls="oyna-minges">Details<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="vizual"><div class="ramka oqim"><picture><source type="image/avif" srcset="../img/uzun-minges-640.avif 640w, ../img/uzun-minges-1100.avif 1100w" sizes="(min-width: 700px) 48vw, 100vw"><source type="image/webp" srcset="../img/uzun-minges-640.webp 640w, ../img/uzun-minges-1100.webp 1100w" sizes="(min-width: 700px) 48vw, 100vw"><img src="../img/uzun-minges-640.webp" width="1100" height="3438" alt="" decoding="async" loading="lazy"></picture></div></div></article><article class="plitka ish ish-media" style="--rang:251 113 133"><div class="ish-bosh"><span class="yorliq"><i></i>Video</span></div><h3>Live video made with Veo</h3><p class="tavsif">For the Shuxrat o‘g‘li site. For type and number driven motion clips I use Remotion.</p><div class="vizual"><div class="ramka video-ramka"><video muted loop playsinline preload="none" poster="../img/veo-kadr-800.webp" width="960" height="540" data-src="../media/veo-tovuq.mp4" aria-label="Live video made with Veo"></video><button class="pauza" type="button" hidden data-pauza="Pause video" data-davom="Play video" aria-label="Pause video"></button></div></div></article><article class="plitka ish ish-buklet" style="--rang:236 72 153"><div class="ish-bosh"><span class="yorliq"><i></i>Print design</span></div><h3>Tri-fold booklet, Hamkor Savdo</h3><p class="tavsif">A4, three panels, print-ready vector file.</p><div class="vizual"><div class="ramka"><picture><source type="image/avif" srcset="../img/buklet-760.avif 760w, ../img/buklet-1200.avif 1200w, ../img/buklet-2000.avif 2000w" sizes="(min-width: 1100px) 56vw, 100vw"><source type="image/webp" srcset="../img/buklet-760.webp 760w, ../img/buklet-1200.webp 1200w, ../img/buklet-2000.webp 2000w" sizes="(min-width: 1100px) 56vw, 100vw"><img src="../img/buklet-760.webp" width="2000" height="1414" alt="Hamkor Savdo tri-fold booklet: “installments up to 24 months”, products and monthly payments" decoding="async" loading="lazy"></picture></div></div></article><article class="plitka ish ish-avto" style="--rang:45 212 191"><div class="ish-bosh"><span class="yorliq"><i></i>Automation</span></div><h3>Handing manual work to software</h3><ul><li><b>Price watch</b><span>Competitors’ posts in Telegram groups become prices; each store gets a daily PDF with only the new and changed prices.</span></li><li><b>Tax audit report</b><span>A program that builds the tax-audit report from invoices and cash receipts on its own.</span></li><li><b>My own connectors</b><span>MCP servers for YouTube and Pinterest, so channel and content work can be done through AI.</span></li></ul></article></div>
+<section class="wrap bolim" id="ishlar" aria-labelledby="ishlar-h" style="padding-top:0">
+  <h2 id="ishlar-h">Selected work</h2>
+  <div class="ishlar"><a class="ish birinchi" href="/en/ishlar/hamkor-crm/"><div class="kadr" style="view-transition-name: kadr-hamkor-crm"><picture><source type="image/avif" srcset="/img/crm-bosh-960.avif 960w, /img/crm-bosh-1600.avif 1600w, /img/crm-bosh-2400.avif 2400w" sizes="(min-width: 1160px) 1120px, 100vw"><source type="image/webp" srcset="/img/crm-bosh-960.webp 960w, /img/crm-bosh-1600.webp 1600w, /img/crm-bosh-2400.webp 2400w" sizes="(min-width: 1160px) 1120px, 100vw"><img src="/img/crm-bosh-960.webp" width="2400" height="1500" alt="Hamkor CRM home screen: cash, installment debt and a monthly profit chart; amounts hidden" decoding="async" fetchpriority="high"></picture></div><div class="qator"><h3>Hamkor CRM</h3><span class="yil">2026</span></div><p>Sales and installment system</p></a><a class="ish birinchi" href="/en/ishlar/mijozlar-ilovasi/"><div class="kadr tel" style="view-transition-name: kadr-mijozlar-ilovasi"><picture><source type="image/avif" srcset="/img/mobil-bosh-520.avif 520w, /img/mobil-bosh-780.avif 780w" sizes="(min-width: 760px) 170px, 28vw"><source type="image/webp" srcset="/img/mobil-bosh-520.webp 520w, /img/mobil-bosh-780.webp 780w" sizes="(min-width: 760px) 170px, 28vw"><img src="/img/mobil-bosh-520.webp" width="780" height="1688" alt="Hamkor customer app: home, catalog and payment history" decoding="async"></picture><picture><source type="image/avif" srcset="/img/mobil-katalog-520.avif 520w, /img/mobil-katalog-780.avif 780w" sizes="(min-width: 760px) 170px, 28vw"><source type="image/webp" srcset="/img/mobil-katalog-520.webp 520w, /img/mobil-katalog-780.webp 780w" sizes="(min-width: 760px) 170px, 28vw"><img src="/img/mobil-katalog-520.webp" width="780" height="1688" alt="" decoding="async"></picture><picture><source type="image/avif" srcset="/img/mobil-tolovlar-520.avif 520w, /img/mobil-tolovlar-780.avif 780w" sizes="(min-width: 760px) 170px, 28vw"><source type="image/webp" srcset="/img/mobil-tolovlar-520.webp 520w, /img/mobil-tolovlar-780.webp 780w" sizes="(min-width: 760px) 170px, 28vw"><img src="/img/mobil-tolovlar-520.webp" width="780" height="1688" alt="" decoding="async"></picture></div><div class="qator"><h3>Hamkor customer app</h3><span class="yil">2026</span></div><p>Mobile app, Android and iPhone</p></a><a class="ish" href="/en/ishlar/kino-tv/"><div class="kadr tel" style="view-transition-name: kadr-kino-tv"><picture><source type="image/avif" srcset="/img/kino-bosh-520.avif 520w, /img/kino-bosh-780.avif 780w" sizes="(min-width: 760px) 170px, 28vw"><source type="image/webp" srcset="/img/kino-bosh-520.webp 520w, /img/kino-bosh-780.webp 780w" sizes="(min-width: 760px) 170px, 28vw"><img src="/img/kino-bosh-520.webp" width="780" height="1688" alt="KINO TV mini app: home and a series page" decoding="async"></picture><picture><source type="image/avif" srcset="/img/kino-serial-520.avif 520w, /img/kino-serial-780.avif 780w" sizes="(min-width: 760px) 170px, 28vw"><source type="image/webp" srcset="/img/kino-serial-520.webp 520w, /img/kino-serial-780.webp 780w" sizes="(min-width: 760px) 170px, 28vw"><img src="/img/kino-serial-520.webp" width="780" height="1688" alt="" decoding="async"></picture></div><div class="qator"><h3>KINO TV</h3><span class="yil">2026</span></div><p>Telegram bot and mini app</p></a><a class="ish" href="/en/ishlar/qogoz-bino/"><div class="kadr tel" style="view-transition-name: kadr-qogoz-bino"><picture><source type="image/avif" srcset="/img/qogoz-bosh-520.avif 520w, /img/qogoz-bosh-780.avif 780w" sizes="(min-width: 760px) 170px, 28vw"><source type="image/webp" srcset="/img/qogoz-bosh-520.webp 520w, /img/qogoz-bosh-780.webp 780w" sizes="(min-width: 760px) 170px, 28vw"><img src="/img/qogoz-bosh-520.webp" width="780" height="1688" alt="Qog‘oz Bino mini app: new episodes and a series page" decoding="async" loading="lazy"></picture><picture><source type="image/avif" srcset="/img/qogoz-serial-520.avif 520w, /img/qogoz-serial-780.avif 780w" sizes="(min-width: 760px) 170px, 28vw"><source type="image/webp" srcset="/img/qogoz-serial-520.webp 520w, /img/qogoz-serial-780.webp 780w" sizes="(min-width: 760px) 170px, 28vw"><img src="/img/qogoz-serial-520.webp" width="780" height="1688" alt="" decoding="async" loading="lazy"></picture></div><div class="qator"><h3>Qog‘oz Bino</h3><span class="yil">2026</span></div><p>Telegram mini app</p></a><a class="ish" href="/en/ishlar/hamkor-savdo/"><div class="kadr uzun" style="view-transition-name: kadr-hamkor-savdo"><picture><source type="image/avif" srcset="/img/uzun-hamkor-640.avif 640w, /img/uzun-hamkor-1100.avif 1100w" sizes="(min-width: 760px) 544px, 100vw"><source type="image/webp" srcset="/img/uzun-hamkor-640.webp 640w, /img/uzun-hamkor-1100.webp 1100w" sizes="(min-width: 760px) 544px, 100vw"><img src="/img/uzun-hamkor-640.webp" width="1100" height="3438" alt="Hamkor Savdo website, home page" decoding="async" loading="lazy"></picture></div><div class="qator"><h3>Hamkor Savdo</h3><span class="yil">2026</span></div><p>Brand website</p></a><a class="ish" href="/en/ishlar/mini-ges/"><div class="kadr uzun" style="view-transition-name: kadr-mini-ges"><picture><source type="image/avif" srcset="/img/uzun-minges-640.avif 640w, /img/uzun-minges-1100.avif 1100w" sizes="(min-width: 760px) 544px, 100vw"><source type="image/webp" srcset="/img/uzun-minges-640.webp 640w, /img/uzun-minges-1100.webp 1100w" sizes="(min-width: 760px) 544px, 100vw"><img src="/img/uzun-minges-640.webp" width="1100" height="3438" alt="MINI GES website, home page" decoding="async" loading="lazy"></picture></div><div class="qator"><h3>MINI GES</h3><span class="yil">2026</span></div><p>Website</p></a><a class="ish" href="/en/ishlar/shuxrat-ogli/"><div class="kadr uzun" style="view-transition-name: kadr-shuxrat-ogli"><picture><source type="image/avif" srcset="/img/uzun-shuxrat-640.avif 640w, /img/uzun-shuxrat-1100.avif 1100w" sizes="(min-width: 760px) 544px, 100vw"><source type="image/webp" srcset="/img/uzun-shuxrat-640.webp 640w, /img/uzun-shuxrat-1100.webp 1100w" sizes="(min-width: 760px) 544px, 100vw"><img src="/img/uzun-shuxrat-640.webp" width="1100" height="3438" alt="Shuxrat o‘g‘li website, home page" decoding="async" loading="lazy"></picture></div><div class="qator"><h3>Shuxrat o‘g‘li</h3><span class="yil">2026</span></div><p>Brand website, concept</p></a><a class="ish" href="/en/ishlar/oltinkol/"><div class="kadr uzun" style="view-transition-name: kadr-oltinkol"><picture><source type="image/avif" srcset="/img/uzun-oltinkol-640.avif 640w, /img/uzun-oltinkol-1100.avif 1100w" sizes="(min-width: 760px) 544px, 100vw"><source type="image/webp" srcset="/img/uzun-oltinkol-640.webp 640w, /img/uzun-oltinkol-1100.webp 1100w" sizes="(min-width: 760px) 544px, 100vw"><img src="/img/uzun-oltinkol-640.webp" width="1100" height="3438" alt="Oltinko‘l zone website, home page" decoding="async" loading="lazy"></picture></div><div class="qator"><h3>Oltinko‘l leather and footwear zone</h3><span class="yil">2026</span></div><p>Website and admin panel, concept</p></a></div>
 </section>
-<section class="wrap bolim" id="aloqa" aria-labelledby="aloqa-h">
-  <div class="plitka t-aloqa">
-    <div>
-      <h2 id="aloqa-h">Have a project? Message me on Telegram.</h2>
-      <p>A few lines are enough: what your business does and what you want to speed up. I answer myself.</p>
-      <div class="tugmalar"><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div>
-      <a class="dastak" href="https://t.me/m_tojiddinov7" rel="noopener">@m_tojiddinov7</a>
-      <div class="havolalar"><a href="https://hamkorcrm.uz/" rel="noopener">hamkorcrm.uz</a><a href="https://github.com/linverno-tm" rel="noopener">GitHub</a></div>
-    </div>
-    <div class="qr" aria-hidden="true"><div class="kod"><svg viewBox="0 0 27 27"><path d="M1,1H2V2H1zM2,1H3V2H2zM3,1H4V2H3zM4,1H5V2H4zM5,1H6V2H5zM6,1H7V2H6zM7,1H8V2H7zM12,1H13V2H12zM14,1H15V2H14zM15,1H16V2H15zM16,1H17V2H16zM19,1H20V2H19zM20,1H21V2H20zM21,1H22V2H21zM22,1H23V2H22zM23,1H24V2H23zM24,1H25V2H24zM25,1H26V2H25zM1,2H2V3H1zM7,2H8V3H7zM9,2H10V3H9zM10,2H11V3H10zM11,2H12V3H11zM12,2H13V3H12zM16,2H17V3H16zM17,2H18V3H17zM19,2H20V3H19zM25,2H26V3H25zM1,3H2V4H1zM3,3H4V4H3zM4,3H5V4H4zM5,3H6V4H5zM7,3H8V4H7zM11,3H12V4H11zM12,3H13V4H12zM15,3H16V4H15zM16,3H17V4H16zM19,3H20V4H19zM21,3H22V4H21zM22,3H23V4H22zM23,3H24V4H23zM25,3H26V4H25zM1,4H2V5H1zM3,4H4V5H3zM4,4H5V5H4zM5,4H6V5H5zM7,4H8V5H7zM10,4H11V5H10zM11,4H12V5H11zM15,4H16V5H15zM19,4H20V5H19zM21,4H22V5H21zM22,4H23V5H22zM23,4H24V5H23zM25,4H26V5H25zM1,5H2V6H1zM3,5H4V6H3zM4,5H5V6H4zM5,5H6V6H5zM7,5H8V6H7zM9,5H10V6H9zM11,5H12V6H11zM13,5H14V6H13zM14,5H15V6H14zM15,5H16V6H15zM16,5H17V6H16zM19,5H20V6H19zM21,5H22V6H21zM22,5H23V6H22zM23,5H24V6H23zM25,5H26V6H25zM1,6H2V7H1zM7,6H8V7H7zM14,6H15V7H14zM16,6H17V7H16zM19,6H20V7H19zM25,6H26V7H25zM1,7H2V8H1zM2,7H3V8H2zM3,7H4V8H3zM4,7H5V8H4zM5,7H6V8H5zM6,7H7V8H6zM7,7H8V8H7zM9,7H10V8H9zM11,7H12V8H11zM13,7H14V8H13zM15,7H16V8H15zM17,7H18V8H17zM19,7H20V8H19zM20,7H21V8H20zM21,7H22V8H21zM22,7H23V8H22zM23,7H24V8H23zM24,7H25V8H24zM25,7H26V8H25zM10,8H11V9H10zM12,8H13V9H12zM13,8H14V9H13zM14,8H15V9H14zM15,8H16V9H15zM16,8H17V9H16zM17,8H18V9H17zM1,9H2V10H1zM3,9H4V10H3zM5,9H6V10H5zM7,9H8V10H7zM10,9H11V10H10zM11,9H12V10H11zM13,9H14V10H13zM14,9H15V10H14zM21,9H22V10H21zM24,9H25V10H24zM1,10H2V11H1zM2,10H3V11H2zM3,10H4V11H3zM5,10H6V11H5zM6,10H7V11H6zM10,10H11V11H10zM11,10H12V11H11zM14,10H15V11H14zM17,10H18V11H17zM18,10H19V11H18zM19,10H20V11H19zM20,10H21V11H20zM25,10H26V11H25zM1,11H2V12H1zM3,11H4V12H3zM4,11H5V12H4zM5,11H6V12H5zM7,11H8V12H7zM9,11H10V12H9zM10,11H11V12H10zM11,11H12V12H11zM12,11H13V12H12zM13,11H14V12H13zM18,11H19V12H18zM21,11H22V12H21zM23,11H24V12H23zM24,11H25V12H24zM25,11H26V12H25zM1,12H2V13H1zM3,12H4V13H3zM8,12H9V13H8zM11,12H12V13H11zM12,12H13V13H12zM13,12H14V13H13zM14,12H15V13H14zM17,12H18V13H17zM18,12H19V13H18zM19,12H20V13H19zM24,12H25V13H24zM3,13H4V14H3zM5,13H6V14H5zM6,13H7V14H6zM7,13H8V14H7zM13,13H14V14H13zM14,13H15V14H14zM16,13H17V14H16zM18,13H19V14H18zM19,13H20V14H19zM20,13H21V14H20zM22,13H23V14H22zM24,13H25V14H24zM25,13H26V14H25zM2,14H3V15H2zM3,14H4V15H3zM5,14H6V15H5zM8,14H9V15H8zM11,14H12V15H11zM12,14H13V15H12zM14,14H15V15H14zM16,14H17V15H16zM17,14H18V15H17zM18,14H19V15H18zM19,14H20V15H19zM22,14H23V15H22zM25,14H26V15H25zM1,15H2V16H1zM4,15H5V16H4zM5,15H6V16H5zM7,15H8V16H7zM18,15H19V16H18zM20,15H21V16H20zM23,15H24V16H23zM24,15H25V16H24zM25,15H26V16H25zM2,16H3V17H2zM4,16H5V17H4zM5,16H6V17H5zM8,16H9V17H8zM13,16H14V17H13zM14,16H15V17H14zM16,16H17V17H16zM17,16H18V17H17zM21,16H22V17H21zM24,16H25V17H24zM1,17H2V18H1zM5,17H6V18H5zM7,17H8V18H7zM8,17H9V18H8zM9,17H10V18H9zM10,17H11V18H10zM14,17H15V18H14zM16,17H17V18H16zM17,17H18V18H17zM18,17H19V18H18zM19,17H20V18H19zM20,17H21V18H20zM21,17H22V18H21zM22,17H23V18H22zM9,18H10V19H9zM10,18H11V19H10zM11,18H12V19H11zM16,18H17V19H16zM17,18H18V19H17zM21,18H22V19H21zM22,18H23V19H22zM24,18H25V19H24zM25,18H26V19H25zM1,19H2V20H1zM2,19H3V20H2zM3,19H4V20H3zM4,19H5V20H4zM5,19H6V20H5zM6,19H7V20H6zM7,19H8V20H7zM10,19H11V20H10zM11,19H12V20H11zM13,19H14V20H13zM15,19H16V20H15zM16,19H17V20H16zM17,19H18V20H17zM19,19H20V20H19zM21,19H22V20H21zM22,19H23V20H22zM24,19H25V20H24zM25,19H26V20H25zM1,20H2V21H1zM7,20H8V21H7zM10,20H11V21H10zM13,20H14V21H13zM14,20H15V21H14zM15,20H16V21H15zM17,20H18V21H17zM21,20H22V21H21zM22,20H23V21H22zM24,20H25V21H24zM25,20H26V21H25zM1,21H2V22H1zM3,21H4V22H3zM4,21H5V22H4zM5,21H6V22H5zM7,21H8V22H7zM9,21H10V22H9zM10,21H11V22H10zM14,21H15V22H14zM17,21H18V22H17zM18,21H19V22H18zM19,21H20V22H19zM20,21H21V22H20zM21,21H22V22H21zM22,21H23V22H22zM1,22H2V23H1zM3,22H4V23H3zM4,22H5V23H4zM5,22H6V23H5zM7,22H8V23H7zM11,22H12V23H11zM13,22H14V23H13zM17,22H18V23H17zM20,22H21V23H20zM21,22H22V23H21zM22,22H23V23H22zM23,22H24V23H23zM1,23H2V24H1zM3,23H4V24H3zM4,23H5V24H4zM5,23H6V24H5zM7,23H8V24H7zM9,23H10V24H9zM10,23H11V24H10zM11,23H12V24H11zM14,23H15V24H14zM16,23H17V24H16zM21,23H22V24H21zM25,23H26V24H25zM1,24H2V25H1zM7,24H8V25H7zM13,24H14V25H13zM14,24H15V25H14zM16,24H17V25H16zM17,24H18V25H17zM21,24H22V25H21zM22,24H23V25H22zM24,24H25V25H24zM1,25H2V26H1zM2,25H3V26H2zM3,25H4V26H3zM4,25H5V26H4zM5,25H6V26H5zM6,25H7V26H6zM7,25H8V26H7zM9,25H10V26H9zM11,25H12V26H11zM12,25H13V26H12zM13,25H14V26H13zM14,25H15V26H14zM17,25H18V26H17zM18,25H19V26H18zM19,25H20V26H19zM20,25H21V26H20zM24,25H25V26H24zM25,25H26V26H25z"/></svg></div><small>Scan with your phone camera</small></div>
-  </div>
+<section class="wrap bolim" aria-labelledby="boshqa-h">
+  <h2 id="boshqa-h">Other work</h2>
+  <ul class="royxat"><li><span class="sana">September 2026</span><div><a href="https://github.com/linverno-tm/accounting-report">Tax audit report</a><span>Builds the tax-audit report from invoices and cash receipts.</span></div></li><li><span class="sana">February 2026</span><div><a href="https://github.com/linverno-tm/chatforge">ChatForge</a><span>A Flutter messenger: one-to-one chats, push notifications to the right person.</span></div></li><li><span class="sana">February 2026</span><div><a href="https://github.com/linverno-tm/bulk-sms">Bulk SMS</a><span>An Android app that sends SMS from an Excel or CSV list; the queue survives a restart.</span></div></li><li><span class="sana">January 2026</span><div><a href="https://github.com/linverno-tm/task-manager">Task manager</a><span>Works offline and syncs on its own when the connection returns.</span></div></li><li><span class="sana"></span><div><b>My MCP servers</b><span>For YouTube and Pinterest, so channel and content work can be done through AI.</span></div></li></ul>
+</section>
+<section class="wrap bolim aloqa" id="aloqa" aria-labelledby="aloqa-h">
+  <h2 id="aloqa-h">Contact</h2>
+  <div class="ustun"><p>If you have a project, message me on Telegram: <a href="https://t.me/m_tojiddinov7">@m_tojiddinov7</a>.</p><p>A few lines are enough: what your business does and what you want to speed up.</p>
+  <div class="amallar"><a class="btn" href="https://t.me/m_tojiddinov7"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div>
 </section>
 </main>
-<dialog class="oyna" id="oyna-crm" style="--rang:139 92 246" aria-labelledby="oyna-crm-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Sales system</span><h2 id="oyna-crm-h">Hamkor CRM</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">An installment-sales system that replaced 1C. In development since September 2026; I own the platform.</p><div class="qadamlar"><div class="qadam"><h3>Problem</h3><p>Four stores ran on four separate 1C databases that couldn’t see each other. A customer blacklisted in one store could get new credit in the next.</p></div><div class="qadam"><h3>Solution</h3><p>One system for all of them: sales, installment contracts, payments, cash, warehouse, payroll and reports. It syncs with 1C both ways, so the two ran side by side during the switch.</p></div><div class="qadam"><h3>Result</h3><p>1,373 changes, 230+ screens and 65 reports in one month. The customer app is connected to the same database. I can adapt the platform to your business.</p></div></div><dl class="oyna-faktlar"><div><dt>Works without internet</dt><dd>An encrypted local copy keeps every window usable. Actions queue up and sync back on their own when the line returns.</dd></div><div><dt>Windows app</dt><dd>Prints receipts silently and updates itself.</dd></div><div><dt>Every release is tested first</dt><dd>Sales, contracts, payments and reports run on a throw-away database before a build goes live.</dd></div><div><dt>On the customer’s phone too</dt><dd>Customers see their contract, payment schedule and remaining debt in their own app.</dd></div></dl><div class="oyna-rasmlar"><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/crm-mijozlar-960.avif 960w, ../img/crm-mijozlar-1600.avif 1600w" sizes="(min-width: 1000px) 920px, 100vw"><source type="image/webp" srcset="../img/crm-mijozlar-960.webp 960w, ../img/crm-mijozlar-1600.webp 1600w" sizes="(min-width: 1000px) 920px, 100vw"><img src="../img/crm-mijozlar-960.webp" width="1600" height="1000" alt="Customers and their trust score" decoding="async" loading="lazy"></picture></div><figcaption>Customers and their trust score</figcaption></figure><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/crm-qarz-960.avif 960w, ../img/crm-qarz-1600.avif 1600w" sizes="(min-width: 1000px) 920px, 100vw"><source type="image/webp" srcset="../img/crm-qarz-960.webp 960w, ../img/crm-qarz-1600.webp 1600w" sizes="(min-width: 1000px) 920px, 100vw"><img src="../img/crm-qarz-960.webp" width="1600" height="1000" alt="Overdue debt" decoding="async" loading="lazy"></picture></div><figcaption>Overdue debt</figcaption></figure><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/crm-kassa-960.avif 960w, ../img/crm-kassa-1600.avif 1600w" sizes="(min-width: 1000px) 920px, 100vw"><source type="image/webp" srcset="../img/crm-kassa-960.webp 960w, ../img/crm-kassa-1600.webp 1600w" sizes="(min-width: 1000px) 920px, 100vw"><img src="../img/crm-kassa-960.webp" width="1600" height="1000" alt="Cash by branch" decoding="async" loading="lazy"></picture></div><figcaption>Cash by branch</figcaption></figure></div><p class="izoh">Screens from a demo database; amounts, names and branch names are hidden.</p><div class="oyna-oxir"><a class="btn btn-shaffof" href="https://hamkorcrm.uz/" rel="noopener">hamkorcrm.uz<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog><dialog class="oyna" id="oyna-mijoz" style="--rang:167 139 250" aria-labelledby="oyna-mijoz-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Mobile app</span><h2 id="oyna-mijoz-h">Hamkor — the customer app</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">Contracts, remaining debt, next payment and payment history on the phone; installment orders from the catalog and a chat with the store.</p><div class="qadamlar"><div class="qadam"><h3>Goal</h3><p>Customers who bought on installments see their contract, next payment and limit without visiting the store, and the store can send them notices and offers directly.</p></div><div class="qadam"><h3>Solution</h3><p>Flutter and Riverpod, each feature in four layers (model, data, state, screen). Sign-in with an SMS code, the token kept in the phone’s secure storage. First written in Expo (React Native), fully moved to Flutter on 7 October.</p></div><div class="qadam"><h3>Result</h3><p>One codebase for Android, iPhone and web; three languages (Uzbek Cyrillic and Latin, Russian), light and dark themes. The app is being prepared for the stores.</p></div></div><div class="oyna-rasmlar tel"><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/mobil-bosh-520.avif 520w, ../img/mobil-bosh-780.avif 780w" sizes="(min-width: 800px) 280px, 45vw"><source type="image/webp" srcset="../img/mobil-bosh-520.webp 520w, ../img/mobil-bosh-780.webp 780w" sizes="(min-width: 800px) 280px, 45vw"><img src="../img/mobil-bosh-520.webp" width="780" height="1688" alt="Home: amounts hidden by the app itself" decoding="async" loading="lazy"></picture></div><figcaption>Home: amounts hidden by the app itself</figcaption></figure><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/mobil-katalog-520.avif 520w, ../img/mobil-katalog-780.avif 780w" sizes="(min-width: 800px) 280px, 45vw"><source type="image/webp" srcset="../img/mobil-katalog-520.webp 520w, ../img/mobil-katalog-780.webp 780w" sizes="(min-width: 800px) 280px, 45vw"><img src="../img/mobil-katalog-520.webp" width="780" height="1688" alt="Catalog with the monthly payment" decoding="async" loading="lazy"></picture></div><figcaption>Catalog with the monthly payment</figcaption></figure><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/mobil-tolovlar-520.avif 520w, ../img/mobil-tolovlar-780.avif 780w" sizes="(min-width: 800px) 280px, 45vw"><source type="image/webp" srcset="../img/mobil-tolovlar-520.webp 520w, ../img/mobil-tolovlar-780.webp 780w" sizes="(min-width: 800px) 280px, 45vw"><img src="../img/mobil-tolovlar-520.webp" width="780" height="1688" alt="Payment history" decoding="async" loading="lazy"></picture></div><figcaption>Payment history</figcaption></figure></div><p class="izoh">Demo customer; name and amounts are hidden.</p><div class="oyna-oxir"><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog><dialog class="oyna" id="oyna-kino" style="--rang:245 179 1" aria-labelledby="oyna-kino-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Telegram bot · mini app</span><h2 id="oyna-kino-h">KINO TV</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">A bot and mini app for series and films: sections, search, episodes; continues where you stopped.</p><div class="qadamlar"><div class="qadam"><h3>Goal</h3><p>Watching long series in Telegram comfortably: find the right episode fast and never lose where you stopped.</p></div><div class="qadam"><h3>Solution</h3><p>The bot turns posts in a private storage channel into the catalog on its own: the admin only uploads videos, the bot assigns codes. Videos are sent as copies, with no size limit. The mini app is plain HTML/CSS/JS with the catalog cached at Cloudflare’s edge.</p></div><div class="qadam"><h3>Result</h3><p>158 series and 543 films in 8 sections. The mini app continues from the next episode and keeps a saved list.</p></div></div><div class="oyna-rasmlar tel"><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/kino-bosh-520.avif 520w, ../img/kino-bosh-780.avif 780w" sizes="(min-width: 800px) 280px, 45vw"><source type="image/webp" srcset="../img/kino-bosh-520.webp 520w, ../img/kino-bosh-780.webp 780w" sizes="(min-width: 800px) 280px, 45vw"><img src="../img/kino-bosh-520.webp" width="780" height="1688" alt="Home" decoding="async" loading="lazy"></picture></div><figcaption>Home</figcaption></figure><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/kino-serial-520.avif 520w, ../img/kino-serial-780.avif 780w" sizes="(min-width: 800px) 280px, 45vw"><source type="image/webp" srcset="../img/kino-serial-520.webp 520w, ../img/kino-serial-780.webp 780w" sizes="(min-width: 800px) 280px, 45vw"><img src="../img/kino-serial-520.webp" width="780" height="1688" alt="Series and episodes" decoding="async" loading="lazy"></picture></div><figcaption>Series and episodes</figcaption></figure></div><div class="oyna-oxir"><a class="btn btn-shaffof" href="https://t.me/linvkino_bot" rel="noopener">@linvkino_bot<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog><dialog class="oyna" id="oyna-qogoz" style="--rang:47 129 247" aria-labelledby="oyna-qogoz-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Mini app</span><h2 id="oyna-qogoz-h">Qog‘oz Bino</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">A mini app for a Telegram channel: new episodes, most watched, search and a personal list.</p><div class="qadamlar"><div class="qadam"><h3>Goal</h3><p>A poster catalog for a friend’s bot, @QogozBinoTVbot, without touching its code or using its token.</p></div><div class="qadam"><h3>Solution</h3><p>A script builds the catalog from the bot itself: it sends /start for each code and reads the reply. The mini app searches live in Cyrillic and Latin and filters by section and genre.</p></div><div class="qadam"><h3>Result</h3><p>No bot token needed. A full rebuild takes about 10 minutes; new codes are added quickly on their own.</p></div></div><div class="oyna-rasmlar tel"><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/qogoz-bosh-520.avif 520w, ../img/qogoz-bosh-780.avif 780w" sizes="(min-width: 800px) 280px, 45vw"><source type="image/webp" srcset="../img/qogoz-bosh-520.webp 520w, ../img/qogoz-bosh-780.webp 780w" sizes="(min-width: 800px) 280px, 45vw"><img src="../img/qogoz-bosh-520.webp" width="780" height="1688" alt="Home" decoding="async" loading="lazy"></picture></div><figcaption>Home</figcaption></figure><figure><div class="ramka"><picture><source type="image/avif" srcset="../img/qogoz-serial-520.avif 520w, ../img/qogoz-serial-780.avif 780w" sizes="(min-width: 800px) 280px, 45vw"><source type="image/webp" srcset="../img/qogoz-serial-520.webp 520w, ../img/qogoz-serial-780.webp 780w" sizes="(min-width: 800px) 280px, 45vw"><img src="../img/qogoz-serial-520.webp" width="780" height="1688" alt="Series and episodes" decoding="async" loading="lazy"></picture></div><figcaption>Series and episodes</figcaption></figure></div><div class="oyna-oxir"><a class="btn btn-shaffof" href="https://qogoz-bino.pages.dev/" rel="noopener">qogoz-bino.pages.dev<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog><dialog class="oyna" id="oyna-hamkor" style="--rang:223 208 31" aria-labelledby="oyna-hamkor-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Website</span><h2 id="oyna-hamkor-h">Hamkor Savdo</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">Site for a four-branch retail chain: catalog, branches and an installment application. Hover — the site scrolls.</p><div class="qadamlar"><div class="qadam"><h3>Goal</h3><p>Introduce a four-branch chain: the company, the offer, each branch and every way to reach it. The main constraint: fast on slow connections.</p></div><div class="qadam"><h3>Solution</h3><p>No animation library: all motion is CSS plus about 1 KB of JavaScript. The logo was traced to vector from the brand book artwork.</p></div><div class="qadam"><h3>Result</h3><p>The readable page (HTML and CSS) is 35 KB gzipped and works without JavaScript. Every text pair is above 4.5:1 contrast; no invented reviews or facts.</p></div></div><div class="oyna-rasmlar"><figure><div class="ramka uzun-ramka" tabindex="0" role="region" aria-label="Hamkor Savdo"><picture><source type="image/avif" srcset="../img/uzun-hamkor-640.avif 640w, ../img/uzun-hamkor-1100.avif 1100w" sizes="(min-width: 1000px) 920px, 100vw"><source type="image/webp" srcset="../img/uzun-hamkor-640.webp 640w, ../img/uzun-hamkor-1100.webp 1100w" sizes="(min-width: 1000px) 920px, 100vw"><img src="../img/uzun-hamkor-640.webp" width="1100" height="3438" alt="Hamkor Savdo" decoding="async" loading="lazy"></picture></div></figure></div><div class="oyna-oxir"><a class="btn btn-shaffof" href="https://hamkorsavdo.uz/" rel="noopener">hamkorsavdo.uz<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog><dialog class="oyna" id="oyna-shuxrat" style="--rang:200 162 74" aria-labelledby="oyna-shuxrat-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Website</span><h2 id="oyna-shuxrat-h">Shuxrat o‘g‘li</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">A three-language site for a poultry brand: products, wholesale orders and a live video made with Veo.</p><div class="qadamlar"><div class="qadam"><h3>Goal</h3><p>A brand site for the “Baraka hamkor parranda” poultry brand: products, wholesale and where to buy.</p></div><div class="qadam"><h3>Solution</h3><p>SVG logo animation, a full range table, a wholesale order form, a map and a live video. The text lives in one file; Russian and English pages are generated by a script.</p></div><div class="qadam"><h3>Result</h3><p>Delivered as a concept: places waiting for the client’s data are marked in a review mode, and no fake reviews were added.</p></div></div><div class="oyna-rasmlar"><figure><div class="ramka uzun-ramka" tabindex="0" role="region" aria-label="Shuxrat o‘g‘li"><picture><source type="image/avif" srcset="../img/uzun-shuxrat-640.avif 640w, ../img/uzun-shuxrat-1100.avif 1100w" sizes="(min-width: 1000px) 920px, 100vw"><source type="image/webp" srcset="../img/uzun-shuxrat-640.webp 640w, ../img/uzun-shuxrat-1100.webp 1100w" sizes="(min-width: 1000px) 920px, 100vw"><img src="../img/uzun-shuxrat-640.webp" width="1100" height="3438" alt="Shuxrat o‘g‘li" decoding="async" loading="lazy"></picture></div></figure></div><div class="oyna-oxir"><a class="btn btn-shaffof" href="https://linverno-tm.github.io/shuxrat-ogli-v2/" rel="noopener">Open the site<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog><dialog class="oyna" id="oyna-oltinkol" style="--rang:249 115 22" aria-labelledby="oyna-oltinkol-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Website</span><h2 id="oyna-oltinkol-h">Oltinko‘l leather and footwear zone</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">Site for a small industrial zone: shops, a payment calculator, pages for investors and residents, an admin panel.</p><div class="qadamlar"><div class="qadam"><h3>Goal</h3><p>Sell shops and attract investors for a small leather and footwear industrial zone.</p></div><div class="qadam"><h3>Solution</h3><p>Pages for shops, a credit and payment calculator, incentives, investors and residents, plus an admin panel for applications, shops and users.</p></div><div class="qadam"><h3>Result</h3><p>14 sections in Uzbek, Russian and English.</p></div></div><div class="oyna-rasmlar"><figure><div class="ramka uzun-ramka" tabindex="0" role="region" aria-label="Oltinko‘l leather and footwear zone"><picture><source type="image/avif" srcset="../img/uzun-oltinkol-640.avif 640w, ../img/uzun-oltinkol-1100.avif 1100w" sizes="(min-width: 1000px) 920px, 100vw"><source type="image/webp" srcset="../img/uzun-oltinkol-640.webp 640w, ../img/uzun-oltinkol-1100.webp 1100w" sizes="(min-width: 1000px) 920px, 100vw"><img src="../img/uzun-oltinkol-640.webp" width="1100" height="3438" alt="Oltinko‘l leather and footwear zone" decoding="async" loading="lazy"></picture></div></figure></div><div class="oyna-oxir"><a class="btn btn-shaffof" href="https://linverno-tm.github.io/oltinkol-zona/" rel="noopener">Open the site<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog><dialog class="oyna" id="oyna-minges" style="--rang:34 197 154" aria-labelledby="oyna-minges-h"><div class="oyna-ichi"><div class="oyna-bosh"><div><span class="yorliq"><i></i>Website</span><h2 id="oyna-minges-h">MINI GES</h2></div><button class="yop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><p class="lid">Site for small hydro-power plants: projects, how it works, services and an application form.</p><div class="qadamlar"><div class="qadam"><h3>Goal</h3><p>Present Ulug‘nor GES (600 kW, running) and Baliqchi GES (1,000 kW) and sell the service of building small hydro plants.</p></div><div class="qadam"><h3>Solution</h3><p>A static site without a framework. “How it works” is an isometric SVG (~53 KB) instead of a 3D model. Industry news is written in at build time; Uzbek and Russian.</p></div><div class="qadam"><h3>Result</h3><p>About 170 KB gzipped on a phone’s first visit, with no images loaded. CI checks and publishes every change.</p></div></div><div class="oyna-rasmlar"><figure><div class="ramka uzun-ramka" tabindex="0" role="region" aria-label="MINI GES"><picture><source type="image/avif" srcset="../img/uzun-minges-640.avif 640w, ../img/uzun-minges-1100.avif 1100w" sizes="(min-width: 1000px) 920px, 100vw"><source type="image/webp" srcset="../img/uzun-minges-640.webp 640w, ../img/uzun-minges-1100.webp 1100w" sizes="(min-width: 1000px) 920px, 100vw"><img src="../img/uzun-minges-640.webp" width="1100" height="3438" alt="MINI GES" decoding="async" loading="lazy"></picture></div></figure></div><div class="oyna-oxir"><a class="btn btn-shaffof" href="https://linverno-tm.github.io/mini-ges-site/" rel="noopener">Open the site<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-oq" href="https://t.me/m_tojiddinov7" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.8ZM8.6 14l9.3-5.9c.5-.3.9-.1.5.2l-7.9 7.2-.3 3.4L8.6 14Z"/></svg>Message on Telegram</a></div></div></dialog>
-<footer><div class="wrap"><span>© 2026 Muhammadabdulloh Tojiddinov</span><a href="../" hreflang="uz">O‘zbekcha</a></div></footer>
+<footer><div class="wrap"><span>© 2026 Muhammadabdulloh Tojiddinov</span>
+<nav aria-label="Links"><a href="https://t.me/m_tojiddinov7">Telegram</a><a href="https://github.com/linverno-tm">GitHub</a><a href="https://github.com/linverno-tm/linverno-tm.github.io">Site source</a></nav></div></footer>
 <script>(() => {
-  const d = document, html = d.documentElement;
+  // Video: ko'ringanda o'ynaydi, tugma bilan to'xtaydi; kam harakat so'ralgan bo'lsa o'zi o'ynamaydi
+  const v = document.querySelector("video[data-src]");
+  if (!v) return;
+  const b = v.parentElement.querySelector(".pauza");
   const kam = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const sichqon = matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  // Tepa panel scroll qilinganda qorayadi
-  const tepa = d.querySelector(".tepa");
-  const belgila = () => tepa.classList.toggle("yopishgan", scrollY > 16);
-  addEventListener("scroll", belgila, { passive: true });
-  belgila();
-
-  // Loyiha oynalari: tugma, plitkani bosish, Esc, fon
-  const och = (id) => { const o = d.getElementById(id); if (o && !o.open) o.showModal(); };
-  d.querySelectorAll("[data-oyna]").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      if (e.target.closest("a, video, .pauza")) return;
-      och(el.dataset.oyna);
-    });
-  });
-  d.querySelectorAll("dialog.oyna").forEach((o) => {
-    o.querySelector(".yop").addEventListener("click", () => o.close());
-    o.addEventListener("click", (e) => { if (e.target === o) o.close(); });
-  });
-  if (location.hash.startsWith("#ish-")) och("oyna-" + location.hash.slice(5));
-
-  // Video: ko'ringanda o'ynaydi, tugma bilan to'xtaydi
-  const v = d.querySelector("video[data-src]");
-  if (v) {
-    const b = v.parentElement.querySelector(".pauza");
-    const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
-    const PAUZA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
-    let qolda = false, yuklandi = false;
-    const yukla = () => { if (!yuklandi) { v.src = v.dataset.src; yuklandi = true; } };
-    const ikon = () => { b.innerHTML = v.paused ? PLAY : PAUZA; b.setAttribute("aria-label", v.paused ? b.dataset.davom : b.dataset.pauza); };
-    b.hidden = false;
-    v.addEventListener("play", ikon); v.addEventListener("pause", ikon); ikon();
-    b.addEventListener("click", () => { qolda = true; yukla(); v.paused ? v.play() : v.pause(); });
-    if (!kam) new IntersectionObserver(([x]) => {
-      if (qolda) return;
-      if (x.isIntersecting) { yukla(); v.play().catch(() => {}); } else v.pause();
-    }, { rootMargin: "200px 0px" }).observe(v);
-  }
-
-  if (kam) return;
-
-  // Plitkalar ketma-ket chiqadi
-  d.querySelectorAll(".bento").forEach((g) => [...g.children].forEach((el, i) => el.style.setProperty("--i", i % 6)));
-  const fmt = new Intl.NumberFormat(html.lang === "uz" ? "ru-RU" : "en-US");
-  const sana = (el) => {
-    const oxir = +el.dataset.son, t0 = performance.now();
-    const q = (t) => {
-      const p = Math.min(1, (t - t0) / 1500);
-      el.textContent = fmt.format(Math.round(oxir * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) requestAnimationFrame(q);
-    };
-    requestAnimationFrame(q);
-  };
-  const kuzat = new IntersectionObserver((xs) => {
-    for (const x of xs) {
-      if (!x.isIntersecting) continue;
-      x.target.classList.add("korindi");
-      x.target.querySelectorAll("[data-son]").forEach(sana);
-      kuzat.unobserve(x.target);
-    }
-  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
-  d.querySelectorAll(".plitka, .bolim-sarlavha").forEach((el) => kuzat.observe(el));
-
-  if (!sichqon) return;
-  // Kursor ortidan rangli yorug'lik
-  d.querySelectorAll(".plitka").forEach((el) => {
-    el.addEventListener("pointermove", (e) => {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty("--mx", e.clientX - r.left + "px");
-      el.style.setProperty("--my", e.clientY - r.top + "px");
-    });
-  });
-  // Oq tugma kursorga ozgina tortiladi
-  d.querySelectorAll(".btn-oq").forEach((el) => {
-    el.addEventListener("pointermove", (e) => {
-      const r = el.getBoundingClientRect();
-      el.style.translate = ((e.clientX - r.left) / r.width - 0.5) * 8 + "px " + ((e.clientY - r.top) / r.height - 0.5) * 6 + "px";
-    });
-    el.addEventListener("pointerleave", () => { el.style.translate = ""; });
-  });
+  const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
+  const PAUZA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+  let qolda = false, yuklandi = false;
+  const yukla = () => { if (!yuklandi) { v.src = v.dataset.src; yuklandi = true; } };
+  const ikon = () => { b.innerHTML = v.paused ? PLAY : PAUZA; b.setAttribute("aria-label", v.paused ? b.dataset.davom : b.dataset.pauza); };
+  b.hidden = false;
+  v.addEventListener("play", ikon); v.addEventListener("pause", ikon); ikon();
+  b.addEventListener("click", () => { qolda = true; yukla(); v.paused ? v.play() : v.pause(); });
+  if (!kam) new IntersectionObserver(([x]) => {
+    if (qolda) return;
+    if (x.isIntersecting) { yukla(); v.play().catch(() => {}); } else v.pause();
+  }, { rootMargin: "200px 0px" }).observe(v);
 })();
 </script>
 </body>
