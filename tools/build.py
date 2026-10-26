@@ -471,7 +471,7 @@ def sahifa(til, title, desc, url_yol, boshqa_yol, body):
   <nav aria-label="{'Asosiy menyu' if til == 'uz' else 'Main'}">
     <a href="{yol(til)}#ishlar">{e(u['ishlar'])}</a>
     <a href="{yol(til)}#aloqa">{e(u['aloqa'])}</a>
-    <a href="{boshqa_yol}" hreflang="{u['til_kod']}" lang="{u['til_kod']}" aria-label="{e(u['til'])}">{u['til_qisqa']}</a>
+    <a href="{boshqa_yol}" hreflang="{u['til_kod']}" lang="{u['til_kod']}" aria-label="{u['til_qisqa']}, {e(u['til'])}">{u['til_qisqa']}</a>
   </nav>
 </div></header>
 <main id="asosiy">
