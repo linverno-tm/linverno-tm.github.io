@@ -65,7 +65,6 @@ p, li, dd { text-wrap: pretty; }
 .skip:focus { top: 12px; }
 
 /* tepa */
-.tepa { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 28px; }
 .tepa .nom { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
 .tepa nav { display: flex; gap: 2px; margin-right: -10px; }
 .tepa nav a { text-decoration: none; color: var(--xira); padding: 10px; border-radius: 6px; }
@@ -185,18 +184,103 @@ footer nav { display: flex; gap: 20px; }
   @view-transition { navigation: auto; }
   ::view-transition-group(*) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .7, .1, 1); }
 }
+/* ================= Chuqurlik: bitta g'oya, hamma sahifada =================
+   Skrinshot ko'rinishga kirganda yotgan holatdan to'g'rilanib joyiga turadi; telefonlar yelpig'ichdek
+   ochiladi. Faqat CSS (scroll-driven animations). Qo'llab-quvvatlamaydigan brauzer va «kam harakat»
+   so'ragan foydalanuvchi oxirgi holatni darhol ko'radi. */
+
+/* yopishqoq tepa panel: scroll boshlanganda foni va chizig'i paydo bo'ladi */
+.tepa { position: sticky; top: 0; z-index: 20; background: rgb(16 17 19 / .82); backdrop-filter: blur(14px); }
+.tepa > .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
+@supports (animation-timeline: scroll()) {
+  .tepa { background: transparent; backdrop-filter: none; animation: tepa-fon linear both; animation-timeline: scroll(root); animation-range: 0 120px; }
+  @keyframes tepa-fon { to { background: rgb(16 17 19 / .82); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--chiziq); } }
+}
+@media (max-width: 440px) { .tepa > .wrap { padding-block: 14px; } }
+.bolim, .maqola h2 { scroll-margin-top: 84px; }
+
+/* kartalar: perspektiva ota elementda */
+.ish, .keyingi a, .maqola figure, .bosh-kadr { perspective: 1400px; }
+.ish .kadr, .keyingi .kadr { transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2, .7, .1, 1), box-shadow .6s; }
+.ish .kadr { box-shadow: 0 0 0 transparent; }
+
+/* telefonlar — dam olish holati (animatsiyasiz ham shunday) */
+.kadr.tel picture:nth-child(1):not(:only-child) { rotate: -4deg; transform-origin: 100% 100%; }
+.kadr.tel picture:last-child:not(:only-child):not(:nth-child(2)) { rotate: 4deg; transform-origin: 0 100%; }
+.kadr.tel picture:nth-child(2):last-child { rotate: 4deg; transform-origin: 0 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* bosh sahifa: bir martalik kirish */
+  .kirish .ustun > * { animation: kir .8s cubic-bezier(.2, .7, .1, 1) both; }
+  .kirish .ustun > :nth-child(2) { animation-delay: .07s; }
+  .kirish .ustun > :nth-child(3) { animation-delay: .14s; }
+  .kirish .ustun > :nth-child(4) { animation-delay: .21s; }
+  @keyframes kir { from { opacity: 0; translate: 0 14px; } }
+
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    /* skrinshot yotgan holatdan turadi */
+    .ish .kadr, .maqola .ramka:not(.sahifa-butun), .keyingi .kadr {
+      animation: tur linear both; animation-timeline: view(); animation-range: entry 5% cover 38%;
+      transform-origin: 50% 100%;
+    }
+    @keyframes tur {
+      from { rotate: x 22deg; scale: .92; opacity: .35; box-shadow: 0 60px 80px -40px rgb(0 0 0 / .9); }
+      to { box-shadow: 0 30px 60px -40px rgb(0 0 0 / .7); }
+    }
+    /* telefonlar yelpig'ichdek ochiladi */
+    .kadr.tel picture { animation: yig linear both; animation-timeline: view(); animation-range: entry 10% cover 45%; }
+    .kadr.tel picture:nth-child(1):not(:only-child) { --x: 60%; }
+    .kadr.tel picture:nth-child(3), .kadr.tel picture:nth-child(2):last-child { --x: -60%; }
+    @keyframes yig { from { rotate: 0deg; translate: var(--x, 0) 12%; } }
+    .telefonlar figure { animation: tur linear both; animation-timeline: view(); animation-range: entry 5% cover 35%; transform-origin: 50% 100%; }
+    .telefonlar figure .ramka { animation: none; }
+    .telefonlar figure:nth-child(2) { animation-range: entry 12% cover 42%; }
+    .telefonlar figure:nth-child(3) { animation-range: entry 19% cover 49%; }
+
+    /* loyiha sahifasi: bosh rasm scroll qilganda orqaga og'adi */
+    .bosh-kadr .kadr { animation: ket linear both; animation-timeline: view(); animation-range: exit 0% exit 90%; transform-origin: 50% 0%; }
+    @keyframes ket { to { rotate: x -14deg; scale: .94; opacity: .4; } }
+  }
+}
+
+/* kompyuterda: karta kursorga qarab ozgina og'adi (skript --rx/--ry beradi) */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .ish:hover .kadr, .keyingi a:hover .kadr {
+    transform: rotateX(calc(var(--ry, 0) * -3deg)) rotateY(calc(var(--rx, 0) * 4deg)) translateZ(0);
+    box-shadow: 0 40px 70px -40px rgb(0 0 0 / .9);
+  }
+}
+
+/* aloqa */
+.aloqa .dastak-qator { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 8px; }
+.aloqa .dastak { font-size: clamp(1.75rem, 5vw, 3rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; color: var(--matn); text-decoration: none; overflow-wrap: anywhere; }
+.aloqa .dastak:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.nusxa {
+  min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--chiziq-2); background: transparent;
+  color: var(--matn); font: inherit; font-size: .95rem; cursor: pointer; transition: border-color .15s;
+}
+.nusxa:hover { border-color: var(--matn); }
+.nusxa[data-holat="ok"] { border-color: #4ade80; }
+.aloqa .ustun > p:first-of-type { margin-top: 20px; }
+
+/* 404 */
+.yoq { padding-block: clamp(48px, 9vw, 112px) 0; }
+.yoq h1 { font-size: clamp(2rem, 4.2vw, 2.75rem); line-height: 1.12; letter-spacing: -0.025em; }
+.yoq p { color: var(--xira); font-size: 1.1875rem; margin-top: 16px; }
+.yoq-kod { font-size: clamp(5rem, 18vw, 12rem); font-weight: 600; letter-spacing: -0.06em; line-height: .9; color: transparent; -webkit-text-stroke: 1px var(--chiziq-2); }
+.sr-holat { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 </style>
 </head>
 <body>
 <a class="skip" href="#asosiy">Skip to content</a>
-<header class="wrap tepa">
+<header class="tepa"><div class="wrap">
   <a class="nom" href="/en/">Muhammadabdulloh<span class="familiya"> Tojiddinov</span></a>
   <nav aria-label="Main">
     <a href="/en/#ishlar">Work</a>
     <a href="/en/#aloqa">Contact</a>
     <a href="/ishlar/hamkor-savdo/" hreflang="uz" lang="uz" aria-label="O‘zbekcha">UZ</a>
   </nav>
-</header>
+</div></header>
 <main id="asosiy">
 <article>
 <header class="wrap loyiha-bosh">
@@ -214,11 +298,42 @@ footer nav { display: flex; gap: 20px; }
 <footer><div class="wrap"><span>© 2026 Muhammadabdulloh Tojiddinov</span>
 <nav aria-label="Links"><a href="https://t.me/m_tojiddinov7">Telegram</a><a href="https://github.com/linverno-tm">GitHub</a><a href="https://github.com/linverno-tm/linverno-tm.github.io">Site source</a></nav></div></footer>
 <script>(() => {
-  // Video: ko'ringanda o'ynaydi, tugma bilan to'xtaydi; kam harakat so'ralgan bo'lsa o'zi o'ynamaydi
-  const v = document.querySelector("video[data-src]");
+  const d = document;
+  const kam = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Telegram manzilini nusxa olish
+  d.querySelectorAll("[data-nusxa]").forEach((b) => {
+    const asl = b.textContent, holat = d.getElementById(b.getAttribute("aria-describedby"));
+    b.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(b.dataset.nusxa);
+        b.textContent = b.dataset.ok; b.dataset.holat = "ok";
+        if (holat) holat.textContent = b.dataset.ok;
+      } catch {
+        b.textContent = b.dataset.xato;
+      }
+      setTimeout(() => { b.textContent = asl; delete b.dataset.holat; if (holat) holat.textContent = ""; }, 2200);
+    });
+  });
+
+  // Kompyuterda karta kursorga qarab og'adi
+  if (!kam && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    d.querySelectorAll(".ish, .keyingi a").forEach((el) => {
+      const k = el.querySelector(".kadr");
+      if (!k) return;
+      el.addEventListener("pointermove", (e) => {
+        const r = k.getBoundingClientRect();
+        k.style.setProperty("--rx", ((e.clientX - r.left) / r.width * 2 - 1).toFixed(3));
+        k.style.setProperty("--ry", ((e.clientY - r.top) / r.height * 2 - 1).toFixed(3));
+      });
+      el.addEventListener("pointerleave", () => { k.style.removeProperty("--rx"); k.style.removeProperty("--ry"); });
+    });
+  }
+
+  // Video: ko'ringanda o'ynaydi, tugma bilan to'xtaydi
+  const v = d.querySelector("video[data-src]");
   if (!v) return;
   const b = v.parentElement.querySelector(".pauza");
-  const kam = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
   const PAUZA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
   let qolda = false, yuklandi = false;

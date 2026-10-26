@@ -12,7 +12,7 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RASM = json.load(open(os.path.join(ROOT, "tools", "rasmlar.json"), encoding="utf-8"))
-CSS = open(os.path.join(ROOT, "tools", "uslub.css"), encoding="utf-8").read()
+CSS = "".join(open(os.path.join(ROOT, "tools", f), encoding="utf-8").read() for f in ("uslub.css", "chuqurlik.css"))
 JS = open(os.path.join(ROOT, "tools", "skript.js"), encoding="utf-8").read()
 SAYT = "https://linverno-tm.github.io"
 TG = "https://t.me/m_tojiddinov7"
@@ -48,6 +48,9 @@ U = {
         "oy": ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"],
         "hozir": "hozir",
         "kod": "Kodi",
+        "nusxa": "Nusxa olish", "nusxa_ok": "Nusxa olindi", "nusxa_xato": "Qo‘lda nusxa oling",
+        "aloqa_k": "Loyihangiz bo‘lsa, Telegram’da yozing. Qisqacha yozing: biznesingiz nima bilan shug‘ullanadi va nimani tezlashtirmoqchisiz.",
+        "yoq_t": "Sahifa topilmadi", "yoq_p": "Havola eskirgan yoki xato yozilgan. Ishlardan birini oching yoki bosh sahifaga qayting.", "bosh_sahifa": "Bosh sahifa",
     },
     "en": {
         "title": "Muhammadabdulloh Tojiddinov — software developer",
@@ -72,6 +75,9 @@ U = {
         "oy": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         "hozir": "present",
         "kod": "Code",
+        "nusxa": "Copy", "nusxa_ok": "Copied", "nusxa_xato": "Copy it manually",
+        "aloqa_k": "If you have a project, message me on Telegram. A few lines are enough: what your business does and what you want to speed up.",
+        "yoq_t": "Page not found", "yoq_p": "The link is outdated or mistyped. Open one of the projects or go back home.", "bosh_sahifa": "Home",
     },
 }
 
@@ -460,14 +466,14 @@ def sahifa(til, title, desc, url_yol, boshqa_yol, body):
 </head>
 <body>
 <a class="skip" href="#asosiy">{e(u['skip'])}</a>
-<header class="wrap tepa">
+<header class="tepa"><div class="wrap">
   <a class="nom" href="{yol(til)}">Muhammadabdulloh<span class="familiya"> Tojiddinov</span></a>
   <nav aria-label="{'Asosiy menyu' if til == 'uz' else 'Main'}">
     <a href="{yol(til)}#ishlar">{e(u['ishlar'])}</a>
     <a href="{yol(til)}#aloqa">{e(u['aloqa'])}</a>
     <a href="{boshqa_yol}" hreflang="{u['til_kod']}" lang="{u['til_kod']}" aria-label="{e(u['til'])}">{u['til_qisqa']}</a>
   </nav>
-</header>
+</div></header>
 <main id="asosiy">
 {body}
 </main>
@@ -516,8 +522,12 @@ def bosh(til):
 </section>
 <section class="wrap bolim aloqa" id="aloqa" aria-labelledby="aloqa-h">
   <h2 id="aloqa-h">{e(u['aloqa'])}</h2>
-  <div class="ustun"><p>{u['aloqa_1']}</p><p>{e(u['aloqa_2'])}</p>
-  <div class="amallar"><a class="btn" href="{TG}">{TG_ICON}{e(u['tg'])}</a></div></div>
+  <div class="ustun">
+    <div class="dastak-qator"><a class="dastak" href="{TG}">@m_tojiddinov7</a>
+    <button class="nusxa" type="button" data-nusxa="@m_tojiddinov7" data-ok="{e(u['nusxa_ok'])}" data-xato="{e(u['nusxa_xato'])}" aria-describedby="nusxa-holat">{e(u['nusxa'])}</button>
+    <span id="nusxa-holat" class="sr-holat" role="status"></span></div>
+    <p>{e(u['aloqa_k'])}</p>
+    <div class="amallar"><a class="btn" href="{TG}">{TG_ICON}{e(u['tg'])}</a></div></div>
 </section>"""
     boshqa_til = "en" if til == "uz" else "uz"
     return sahifa(til, u["title"], u["desc"], yol(til), yol(boshqa_til), body)
@@ -607,6 +617,24 @@ for til in ("uz", "en"):
     fayllar.append(yoz(f"{pre}index.html", bosh(til)))
     for i, p in enumerate(LOYIHALAR):
         fayllar.append(yoz(f"{pre}ishlar/{p['slug']}/index.html", loyiha(til, i)))
+
+def yoq():
+    u = U["uz"]
+    kartalar = "".join(
+        f'<a class="ish" href="{yol("uz", p["slug"])}">{kadr(p, "uz", "(min-width: 760px) 544px, 100vw")}'
+        f'<div class="qator"><h3>{e(p["uz"]["nom"])}</h3><span class="yil">{p["boshi"][0]}</span></div><p>{e(p["uz"]["tur"])}</p></a>'
+        for p in LOYIHALAR[:4])
+    body = f"""<section class="wrap yoq" aria-labelledby="h1">
+  <div class="ustun"><div class="yoq-kod" aria-hidden="true">404</div>
+  <h1 id="h1">{e(u['yoq_t'])}</h1><p>{e(u['yoq_p'])}</p>
+  <div class="amallar"><a class="btn" href="/">{e(u['bosh_sahifa'])}</a><a href="/en/" lang="en">English</a></div></div>
+</section>
+<section class="wrap bolim" aria-label="{e(u['tanlangan'])}"><div class="ishlar">{kartalar}</div></section>"""
+    h = sahifa("uz", u["yoq_t"] + " — Muhammadabdulloh Tojiddinov", u["yoq_p"], "/404.html", "/en/", body)
+    return h.replace('<link rel="canonical"', '<meta name="robots" content="noindex">\n<link rel="canonical"', 1)
+
+
+fayllar.append(yoz("404.html", yoq()))
 
 urls = [yol("uz")] + [yol("uz", p["slug"]) for p in LOYIHALAR]
 sm = ['<?xml version="1.0" encoding="UTF-8"?>',
