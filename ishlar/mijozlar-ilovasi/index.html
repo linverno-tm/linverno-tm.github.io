@@ -29,8 +29,11 @@
    bilan haqiqiy ekranga aylanadi. Harakat faqat bezakda: matn va asosiy rasm doim darhol ko'rinadi.
    Qo'llab-quvvatlamaydigan brauzer va «kam harakat» so'ragan foydalanuvchi oxirgi holatni ko'radi. */
 
-@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: optional; }
-@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: optional; }
+@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: swap; }
+@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+/* shrift kelguncha o'xshash o'lchamli tizim shrifti: qatorlar ko'chmaydi (CLS) */
+@font-face { font-family: "Unbounded fb"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold"), local("Roboto-Bold"), local("Arial"); size-adjust: 132%; ascent-override: 99.5%; descent-override: 24.5%; line-gap-override: 0%; }
+@font-face { font-family: "Onest fb"; src: local("Arial"), local("ArialMT"), local("Roboto"), local("Segoe UI"); size-adjust: 104%; ascent-override: 97%; descent-override: 30.5%; line-gap-override: 0%; }
 
 :root {
   /* rang */
@@ -46,8 +49,8 @@
   --tun: #15181d;        /* video bo'limi */
   --jonli: #08703f;
   /* shrift */
-  --display: "Unbounded", "Arial Black", "Segoe UI", system-ui, sans-serif;
-  --matn: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --display: "Unbounded", "Unbounded fb", system-ui, sans-serif;
+  --matn: "Onest", "Onest fb", system-ui, -apple-system, sans-serif;
   /* o'lcham */
   --kenglik: 1240px;
   --gutter: max(20px, 4.5vw);
@@ -238,6 +241,11 @@ p, li, dd { text-wrap: pretty; }
   .ish { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 5vw, 80px); }
   .ish--teskari { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
   .ish--teskari .ish__vizual { order: 2; }
+}
+.ish__vizual { display: block; text-decoration: none; }
+.ish__vizual .oyna, .ish__vizual .tel { transition: translate var(--t-2) var(--ease), box-shadow var(--t-2) var(--ease); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ish__vizual:hover .oyna { translate: 0 -6px; box-shadow: 0 40px 70px -36px rgb(22 25 30 / .5); }
 }
 .kompozitsiya { position: relative; padding: 0 12% 9% 0; }
 .kompozitsiya .tel--yon { position: absolute; right: 0; bottom: 0; width: 25%; }

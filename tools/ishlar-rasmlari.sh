@@ -3,8 +3,8 @@
 set -e
 X="$1"
 cd "$(dirname "$0")/.."
-python tools/rasm.py rasm "$X/charm-kom.png" charm-kom 1600,960
-python tools/rasm.py rasm "$X/promix-kom.png" promix-kom 1600,960
+python tools/rasm.py rasm "$X/charm-kom.png" charm-kom 1600,960,640
+python tools/rasm.py rasm "$X/promix-kom.png" promix-kom 1600,960,640
 for k in charm promix ges; do python tools/rasm.py rasm "$X/$k-tel.png" $k-tel 520,390; done
 python tools/rasm.py rasm "$X/hamkorsavdo-tel.png" savdo-tel 520,390
 python tools/rasm.py rasm "$X/hamkorsavdo-uzun.png" uzun-savdo 1100,640 --max-h 10000

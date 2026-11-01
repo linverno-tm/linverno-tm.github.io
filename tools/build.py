@@ -677,7 +677,7 @@ def ish_karta(til, p, i):
     if p.get("havola"):
         havola = f'<a class="tashqi-havola" href="{p["havola"][0]}">{e(p["havola"][1])}{TASHQI}</a>'
     return f"""<article class="ish{' ish--teskari' if i % 2 else ''}" aria-labelledby="ish-{p['slug']}">
-  <div class="ish__vizual">{vizual(p, til)}</div>
+  <a class="ish__vizual" href="{yol(til, p['slug'])}" tabindex="-1" aria-hidden="true">{vizual(p, til)}</a>
   <div class="ish__matn">
     <p class="ish__tur"><span>{p['boshi'][0]}</span>{e(tur)}</p>
     <h3 id="ish-{p['slug']}"><a href="{yol(til, p['slug'])}">{e(t['nom'])}</a></h3>

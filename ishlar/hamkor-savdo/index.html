@@ -29,8 +29,11 @@
    bilan haqiqiy ekranga aylanadi. Harakat faqat bezakda: matn va asosiy rasm doim darhol ko'rinadi.
    Qo'llab-quvvatlamaydigan brauzer va «kam harakat» so'ragan foydalanuvchi oxirgi holatni ko'radi. */
 
-@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: optional; }
-@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: optional; }
+@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: swap; }
+@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+/* shrift kelguncha o'xshash o'lchamli tizim shrifti: qatorlar ko'chmaydi (CLS) */
+@font-face { font-family: "Unbounded fb"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold"), local("Roboto-Bold"), local("Arial"); size-adjust: 132%; ascent-override: 99.5%; descent-override: 24.5%; line-gap-override: 0%; }
+@font-face { font-family: "Onest fb"; src: local("Arial"), local("ArialMT"), local("Roboto"), local("Segoe UI"); size-adjust: 104%; ascent-override: 97%; descent-override: 30.5%; line-gap-override: 0%; }
 
 :root {
   /* rang */
@@ -46,8 +49,8 @@
   --tun: #15181d;        /* video bo'limi */
   --jonli: #08703f;
   /* shrift */
-  --display: "Unbounded", "Arial Black", "Segoe UI", system-ui, sans-serif;
-  --matn: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --display: "Unbounded", "Unbounded fb", system-ui, sans-serif;
+  --matn: "Onest", "Onest fb", system-ui, -apple-system, sans-serif;
   /* o'lcham */
   --kenglik: 1240px;
   --gutter: max(20px, 4.5vw);
@@ -239,6 +242,11 @@ p, li, dd { text-wrap: pretty; }
   .ish--teskari { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
   .ish--teskari .ish__vizual { order: 2; }
 }
+.ish__vizual { display: block; text-decoration: none; }
+.ish__vizual .oyna, .ish__vizual .tel { transition: translate var(--t-2) var(--ease), box-shadow var(--t-2) var(--ease); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ish__vizual:hover .oyna { translate: 0 -6px; box-shadow: 0 40px 70px -36px rgb(22 25 30 / .5); }
+}
 .kompozitsiya { position: relative; padding: 0 12% 9% 0; }
 .kompozitsiya .tel--yon { position: absolute; right: 0; bottom: 0; width: 25%; }
 .kompozitsiya--tellar { display: flex; justify-content: center; align-items: flex-start; gap: 6%; padding: 0 4%; }
@@ -406,7 +414,7 @@ p, li, dd { text-wrap: pretty; }
 <div class="wrap bosh-kadr"><div class="kompozitsiya"><div class="oyna oyna--uzun" style="view-transition-name: kadr-hamkor-savdo"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>hamkorsavdo.uz</span></div><div class="oyna__ekran" style="--siljish: -82.0%"><picture><source type="image/avif" srcset="/img/uzun-savdo-640.avif 640w, /img/uzun-savdo-1100.avif 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/uzun-savdo-640.webp 640w, /img/uzun-savdo-1100.webp 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/uzun-savdo-640.webp" width="1100" height="3819" alt="Hamkor Savdo sayti, bosh sahifa" fetchpriority="high"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/savdo-tel-390.avif 390w, /img/savdo-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/savdo-tel-390.webp 390w, /img/savdo-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/savdo-tel-390.webp" width="520" height="1125" alt="Hamkor Savdo sayti telefonda" loading="lazy" decoding="async"></picture></div></div></div></div>
 <div class="wrap maqola"><div class="ustun"><h2>Vazifa</h2><p>Kompaniyani, uning taklifini, har bir filialni va bog‘lanish yo‘llarini bitta saytda ko‘rsatish. Asosiy shart: sekin mobil internetda ham tez ochilsin.</p><h2>Yechim</h2><p>Animatsiya kutubxonasi ishlatilmadi: barcha harakat CSS va juda oz JavaScript. Sahifa JavaScript yetib kelmasdan ham o‘qiladi va ishlaydi: telefon va manzillar oddiy havolalar.</p><ul><li>Ranglar, shriftlar va logotip brendbukdan olingan; logotip rasmdan vektorga o‘tkazilgan.</li><li>Matn kontrasti hamma joyda kamida 4.5:1.</li><li>E’lon qilinmagan ma’lumot, masalan ish vaqti yoki kafolat muddati, to‘qib qo‘yilmagan.</li></ul></div><figure class="keng"><div class="ramka sahifa-butun" tabindex="0" role="region" aria-label="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."><picture><source type="image/avif" srcset="/img/uzun-savdo-640.avif 640w, /img/uzun-savdo-1100.avif 1100w" sizes="(min-width: 1200px) 1100px, 100vw"><source type="image/webp" srcset="/img/uzun-savdo-640.webp 640w, /img/uzun-savdo-1100.webp 1100w" sizes="(min-width: 1200px) 1100px, 100vw"><img src="/img/uzun-savdo-640.webp" width="1100" height="3819" alt="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring." loading="lazy" decoding="async"></picture></div><figcaption>Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring.</figcaption></figure><div class="ustun"><h2>Yonidagi ishlar</h2><p>Narx kuzatuvi: raqobatchilarning Telegram guruhlaridagi e’lonlaridan narxlar ajratib olinadi, har bir do‘konga kunlik PDF faqat yangi va o‘zgargan narxlar bilan boradi.</p></div><figure class="keng"><div class="ramka"><picture><source type="image/avif" srcset="/img/buklet-760.avif 760w, /img/buklet-1200.avif 1200w, /img/buklet-2000.avif 2000w" sizes="(min-width: 1200px) 1120px, 100vw"><source type="image/webp" srcset="/img/buklet-760.webp 760w, /img/buklet-1200.webp 1200w, /img/buklet-2000.webp 2000w" sizes="(min-width: 1200px) 1120px, 100vw"><img src="/img/buklet-760.webp" width="2000" height="1414" alt="Yevrobuklet, A4, uch buklama; bosmaga tayyor vektor fayl." loading="lazy" decoding="async"></picture></div><figcaption>Yevrobuklet, A4, uch buklama; bosmaga tayyor vektor fayl.</figcaption></figure></div>
 <nav class="wrap keyingi" aria-label="Keyingi loyiha"><p class="keyingi__yorliq">Keyingi loyiha</p>
-  <a href="/ishlar/oltinkol/"><div><h2>Andijon Charm-Poyabzal Markazi</h2><p>Sayt, admin panel va Telegram bot</p></div><div class="kompozitsiya"><div class="oyna" style="view-transition-name: kadr-oltinkol"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/oltinkol-zona</span></div><div class="oyna__ekran"><picture><source type="image/avif" srcset="/img/charm-kom-960.avif 960w, /img/charm-kom-1600.avif 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/charm-kom-960.webp 960w, /img/charm-kom-1600.webp 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/charm-kom-960.webp" width="1600" height="1000" alt="Andijon Charm-Poyabzal Markazi sayti, bosh sahifa" loading="lazy" decoding="async"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/charm-tel-390.avif 390w, /img/charm-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/charm-tel-390.webp 390w, /img/charm-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/charm-tel-390.webp" width="520" height="1125" alt="Andijon Charm-Poyabzal Markazi sayti telefonda" loading="lazy" decoding="async"></picture></div></div></div></a>
+  <a href="/ishlar/oltinkol/"><div><h2>Andijon Charm-Poyabzal Markazi</h2><p>Sayt, admin panel va Telegram bot</p></div><div class="kompozitsiya"><div class="oyna" style="view-transition-name: kadr-oltinkol"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/oltinkol-zona</span></div><div class="oyna__ekran"><picture><source type="image/avif" srcset="/img/charm-kom-640.avif 640w, /img/charm-kom-960.avif 960w, /img/charm-kom-1600.avif 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/charm-kom-640.webp 640w, /img/charm-kom-960.webp 960w, /img/charm-kom-1600.webp 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/charm-kom-640.webp" width="1600" height="1000" alt="Andijon Charm-Poyabzal Markazi sayti, bosh sahifa" loading="lazy" decoding="async"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/charm-tel-390.avif 390w, /img/charm-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/charm-tel-390.webp 390w, /img/charm-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/charm-tel-390.webp" width="520" height="1125" alt="Andijon Charm-Poyabzal Markazi sayti telefonda" loading="lazy" decoding="async"></picture></div></div></div></a>
 </nav>
 </article>
 </main>

@@ -29,8 +29,11 @@
    bilan haqiqiy ekranga aylanadi. Harakat faqat bezakda: matn va asosiy rasm doim darhol ko'rinadi.
    Qo'llab-quvvatlamaydigan brauzer va «kam harakat» so'ragan foydalanuvchi oxirgi holatni ko'radi. */
 
-@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: optional; }
-@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: optional; }
+@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: swap; }
+@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+/* shrift kelguncha o'xshash o'lchamli tizim shrifti: qatorlar ko'chmaydi (CLS) */
+@font-face { font-family: "Unbounded fb"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold"), local("Roboto-Bold"), local("Arial"); size-adjust: 132%; ascent-override: 99.5%; descent-override: 24.5%; line-gap-override: 0%; }
+@font-face { font-family: "Onest fb"; src: local("Arial"), local("ArialMT"), local("Roboto"), local("Segoe UI"); size-adjust: 104%; ascent-override: 97%; descent-override: 30.5%; line-gap-override: 0%; }
 
 :root {
   /* rang */
@@ -46,8 +49,8 @@
   --tun: #15181d;        /* video bo'limi */
   --jonli: #08703f;
   /* shrift */
-  --display: "Unbounded", "Arial Black", "Segoe UI", system-ui, sans-serif;
-  --matn: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --display: "Unbounded", "Unbounded fb", system-ui, sans-serif;
+  --matn: "Onest", "Onest fb", system-ui, -apple-system, sans-serif;
   /* o'lcham */
   --kenglik: 1240px;
   --gutter: max(20px, 4.5vw);
@@ -239,6 +242,11 @@ p, li, dd { text-wrap: pretty; }
   .ish--teskari { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
   .ish--teskari .ish__vizual { order: 2; }
 }
+.ish__vizual { display: block; text-decoration: none; }
+.ish__vizual .oyna, .ish__vizual .tel { transition: translate var(--t-2) var(--ease), box-shadow var(--t-2) var(--ease); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ish__vizual:hover .oyna { translate: 0 -6px; box-shadow: 0 40px 70px -36px rgb(22 25 30 / .5); }
+}
 .kompozitsiya { position: relative; padding: 0 12% 9% 0; }
 .kompozitsiya .tel--yon { position: absolute; right: 0; bottom: 0; width: 25%; }
 .kompozitsiya--tellar { display: flex; justify-content: center; align-items: flex-start; gap: 6%; padding: 0 4%; }
@@ -403,7 +411,7 @@ p, li, dd { text-wrap: pretty; }
   <h1>PROMIX</h1><p class="lid">A concept Uzbek-language site for a Russian maker of finishing materials.</p>
   <dl class="meta"><div><dt>Period</dt><dd>October 2026</dd></div><div><dt>Role</dt><dd>Author: design and development</dd></div><div><dt>Stack</dt><dd>Python, Jinja2, HTML, CSS, JavaScript, ffmpeg</dd></div><div><dt>Status</dt><dd>Concept<br><a href="https://linverno-tm.github.io/promix-uz/">linverno-tm.github.io/promix-uz</a></dd></div></dl>
 </header>
-<div class="wrap bosh-kadr"><div class="kompozitsiya"><div class="oyna" style="view-transition-name: kadr-promix"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/promix-uz</span></div><div class="oyna__ekran"><picture><source type="image/avif" srcset="/img/promix-kom-960.avif 960w, /img/promix-kom-1600.avif 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/promix-kom-960.webp 960w, /img/promix-kom-1600.webp 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/promix-kom-960.webp" width="1600" height="1000" alt="PROMIX website, home page" fetchpriority="high"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/promix-tel-390.avif 390w, /img/promix-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/promix-tel-390.webp 390w, /img/promix-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/promix-tel-390.webp" width="520" height="1125" alt="PROMIX website on a phone" loading="lazy" decoding="async"></picture></div></div></div></div>
+<div class="wrap bosh-kadr"><div class="kompozitsiya"><div class="oyna" style="view-transition-name: kadr-promix"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/promix-uz</span></div><div class="oyna__ekran"><picture><source type="image/avif" srcset="/img/promix-kom-640.avif 640w, /img/promix-kom-960.avif 960w, /img/promix-kom-1600.avif 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/promix-kom-640.webp 640w, /img/promix-kom-960.webp 960w, /img/promix-kom-1600.webp 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/promix-kom-640.webp" width="1600" height="1000" alt="PROMIX website, home page" fetchpriority="high"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/promix-tel-390.avif 390w, /img/promix-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/promix-tel-390.webp 390w, /img/promix-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/promix-tel-390.webp" width="520" height="1125" alt="PROMIX website on a phone" loading="lazy" decoding="async"></picture></div></div></div></div>
 <div class="wrap maqola"><div class="ustun"><h2>The problem</h2><p>Introduce the finishing materials to builders and shops in Uzbekistan in their own language: what each product is, where it goes and how much you need.</p><h2>What I built</h2><p>The site is generated from Python and Jinja2 templates. Data for 30 products (coverage, drying time, packaging) comes from the maker’s spec sheets.</p><ul><li>The living header background is a cinemagraph of filler pouring from a bucket, compressed with ffmpeg.</li><li>With reduced motion or data saver on, the video is not loaded and a still image is shown.</li><li>Uzbek and Russian.</li></ul></div><figure class="klip keng"><div class="klip__ramka"><video muted loop playsinline preload="none" poster="/img/promix-kadr-800.webp" width="960" height="540" data-src="/media/promix-oqim.mp4" aria-label="A cinemagraph for the PROMIX site."></video><button class="pauza" type="button" hidden data-pauza="Pause video" data-davom="Play video" aria-label="Play video"></button></div><figcaption>A cinemagraph for the PROMIX site.</figcaption></figure><div class="ustun"><h2>Result</h2><p>Ready as a concept. The trademark and pack photos belong to the maker, so going public needs their consent.</p></div></div>
 <nav class="wrap keyingi" aria-label="Next project"><p class="keyingi__yorliq">Next project</p>
   <a href="/en/ishlar/mini-ges/"><div><h2>MINI GES</h2><p>Website</p></div><div class="kompozitsiya"><div class="oyna oyna--uzun" style="view-transition-name: kadr-mini-ges"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/mini-ges-site</span></div><div class="oyna__ekran" style="--siljish: -78.0%"><picture><source type="image/avif" srcset="/img/uzun-ges-640.avif 640w, /img/uzun-ges-1100.avif 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/uzun-ges-640.webp 640w, /img/uzun-ges-1100.webp 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/uzun-ges-640.webp" width="1100" height="3132" alt="MINI GES website, home page" loading="lazy" decoding="async"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/ges-tel-390.avif 390w, /img/ges-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/ges-tel-390.webp 390w, /img/ges-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/ges-tel-390.webp" width="520" height="1125" alt="MINI GES website on a phone" loading="lazy" decoding="async"></picture></div></div></div></a>
