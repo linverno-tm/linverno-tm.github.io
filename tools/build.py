@@ -20,6 +20,34 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RASM = json.load(open(os.path.join(ROOT, "tools", "rasmlar.json"), encoding="utf-8"))
 CSS = open(os.path.join(ROOT, "tools", "uslub.css"), encoding="utf-8").read()
 JS = open(os.path.join(ROOT, "tools", "skript.js"), encoding="utf-8").read()
+
+
+_VER, _LQ = {}, {}
+
+
+def ver(url):
+    """Statik fayl manziliga mazmun xeshi: media 1 yil «immutable» keshlansa ham yangilanishi yetib boradi."""
+    if url not in _VER:
+        with open(os.path.join(ROOT, url.lstrip("/")), "rb") as f:
+            _VER[url] = f"{url}?v={hashlib.md5(f.read()).hexdigest()[:8]}"
+    return _VER[url]
+
+
+def lqip(url):
+    """Rasm/video posterining 16 px «xira nusxasi» (data URI) — asl fayl kelguncha joy bo'sh turmaydi."""
+    if url not in _LQ:
+        import io
+        from PIL import Image
+        im = Image.open(os.path.join(ROOT, url.lstrip("/"))).convert("RGB")
+        im = im.resize((16, max(2, round(16 * im.height / im.width))), Image.LANCZOS)
+        b = io.BytesIO(); im.save(b, "WEBP", quality=30)
+        _LQ[url] = "data:image/webp;base64," + base64.b64encode(b.getvalue()).decode()
+    return _LQ[url]
+
+
+for _f in ("/unbounded.woff2", "/onest.woff2"):
+    CSS = CSS.replace(f'url("{_f}")', f'url("{ver(_f)}")')
+
 JS_XESH = "sha256-" + base64.b64encode(hashlib.sha256(JS.encode("utf-8")).digest()).decode()
 SAYT = "https://linverno-tm.github.io"
 TG = "https://t.me/m_tojiddinov7"
@@ -543,23 +571,23 @@ def picture(name, alt, sizes, lazy=True, high=False, cls=""):
     m = RASM[name]
     ws = sorted(m["widths"])
     def srcset(ext):
-        return ", ".join(f"/img/{name}-{w}.{ext} {w}w" for w in ws)
+        return ", ".join(f"{ver(f'/img/{name}-{w}.{ext}')} {w}w" for w in ws)
     w0, h0 = ws[-1], round(m["h"] * ws[-1] / m["w"])
     attrs = f'width="{w0}" height="{h0}" alt="{e(alt)}"'
     attrs += ' loading="lazy" decoding="async"' if lazy else ""
     attrs += ' fetchpriority="high"' if high else ""
-    attrs += f' class="{cls}"' if cls else ""
+    attrs += f' class="{(cls + " lq").strip()}" style="background-image: url({lqip(f'/img/{name}-{ws[0]}.webp')})"'
     return (f'<picture><source type="image/avif" srcset="{srcset("avif")}" sizes="{sizes}">'
             f'<source type="image/webp" srcset="{srcset("webp")}" sizes="{sizes}">'
-            f'<img src="/img/{name}-{ws[0]}.webp" {attrs}></picture>')
+            f'<img src="{ver(f"/img/{name}-{ws[0]}.webp")}" {attrs}></picture>')
 
 
-def chizma(name):
+def chizma(name, lazy=True):
     """Ko'k chizma qatlami: faqat bezak, skroll bilan yo'qoladi (CSS)."""
     if not name or name not in RASM:
         return ""
     m = RASM[name]
-    return (f'<img class="chizma" src="/img/{name}.webp" alt="" width="{m["w"]}" height="{m["h"]}" loading="lazy" decoding="async">'
+    return (f'<img class="chizma" src="{ver(f'/img/{name}.webp')}" alt="" width="{m["w"]}" height="{m["h"]}"{' loading="lazy"' if lazy else ''} decoding="async">'
             '<span class="skaner" aria-hidden="true"></span>')
 
 
@@ -592,7 +620,7 @@ def oyna(nom, alt, manzil, sizes, uzun=False, chz=None, lazy=True, high=False, v
 
 
 def tel(nom, alt, sizes, lazy=True, chz=None, cls="", high=False):
-    return f'<div class="tel {cls}"><div class="tel__ekran">{picture(nom, alt, sizes, lazy, high)}{chizma(chz) if chz else ""}</div></div>'
+    return f'<div class="tel {cls}"><div class="tel__ekran">{picture(nom, alt, sizes, lazy, high)}{chizma(chz, lazy) if chz else ""}</div></div>'
 
 
 def vizual(p, til, lazy=True, high=False, chizmali=True, vt=True):
@@ -644,8 +672,8 @@ def sahifa(til, title, desc, url_yol, boshqa_yol, body, preload_img=None):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/unbounded.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/onest.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{ver('/unbounded.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{ver('/onest.woff2')}" as="font" type="font/woff2" crossorigin>
 <style>{CSS}</style>
 {ld}</head>
 <body>
@@ -779,8 +807,10 @@ def aloqa(til):
 
 def klip(til, src, poster, izoh):
     u = U[til]
-    return (f'<figure class="klip"><div class="klip__ramka"><video muted loop playsinline preload="none" poster="{poster}" width="960" height="540" '
-            f'data-src="{src}" aria-label="{e(izoh)}"></video>'
+    webm = src.rsplit(".", 1)[0] + ".webm"
+    av1 = f' data-av1="{ver(webm)}"' if os.path.exists(os.path.join(ROOT, webm.lstrip("/"))) else ""
+    return (f'<figure class="klip"><div class="klip__ramka"><video muted loop playsinline preload="none" poster="{ver(poster)}" width="960" height="540" '
+            f'style="background-image: url({lqip(poster)})" data-src="{ver(src)}"{av1} aria-label="{e(izoh)}"></video>'
             f'<button class="pauza" type="button" hidden data-pauza="{e(u["pauza"])}" data-davom="{e(u["davom"])}" aria-label="{e(u["davom"])}"></button></div>'
             f'<figcaption>{e(izoh)}</figcaption></figure>')
 

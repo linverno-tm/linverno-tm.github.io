@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MINI GES — Muhammadabdulloh Tojiddinov</title>
 <meta name="description" content="Kichik gidroelektrostansiyalar va ularni qurish xizmati uchun sayt.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-dP/HuI0FP5mTFy7A+X7W59GM4YqKloJ0nRkE2GcvgL4='; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-zV9RLKbt26ovU+dpxw3mrZ5PkjLvc+wv1Njor04iFJM='; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#eceeea">
 <link rel="canonical" href="https://linverno-tm.github.io/ishlar/mini-ges/">
@@ -22,15 +22,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/unbounded.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/onest.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/unbounded.woff2?v=6f8eb829" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/onest.woff2?v=0c096da9" as="font" type="font/woff2" crossorigin>
 <style>/* ================= «Chizmadan jonli ekranga» =================
    Och kalka qog'ozi, ko'k qalam va siyoh. Har ish skrinshoti avval ko'k chizma bo'lib turadi va skroll
    bilan haqiqiy ekranga aylanadi. Harakat faqat bezakda: matn va asosiy rasm doim darhol ko'rinadi.
    Qo'llab-quvvatlamaydigan brauzer va «kam harakat» so'ragan foydalanuvchi oxirgi holatni ko'radi. */
 
-@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: swap; }
-@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2?v=6f8eb829") format("woff2"); font-weight: 500 700; font-display: swap; }
+@font-face { font-family: "Onest"; src: url("/onest.woff2?v=0c096da9") format("woff2"); font-weight: 300 700; font-display: swap; }
 /* shrift kelguncha o'xshash o'lchamli tizim shrifti: qatorlar ko'chmaydi (CLS) */
 @font-face { font-family: "Unbounded fb"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold"), local("Roboto-Bold"), local("Arial"); size-adjust: 132%; ascent-override: 99.5%; descent-override: 24.5%; line-gap-override: 0%; }
 @font-face { font-family: "Onest fb"; src: local("Arial"), local("ArialMT"), local("Roboto"), local("Segoe UI"); size-adjust: 104%; ascent-override: 97%; descent-override: 30.5%; line-gap-override: 0%; }
@@ -217,7 +217,7 @@ p, li, dd { text-wrap: pretty; }
     .oyna--uzun .oyna__ekran > picture > img { animation: aylan linear both; animation-timeline: --ekran; animation-range: cover 52% cover 96%; }
   }
   /* birinchi ekrandagi telefon: bir martalik, sahifa ochilganda */
-  .tel--stol .chizma { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; background: var(--oq); animation: chizma-ket 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
+  .tel--stol .chizma { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; background: linear-gradient(var(--qalam-och) 1px, transparent 1px) 0 0 / 20px 20px, linear-gradient(90deg, var(--qalam-och) 1px, transparent 1px) 0 0 / 20px 20px var(--oq); animation: chizma-ket 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
   .tel--stol .skaner { display: block; position: absolute; inset: 0; border-left: 2px solid var(--qalam); animation: skaner 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
 }
 @keyframes chizma-ket { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); } }
@@ -391,6 +391,38 @@ p, li, dd { text-wrap: pretty; }
   @view-transition { navigation: auto; }
   ::view-transition-group(*) { animation-duration: var(--t-2); animation-timing-function: var(--ease); }
 }
+
+/* ---------- yuklanish holati (skript.js → yukl) ----------
+   Rasm/video joyi hech qachon bo'sh turmaydi: darhol 24 px xira nusxa (.lq / poster), ustida qalam rangidagi nur
+   va pastda chiziq. --p — haqiqiy ulush (video: buffered/duration); noma'lum bo'lsa chiziq yuguradi. Tayyor — so'nadi. */
+.lq, .klip video { background-color: #dfe3dd; background-position: top center; background-size: cover; background-repeat: no-repeat; }
+.yukl-qatlam {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit; overflow: hidden; transition: opacity .45s;
+  background: linear-gradient(100deg, transparent 35%, rgb(255 255 255 / .38) 50%, transparent 65%) no-repeat;
+  background-size: 250% 100%; animation: yukl-nur 1.5s linear infinite;
+}
+.yukl-qatlam i {
+  position: absolute; left: 22%; right: 22%; bottom: 10%; height: 3px; border-radius: 3px; overflow: hidden;
+  background: rgb(255 255 255 / .6); box-shadow: 0 0 0 1px rgb(22 25 30 / .12);
+}
+.yukl-qatlam i::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--qalam);
+  transform-origin: left center; transform: scaleX(var(--p, 0)); transition: transform .35s ease-out;
+}
+.yukl-qatlam:not(.foizli) i::after { transform: scaleX(.35); animation: yukl-yugur 1.3s ease-in-out infinite; }
+.yukl-qatlam b {
+  position: absolute; right: 22%; bottom: calc(10% + 8px); font: 600 .72rem/1 var(--matn, inherit); color: #fff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / .5); font-variant-numeric: tabular-nums;
+}
+.yukl-qatlam.bitdi { opacity: 0; }
+@keyframes yukl-nur { from { background-position: 130% 0; } to { background-position: -30% 0; } }
+@keyframes yukl-yugur { from { transform: translateX(-100%) scaleX(.35); } to { transform: translateX(290%) scaleX(.35); } }
+@media (prefers-reduced-motion: reduce) {
+  .yukl-qatlam { animation: none; background: none; transition: none; }
+  .yukl-qatlam:not(.foizli) i::after { animation: none; transform: scaleX(.35); }
+  .yukl-qatlam i::after { transition: none; }
+}
+.klip video { background-position: center; }
 </style>
 </head>
 <body>
@@ -411,10 +443,10 @@ p, li, dd { text-wrap: pretty; }
   <h1>MINI GES</h1><p class="lid">Kichik gidroelektrostansiyalar va ularni qurish xizmati uchun sayt.</p>
   <dl class="meta"><div><dt>Davr</dt><dd>Oktabr 2026 – hozir</dd></div><div><dt>Rol</dt><dd>Muallif: dizayn va dasturlash</dd></div><div><dt>Texnologiyalar</dt><dd>HTML, CSS, JavaScript, GitHub Actions</dd></div><div><dt>Holat</dt><dd><a href="https://linverno-tm.github.io/mini-ges-site/">linverno-tm.github.io/mini-ges-site</a></dd></div></dl>
 </header>
-<div class="wrap bosh-kadr"><div class="kompozitsiya"><div class="oyna oyna--uzun" style="view-transition-name: kadr-mini-ges"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/mini-ges-site</span></div><div class="oyna__ekran" style="--siljish: -50.0%"><picture><source type="image/avif" srcset="/img/uzun-ges-640.avif 640w, /img/uzun-ges-1100.avif 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/uzun-ges-640.webp 640w, /img/uzun-ges-1100.webp 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/uzun-ges-640.webp" width="1100" height="1375" alt="MINI GES sayti, bosh sahifa" fetchpriority="high"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/ges-tel-390.avif 390w, /img/ges-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/ges-tel-390.webp 390w, /img/ges-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/ges-tel-390.webp" width="520" height="1125" alt="MINI GES sayti telefonda" loading="lazy" decoding="async"></picture></div></div></div></div>
-<div class="wrap maqola"><div class="ustun"><h2>Vazifa</h2><p>Ulug‘nor GES (600 kVt, ishlab turibdi) va Baliqchi GES (1 000 kVt) ni tanishtirish va mini-GES qurish xizmatini sotish.</p><h2>Yechim</h2><p>Freymvorksiz statik sayt, g‘oyasi: sahifa — kanal. Suv turbinadan o‘tib tokka aylanadi: haqiqiy kanal videosi, ishlash sxemasi, 3D turbina (Sketchfab, CC BY) va ikki obyekt.</p><ul><li>Soha yangiliklari sahifa ochilganda emas, sayt yig‘ilayotganda yoziladi: begona saytga so‘rov ketmaydi.</li><li>Har bir o‘zgarishni CI tekshiradi va GitHub Pages’ga o‘zi chiqaradi.</li><li>Animatsiya kutubxonasi olib tashlangan: harakat CSS’da, telefonda sarlavha darhol ko‘rinadi.</li><li>O‘zbek, rus va ingliz tilida.</li></ul></div><figure class="keng"><div class="ramka sahifa-butun" tabindex="0" role="region" aria-label="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."><picture><source type="image/avif" srcset="/img/uzun-ges-640.avif 640w, /img/uzun-ges-1100.avif 1100w" sizes="(min-width: 1200px) 1100px, 100vw"><source type="image/webp" srcset="/img/uzun-ges-640.webp 640w, /img/uzun-ges-1100.webp 1100w" sizes="(min-width: 1200px) 1100px, 100vw"><img src="/img/uzun-ges-640.webp" width="1100" height="1375" alt="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring." loading="lazy" decoding="async"></picture></div><figcaption>Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring.</figcaption></figure><div class="ustun"><h2>Natija</h2><p>Uch tilli sayt; yangilash uchun faqat o‘zgarishni yuborish kifoya, qolganini CI qiladi.</p></div></div>
+<div class="wrap bosh-kadr"><div class="kompozitsiya"><div class="oyna oyna--uzun" style="view-transition-name: kadr-mini-ges"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/mini-ges-site</span></div><div class="oyna__ekran" style="--siljish: -50.0%"><picture><source type="image/avif" srcset="/img/uzun-ges-640.avif?v=2167cee3 640w, /img/uzun-ges-1100.avif?v=fe279f10 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/uzun-ges-640.webp?v=1aeb36c8 640w, /img/uzun-ges-1100.webp?v=55555c68 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/uzun-ges-640.webp?v=1aeb36c8" width="1100" height="1375" alt="MINI GES sayti, bosh sahifa" fetchpriority="high" class="lq" style="background-image: url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwAwCdASoQABQAPxFysFAsJqSisAgBgCIJQBWABCxnnLOPgfvGgmQAAP7axwI1lc13zQAB2GkXDoysLZx4PJcZrzHCVcDtRxdKSkxgeharvP2sLPcKMxc3kY3gQ597IVfegxWuqHxf3oJRNz/AAA==)"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/ges-tel-390.avif?v=3ccf6c96 390w, /img/ges-tel-520.avif?v=f40bf599 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/ges-tel-390.webp?v=f5b8fe64 390w, /img/ges-tel-520.webp?v=c0f4314e 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/ges-tel-390.webp?v=f5b8fe64" width="520" height="1125" alt="MINI GES sayti telefonda" loading="lazy" decoding="async" class="lq" style="background-image: url(data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBQCdASoQACMAPv1qq1ArJiQitUgBYB+JZgCdMoM6A0NcflMO4wVYDvP1VtMwCZIAAP7jUQNCKszFsg48+hiOZz/+GKQZFupimUQ5Uk3lVRd9DNvVHZCQzsaXAwXQYOhmeJK6P9wRmgnYjk8/lsIdEs+wrzDDXkOZ45dZuLUyddFDlCHIjwvLEvmg4+d0DI66IhkAAAA=)"></picture></div></div></div></div>
+<div class="wrap maqola"><div class="ustun"><h2>Vazifa</h2><p>Ulug‘nor GES (600 kVt, ishlab turibdi) va Baliqchi GES (1 000 kVt) ni tanishtirish va mini-GES qurish xizmatini sotish.</p><h2>Yechim</h2><p>Freymvorksiz statik sayt, g‘oyasi: sahifa — kanal. Suv turbinadan o‘tib tokka aylanadi: haqiqiy kanal videosi, ishlash sxemasi, 3D turbina (Sketchfab, CC BY) va ikki obyekt.</p><ul><li>Soha yangiliklari sahifa ochilganda emas, sayt yig‘ilayotganda yoziladi: begona saytga so‘rov ketmaydi.</li><li>Har bir o‘zgarishni CI tekshiradi va GitHub Pages’ga o‘zi chiqaradi.</li><li>Animatsiya kutubxonasi olib tashlangan: harakat CSS’da, telefonda sarlavha darhol ko‘rinadi.</li><li>O‘zbek, rus va ingliz tilida.</li></ul></div><figure class="keng"><div class="ramka sahifa-butun" tabindex="0" role="region" aria-label="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring."><picture><source type="image/avif" srcset="/img/uzun-ges-640.avif?v=2167cee3 640w, /img/uzun-ges-1100.avif?v=fe279f10 1100w" sizes="(min-width: 1200px) 1100px, 100vw"><source type="image/webp" srcset="/img/uzun-ges-640.webp?v=1aeb36c8 640w, /img/uzun-ges-1100.webp?v=55555c68 1100w" sizes="(min-width: 1200px) 1100px, 100vw"><img src="/img/uzun-ges-640.webp?v=1aeb36c8" width="1100" height="1375" alt="Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring." loading="lazy" decoding="async" class="lq" style="background-image: url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwAwCdASoQABQAPxFysFAsJqSisAgBgCIJQBWABCxnnLOPgfvGgmQAAP7axwI1lc13zQAB2GkXDoysLZx4PJcZrzHCVcDtRxdKSkxgeharvP2sLPcKMxc3kY3gQ597IVfegxWuqHxf3oJRNz/AAA==)"></picture></div><figcaption>Bosh sahifa to‘liq; ramka ichida aylantirib ko‘ring.</figcaption></figure><div class="ustun"><h2>Natija</h2><p>Uch tilli sayt; yangilash uchun faqat o‘zgarishni yuborish kifoya, qolganini CI qiladi.</p></div></div>
 <nav class="wrap keyingi" aria-label="Keyingi loyiha"><p class="keyingi__yorliq">Keyingi loyiha</p>
-  <a href="/ishlar/qogoz-bino/"><div><h2>Qog‘oz Bino</h2><p>Telegram bot va mini app</p></div><div class="kompozitsiya kompozitsiya--tellar n2" style="view-transition-name: kadr-qogoz-bino"><div class="tel "><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/qogoz-bosh-520.avif 520w, /img/qogoz-bosh-780.avif 780w" sizes="(min-width: 960px) 260px, 42vw"><source type="image/webp" srcset="/img/qogoz-bosh-520.webp 520w, /img/qogoz-bosh-780.webp 780w" sizes="(min-width: 960px) 260px, 42vw"><img src="/img/qogoz-bosh-520.webp" width="780" height="1688" alt="Qog‘oz Bino mini app: yangi qismlar" loading="lazy" decoding="async"></picture></div></div><div class="tel "><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/qogoz-serial-520.avif 520w, /img/qogoz-serial-780.avif 780w" sizes="(min-width: 960px) 260px, 42vw"><source type="image/webp" srcset="/img/qogoz-serial-520.webp 520w, /img/qogoz-serial-780.webp 780w" sizes="(min-width: 960px) 260px, 42vw"><img src="/img/qogoz-serial-520.webp" width="780" height="1688" alt="Qog‘oz Bino mini app: serial sahifasi" loading="lazy" decoding="async"></picture></div></div></div></a>
+  <a href="/ishlar/qogoz-bino/"><div><h2>Qog‘oz Bino</h2><p>Telegram bot va mini app</p></div><div class="kompozitsiya kompozitsiya--tellar n2" style="view-transition-name: kadr-qogoz-bino"><div class="tel "><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/qogoz-bosh-520.avif?v=28c3e8c4 520w, /img/qogoz-bosh-780.avif?v=5c47581b 780w" sizes="(min-width: 960px) 260px, 42vw"><source type="image/webp" srcset="/img/qogoz-bosh-520.webp?v=c9c8b457 520w, /img/qogoz-bosh-780.webp?v=bf60416c 780w" sizes="(min-width: 960px) 260px, 42vw"><img src="/img/qogoz-bosh-520.webp?v=c9c8b457" width="780" height="1688" alt="Qog‘oz Bino mini app: yangi qismlar" loading="lazy" decoding="async" class="lq" style="background-image: url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAAAwBQCdASoQACMAPw1sr1AsJaQitVgIAYAhiWUAy0yKSf4HyfGuYU8PBaN6pMg9NEGKwAD+8W+Q6nK+n1zQA8+2ncIOrBpQyaqykEgQFSNeUWmaqGb0v9T9X4+rcF5/FXk3YYtqmNeD10STJOrY1W69Wb7DJXTacFaJs6Vcl1OXOkz3U/SbXCXdxbXhtgpV/R1v0k6A94kDAvcMeA+Q/dlU45VgAA==)"></picture></div></div><div class="tel "><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/qogoz-serial-520.avif?v=bbd12d6b 520w, /img/qogoz-serial-780.avif?v=d5ae955e 780w" sizes="(min-width: 960px) 260px, 42vw"><source type="image/webp" srcset="/img/qogoz-serial-520.webp?v=e707dbeb 520w, /img/qogoz-serial-780.webp?v=e3aa472f 780w" sizes="(min-width: 960px) 260px, 42vw"><img src="/img/qogoz-serial-520.webp?v=e707dbeb" width="780" height="1688" alt="Qog‘oz Bino mini app: serial sahifasi" loading="lazy" decoding="async" class="lq" style="background-image: url(data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAADQBACdASoQACMAPxF4s1OsJyQiqqgBgCIJQBlCP/wFNk8fOzftJFRlK1uf1tydAAD+5glrJcaSiZ2ftBhwtijoAb7fUDs8RI0H2uf5L/K+dxOmw1oj0KVn5ug9ToFRXmDfqpkOzyAvegeE+PJ6DVZiAgnhKjase0O3vulVX8p/xDYA)"></picture></div></div></div></a>
 </nav>
 </article>
 </main>
@@ -440,13 +472,62 @@ p, li, dd { text-wrap: pretty; }
     });
   });
 
-  // Videolar: ko'ringanda o'ynaydi (kam harakat / trafik tejashda — faqat tugma bilan), tugma bilan to'xtaydi
+  // Yuklanish holati: idish ustida nur + chiziq (foiz ma'lum bo'lsa — haqiqiy), tayyor bo'lgach so'nadi.
+  const yukl = (idish) => {
+    if (idish._yukl) return idish._yukl;
+    const q = d.createElement("span"), chiziq = d.createElement("i"), raqam = d.createElement("b");
+    q.className = "yukl-qatlam"; q.setAttribute("aria-hidden", "true"); q.append(chiziq, raqam);
+    if (getComputedStyle(idish).position === "static") idish.style.position = "relative";
+    idish.append(q);
+    const h = {
+      foiz(p) {
+        if (h.bitdi || !(p >= 0)) return;
+        p = Math.min(1, p); q.classList.add("foizli");
+        q.style.setProperty("--p", p.toFixed(3)); raqam.textContent = Math.round(p * 100) + "%";
+      },
+      tayyor() {
+        if (h.bitdi) return; h.bitdi = true; q.classList.add("bitdi");
+        setTimeout(() => { q.remove(); idish._yukl = null; }, kam ? 0 : 480);
+      },
+    };
+    return (idish._yukl = h);
+  };
+
+  // Rasmlar (skrinshotlar): ekranga yaqinlashganda hali kelmagan bo'lsa — holat, kelgach yo'qoladi.
+  const idishi = (i) => i.closest(".oyna__ekran, .tel__ekran, .ramka") || i.parentElement.parentElement;
+  const rasmKut = (i) => {
+    if (i.complete && i.naturalWidth) return;
+    const h = yukl(idishi(i));
+    i.addEventListener("load", h.tayyor, { once: true });
+    i.addEventListener("error", h.tayyor, { once: true });
+    if (i.complete && i.naturalWidth) h.tayyor();
+  };
+  const rasmlar = [...d.querySelectorAll("main img.lq")].filter((i) => !(i.complete && i.naturalWidth));
+  if (rasmlar.length) {
+    const io = new IntersectionObserver((es) => es.forEach((x) => {
+      if (x.isIntersecting) { io.unobserve(x.target); rasmKut(x.target); }
+    }), { rootMargin: "200px 0px" });
+    rasmlar.forEach((i) => io.observe(i));
+  }
+
+  // Videolar: ko'ringanda o'ynaydi (kam harakat / trafik tejashda — faqat tugma bilan), tugma bilan to'xtaydi.
+  // AV1 WebM qo'llasa — o'sha (2–3 barobar yengil), bo'lmasa MP4. Yuklanayotganda foizli chiziq.
   const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
   const PAUZA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
   d.querySelectorAll("video[data-src]").forEach((v) => {
-    const b = v.parentElement.querySelector(".pauza");
+    const idish = v.parentElement, b = idish.querySelector(".pauza");
     let qolda = false, yuklandi = false;
-    const yukla = () => { if (!yuklandi) { v.src = v.dataset.src; yuklandi = true; } };
+    const yukla = () => {
+      if (yuklandi) return; yuklandi = true;
+      const h = yukl(idish);
+      const foiz = () => { if (v.duration && v.buffered.length) h.foiz(v.buffered.end(v.buffered.length - 1) / v.duration); };
+      v.addEventListener("progress", foiz); v.addEventListener("loadedmetadata", foiz);
+      v.addEventListener("playing", h.tayyor, { once: true });
+      v.addEventListener("canplaythrough", () => { if (v.paused) h.tayyor(); }, { once: true });
+      v.addEventListener("error", h.tayyor, { once: true });
+      const av1 = v.dataset.av1 && v.canPlayType('video/webm; codecs="av01.0.05M.08"') === "probably";
+      v.src = av1 ? v.dataset.av1 : v.dataset.src;
+    };
     const ikon = () => { b.innerHTML = v.paused ? PLAY : PAUZA; b.setAttribute("aria-label", v.paused ? b.dataset.davom : b.dataset.pauza); };
     b.hidden = false;
     v.addEventListener("play", ikon); v.addEventListener("pause", ikon); ikon();

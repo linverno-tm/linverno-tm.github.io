@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PROMIX — Muhammadabdulloh Tojiddinov</title>
 <meta name="description" content="A concept Uzbek-language site for a Russian maker of finishing materials.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-dP/HuI0FP5mTFy7A+X7W59GM4YqKloJ0nRkE2GcvgL4='; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-zV9RLKbt26ovU+dpxw3mrZ5PkjLvc+wv1Njor04iFJM='; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#eceeea">
 <link rel="canonical" href="https://linverno-tm.github.io/en/ishlar/promix/">
@@ -22,15 +22,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/unbounded.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/onest.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/unbounded.woff2?v=6f8eb829" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/onest.woff2?v=0c096da9" as="font" type="font/woff2" crossorigin>
 <style>/* ================= «Chizmadan jonli ekranga» =================
    Och kalka qog'ozi, ko'k qalam va siyoh. Har ish skrinshoti avval ko'k chizma bo'lib turadi va skroll
    bilan haqiqiy ekranga aylanadi. Harakat faqat bezakda: matn va asosiy rasm doim darhol ko'rinadi.
    Qo'llab-quvvatlamaydigan brauzer va «kam harakat» so'ragan foydalanuvchi oxirgi holatni ko'radi. */
 
-@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2") format("woff2"); font-weight: 500 700; font-display: swap; }
-@font-face { font-family: "Onest"; src: url("/onest.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "Unbounded"; src: url("/unbounded.woff2?v=6f8eb829") format("woff2"); font-weight: 500 700; font-display: swap; }
+@font-face { font-family: "Onest"; src: url("/onest.woff2?v=0c096da9") format("woff2"); font-weight: 300 700; font-display: swap; }
 /* shrift kelguncha o'xshash o'lchamli tizim shrifti: qatorlar ko'chmaydi (CLS) */
 @font-face { font-family: "Unbounded fb"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold"), local("Roboto-Bold"), local("Arial"); size-adjust: 132%; ascent-override: 99.5%; descent-override: 24.5%; line-gap-override: 0%; }
 @font-face { font-family: "Onest fb"; src: local("Arial"), local("ArialMT"), local("Roboto"), local("Segoe UI"); size-adjust: 104%; ascent-override: 97%; descent-override: 30.5%; line-gap-override: 0%; }
@@ -217,7 +217,7 @@ p, li, dd { text-wrap: pretty; }
     .oyna--uzun .oyna__ekran > picture > img { animation: aylan linear both; animation-timeline: --ekran; animation-range: cover 52% cover 96%; }
   }
   /* birinchi ekrandagi telefon: bir martalik, sahifa ochilganda */
-  .tel--stol .chizma { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; background: var(--oq); animation: chizma-ket 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
+  .tel--stol .chizma { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; background: linear-gradient(var(--qalam-och) 1px, transparent 1px) 0 0 / 20px 20px, linear-gradient(90deg, var(--qalam-och) 1px, transparent 1px) 0 0 / 20px 20px var(--oq); animation: chizma-ket 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
   .tel--stol .skaner { display: block; position: absolute; inset: 0; border-left: 2px solid var(--qalam); animation: skaner 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
 }
 @keyframes chizma-ket { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); } }
@@ -391,6 +391,38 @@ p, li, dd { text-wrap: pretty; }
   @view-transition { navigation: auto; }
   ::view-transition-group(*) { animation-duration: var(--t-2); animation-timing-function: var(--ease); }
 }
+
+/* ---------- yuklanish holati (skript.js → yukl) ----------
+   Rasm/video joyi hech qachon bo'sh turmaydi: darhol 24 px xira nusxa (.lq / poster), ustida qalam rangidagi nur
+   va pastda chiziq. --p — haqiqiy ulush (video: buffered/duration); noma'lum bo'lsa chiziq yuguradi. Tayyor — so'nadi. */
+.lq, .klip video { background-color: #dfe3dd; background-position: top center; background-size: cover; background-repeat: no-repeat; }
+.yukl-qatlam {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit; overflow: hidden; transition: opacity .45s;
+  background: linear-gradient(100deg, transparent 35%, rgb(255 255 255 / .38) 50%, transparent 65%) no-repeat;
+  background-size: 250% 100%; animation: yukl-nur 1.5s linear infinite;
+}
+.yukl-qatlam i {
+  position: absolute; left: 22%; right: 22%; bottom: 10%; height: 3px; border-radius: 3px; overflow: hidden;
+  background: rgb(255 255 255 / .6); box-shadow: 0 0 0 1px rgb(22 25 30 / .12);
+}
+.yukl-qatlam i::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--qalam);
+  transform-origin: left center; transform: scaleX(var(--p, 0)); transition: transform .35s ease-out;
+}
+.yukl-qatlam:not(.foizli) i::after { transform: scaleX(.35); animation: yukl-yugur 1.3s ease-in-out infinite; }
+.yukl-qatlam b {
+  position: absolute; right: 22%; bottom: calc(10% + 8px); font: 600 .72rem/1 var(--matn, inherit); color: #fff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / .5); font-variant-numeric: tabular-nums;
+}
+.yukl-qatlam.bitdi { opacity: 0; }
+@keyframes yukl-nur { from { background-position: 130% 0; } to { background-position: -30% 0; } }
+@keyframes yukl-yugur { from { transform: translateX(-100%) scaleX(.35); } to { transform: translateX(290%) scaleX(.35); } }
+@media (prefers-reduced-motion: reduce) {
+  .yukl-qatlam { animation: none; background: none; transition: none; }
+  .yukl-qatlam:not(.foizli) i::after { animation: none; transform: scaleX(.35); }
+  .yukl-qatlam i::after { transition: none; }
+}
+.klip video { background-position: center; }
 </style>
 </head>
 <body>
@@ -411,10 +443,10 @@ p, li, dd { text-wrap: pretty; }
   <h1>PROMIX</h1><p class="lid">A concept Uzbek-language site for a Russian maker of finishing materials.</p>
   <dl class="meta"><div><dt>Period</dt><dd>October 2026</dd></div><div><dt>Role</dt><dd>Author: design and development</dd></div><div><dt>Stack</dt><dd>Python, Jinja2, HTML, CSS, JavaScript, ffmpeg</dd></div><div><dt>Status</dt><dd>Concept<br><a href="https://linverno-tm.github.io/promix-uz/">linverno-tm.github.io/promix-uz</a></dd></div></dl>
 </header>
-<div class="wrap bosh-kadr"><div class="kompozitsiya"><div class="oyna" style="view-transition-name: kadr-promix"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/promix-uz</span></div><div class="oyna__ekran"><picture><source type="image/avif" srcset="/img/promix-kom-640.avif 640w, /img/promix-kom-960.avif 960w, /img/promix-kom-1600.avif 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/promix-kom-640.webp 640w, /img/promix-kom-960.webp 960w, /img/promix-kom-1600.webp 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/promix-kom-640.webp" width="1600" height="1000" alt="PROMIX website, home page" fetchpriority="high"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/promix-tel-390.avif 390w, /img/promix-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/promix-tel-390.webp 390w, /img/promix-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/promix-tel-390.webp" width="520" height="1125" alt="PROMIX website on a phone" loading="lazy" decoding="async"></picture></div></div></div></div>
-<div class="wrap maqola"><div class="ustun"><h2>The problem</h2><p>Introduce the finishing materials to builders and shops in Uzbekistan in their own language: what each product is, where it goes and how much you need.</p><h2>What I built</h2><p>The site is generated from Python and Jinja2 templates. Data for 30 products (coverage, drying time, packaging) comes from the maker’s spec sheets.</p><ul><li>The living header background is a cinemagraph of filler pouring from a bucket, compressed with ffmpeg.</li><li>With reduced motion or data saver on, the video is not loaded and a still image is shown.</li><li>Uzbek and Russian.</li></ul></div><figure class="klip keng"><div class="klip__ramka"><video muted loop playsinline preload="none" poster="/img/promix-kadr-800.webp" width="960" height="540" data-src="/media/promix-oqim.mp4" aria-label="A cinemagraph for the PROMIX site."></video><button class="pauza" type="button" hidden data-pauza="Pause video" data-davom="Play video" aria-label="Play video"></button></div><figcaption>A cinemagraph for the PROMIX site.</figcaption></figure><div class="ustun"><h2>Result</h2><p>Ready as a concept. The trademark and pack photos belong to the maker, so going public needs their consent.</p></div></div>
+<div class="wrap bosh-kadr"><div class="kompozitsiya"><div class="oyna" style="view-transition-name: kadr-promix"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/promix-uz</span></div><div class="oyna__ekran"><picture><source type="image/avif" srcset="/img/promix-kom-640.avif?v=ead805c8 640w, /img/promix-kom-960.avif?v=f9257ac8 960w, /img/promix-kom-1600.avif?v=714f4020 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/promix-kom-640.webp?v=7816a014 640w, /img/promix-kom-960.webp?v=fe8f27eb 960w, /img/promix-kom-1600.webp?v=2bb5fc48 1600w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/promix-kom-640.webp?v=7816a014" width="1600" height="1000" alt="PROMIX website, home page" fetchpriority="high" class="lq" style="background-image: url(data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQAAoABABoJZwAAubT9wfngAD+72jsFkGLzMG+3NfHewZmT8hXeFq30PSDqm2Xk3E7lbcvLabtcf87ANrI7Pjp+Pa3oLwcAAA=)"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/promix-tel-390.avif?v=51b96ae7 390w, /img/promix-tel-520.avif?v=4931ca70 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/promix-tel-390.webp?v=2a698398 390w, /img/promix-tel-520.webp?v=7e6d71fa 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/promix-tel-390.webp?v=2a698398" width="520" height="1125" alt="PROMIX website on a phone" loading="lazy" decoding="async" class="lq" style="background-image: url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACQBACdASoQACMAPv1oqlArJiQitUgBYB+JZQDDNCidwrnBz/4StVQ2Nt/xEQAA/uksSoEyXi0lLh6KJUngbrYB3Mfr+PtoVkNUyF9tdg6i/Mts8CgDJQ0HYZiOcg8zS/F792cnr5SfrNxbo/HiqUooxZ+1yfYzyySJ49DLP6g8KLdht/JrUOvyYrXpBRHxRdSzlhvH+QI4IsO4gdeHuFEyeKAAAA==)"></picture></div></div></div></div>
+<div class="wrap maqola"><div class="ustun"><h2>The problem</h2><p>Introduce the finishing materials to builders and shops in Uzbekistan in their own language: what each product is, where it goes and how much you need.</p><h2>What I built</h2><p>The site is generated from Python and Jinja2 templates. Data for 30 products (coverage, drying time, packaging) comes from the maker’s spec sheets.</p><ul><li>The living header background is a cinemagraph of filler pouring from a bucket, compressed with ffmpeg.</li><li>With reduced motion or data saver on, the video is not loaded and a still image is shown.</li><li>Uzbek and Russian.</li></ul></div><figure class="klip keng"><div class="klip__ramka"><video muted loop playsinline preload="none" poster="/img/promix-kadr-800.webp?v=96e155f4" width="960" height="540" style="background-image: url(data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADwAQCdASoQAAsABABoJZwAD4/Ol/TI1mAA/vaTjCNCuU+9lmZw8hjuPwzAfSGQ60VM/+tEKWJHJqP9wcBCa2Q+SU2mketK7VYJTPq7NIsQPAAA)" data-src="/media/promix-oqim.mp4?v=239cb23b" data-av1="/media/promix-oqim.webm?v=b6ccf002" aria-label="A cinemagraph for the PROMIX site."></video><button class="pauza" type="button" hidden data-pauza="Pause video" data-davom="Play video" aria-label="Play video"></button></div><figcaption>A cinemagraph for the PROMIX site.</figcaption></figure><div class="ustun"><h2>Result</h2><p>Ready as a concept. The trademark and pack photos belong to the maker, so going public needs their consent.</p></div></div>
 <nav class="wrap keyingi" aria-label="Next project"><p class="keyingi__yorliq">Next project</p>
-  <a href="/en/ishlar/mini-ges/"><div><h2>MINI GES</h2><p>Website</p></div><div class="kompozitsiya"><div class="oyna oyna--uzun" style="view-transition-name: kadr-mini-ges"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/mini-ges-site</span></div><div class="oyna__ekran" style="--siljish: -50.0%"><picture><source type="image/avif" srcset="/img/uzun-ges-640.avif 640w, /img/uzun-ges-1100.avif 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/uzun-ges-640.webp 640w, /img/uzun-ges-1100.webp 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/uzun-ges-640.webp" width="1100" height="1375" alt="MINI GES website, home page" loading="lazy" decoding="async"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/ges-tel-390.avif 390w, /img/ges-tel-520.avif 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/ges-tel-390.webp 390w, /img/ges-tel-520.webp 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/ges-tel-390.webp" width="520" height="1125" alt="MINI GES website on a phone" loading="lazy" decoding="async"></picture></div></div></div></a>
+  <a href="/en/ishlar/mini-ges/"><div><h2>MINI GES</h2><p>Website</p></div><div class="kompozitsiya"><div class="oyna oyna--uzun" style="view-transition-name: kadr-mini-ges"><div class="oyna__bar" aria-hidden="true"><i></i><i></i><i></i><span>linverno-tm.github.io/mini-ges-site</span></div><div class="oyna__ekran" style="--siljish: -50.0%"><picture><source type="image/avif" srcset="/img/uzun-ges-640.avif?v=2167cee3 640w, /img/uzun-ges-1100.avif?v=fe279f10 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><source type="image/webp" srcset="/img/uzun-ges-640.webp?v=1aeb36c8 640w, /img/uzun-ges-1100.webp?v=55555c68 1100w" sizes="(min-width: 1200px) 760px, (min-width: 960px) 62vw, 92vw"><img src="/img/uzun-ges-640.webp?v=1aeb36c8" width="1100" height="1375" alt="MINI GES website, home page" loading="lazy" decoding="async" class="lq" style="background-image: url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwAwCdASoQABQAPxFysFAsJqSisAgBgCIJQBWABCxnnLOPgfvGgmQAAP7axwI1lc13zQAB2GkXDoysLZx4PJcZrzHCVcDtRxdKSkxgeharvP2sLPcKMxc3kY3gQ597IVfegxWuqHxf3oJRNz/AAA==)"></picture></div></div><div class="tel tel--yon"><div class="tel__ekran"><picture><source type="image/avif" srcset="/img/ges-tel-390.avif?v=3ccf6c96 390w, /img/ges-tel-520.avif?v=f40bf599 520w" sizes="(min-width: 960px) 200px, 30vw"><source type="image/webp" srcset="/img/ges-tel-390.webp?v=f5b8fe64 390w, /img/ges-tel-520.webp?v=c0f4314e 520w" sizes="(min-width: 960px) 200px, 30vw"><img src="/img/ges-tel-390.webp?v=f5b8fe64" width="520" height="1125" alt="MINI GES website on a phone" loading="lazy" decoding="async" class="lq" style="background-image: url(data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBQCdASoQACMAPv1qq1ArJiQitUgBYB+JZgCdMoM6A0NcflMO4wVYDvP1VtMwCZIAAP7jUQNCKszFsg48+hiOZz/+GKQZFupimUQ5Uk3lVRd9DNvVHZCQzsaXAwXQYOhmeJK6P9wRmgnYjk8/lsIdEs+wrzDDXkOZ45dZuLUyddFDlCHIjwvLEvmg4+d0DI66IhkAAAA=)"></picture></div></div></div></a>
 </nav>
 </article>
 </main>
@@ -440,13 +472,62 @@ p, li, dd { text-wrap: pretty; }
     });
   });
 
-  // Videolar: ko'ringanda o'ynaydi (kam harakat / trafik tejashda — faqat tugma bilan), tugma bilan to'xtaydi
+  // Yuklanish holati: idish ustida nur + chiziq (foiz ma'lum bo'lsa — haqiqiy), tayyor bo'lgach so'nadi.
+  const yukl = (idish) => {
+    if (idish._yukl) return idish._yukl;
+    const q = d.createElement("span"), chiziq = d.createElement("i"), raqam = d.createElement("b");
+    q.className = "yukl-qatlam"; q.setAttribute("aria-hidden", "true"); q.append(chiziq, raqam);
+    if (getComputedStyle(idish).position === "static") idish.style.position = "relative";
+    idish.append(q);
+    const h = {
+      foiz(p) {
+        if (h.bitdi || !(p >= 0)) return;
+        p = Math.min(1, p); q.classList.add("foizli");
+        q.style.setProperty("--p", p.toFixed(3)); raqam.textContent = Math.round(p * 100) + "%";
+      },
+      tayyor() {
+        if (h.bitdi) return; h.bitdi = true; q.classList.add("bitdi");
+        setTimeout(() => { q.remove(); idish._yukl = null; }, kam ? 0 : 480);
+      },
+    };
+    return (idish._yukl = h);
+  };
+
+  // Rasmlar (skrinshotlar): ekranga yaqinlashganda hali kelmagan bo'lsa — holat, kelgach yo'qoladi.
+  const idishi = (i) => i.closest(".oyna__ekran, .tel__ekran, .ramka") || i.parentElement.parentElement;
+  const rasmKut = (i) => {
+    if (i.complete && i.naturalWidth) return;
+    const h = yukl(idishi(i));
+    i.addEventListener("load", h.tayyor, { once: true });
+    i.addEventListener("error", h.tayyor, { once: true });
+    if (i.complete && i.naturalWidth) h.tayyor();
+  };
+  const rasmlar = [...d.querySelectorAll("main img.lq")].filter((i) => !(i.complete && i.naturalWidth));
+  if (rasmlar.length) {
+    const io = new IntersectionObserver((es) => es.forEach((x) => {
+      if (x.isIntersecting) { io.unobserve(x.target); rasmKut(x.target); }
+    }), { rootMargin: "200px 0px" });
+    rasmlar.forEach((i) => io.observe(i));
+  }
+
+  // Videolar: ko'ringanda o'ynaydi (kam harakat / trafik tejashda — faqat tugma bilan), tugma bilan to'xtaydi.
+  // AV1 WebM qo'llasa — o'sha (2–3 barobar yengil), bo'lmasa MP4. Yuklanayotganda foizli chiziq.
   const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
   const PAUZA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
   d.querySelectorAll("video[data-src]").forEach((v) => {
-    const b = v.parentElement.querySelector(".pauza");
+    const idish = v.parentElement, b = idish.querySelector(".pauza");
     let qolda = false, yuklandi = false;
-    const yukla = () => { if (!yuklandi) { v.src = v.dataset.src; yuklandi = true; } };
+    const yukla = () => {
+      if (yuklandi) return; yuklandi = true;
+      const h = yukl(idish);
+      const foiz = () => { if (v.duration && v.buffered.length) h.foiz(v.buffered.end(v.buffered.length - 1) / v.duration); };
+      v.addEventListener("progress", foiz); v.addEventListener("loadedmetadata", foiz);
+      v.addEventListener("playing", h.tayyor, { once: true });
+      v.addEventListener("canplaythrough", () => { if (v.paused) h.tayyor(); }, { once: true });
+      v.addEventListener("error", h.tayyor, { once: true });
+      const av1 = v.dataset.av1 && v.canPlayType('video/webm; codecs="av01.0.05M.08"') === "probably";
+      v.src = av1 ? v.dataset.av1 : v.dataset.src;
+    };
     const ikon = () => { b.innerHTML = v.paused ? PLAY : PAUZA; b.setAttribute("aria-label", v.paused ? b.dataset.davom : b.dataset.pauza); };
     b.hidden = false;
     v.addEventListener("play", ikon); v.addEventListener("pause", ikon); ikon();

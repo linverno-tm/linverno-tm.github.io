@@ -15,3 +15,7 @@ Matnni o‘zgartirish: `tools/build.py` → `python tools/build.py`. Uslub: `too
 
 Rasmlar: `tools/rasm.py` (AVIF/WebP o‘lchamlari va ko‘k chizma qatlami), ishlar skrinshotlaridan hammasini yasash —
 `bash tools/ishlar-rasmlari.sh <skrinshotlar papkasi>`.
+
+## Cloudflare nusxasi
+
+`bash tools/cloudflare.sh` — sayt fayllarini `tojiddinov-portfolio.pages.dev` ga chiqaradi (`tools/cloudflare/_headers`: rasm/video/shrift 1 yil `immutable`, manzillarda `?v=<xesh>`; `_redirects`: `/promix-uz/` va boshqa alohida repo'lar GitHub Pages'ga). Videolar AV1 WebM (+ MP4 zaxira): `ffmpeg -c:v libaom-av1 -crf 38`.

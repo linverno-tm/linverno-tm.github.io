@@ -191,7 +191,7 @@ p, li, dd { text-wrap: pretty; }
     .oyna--uzun .oyna__ekran > picture > img { animation: aylan linear both; animation-timeline: --ekran; animation-range: cover 52% cover 96%; }
   }
   /* birinchi ekrandagi telefon: bir martalik, sahifa ochilganda */
-  .tel--stol .chizma { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; background: var(--oq); animation: chizma-ket 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
+  .tel--stol .chizma { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; background: linear-gradient(var(--qalam-och) 1px, transparent 1px) 0 0 / 20px 20px, linear-gradient(90deg, var(--qalam-och) 1px, transparent 1px) 0 0 / 20px 20px var(--oq); animation: chizma-ket 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
   .tel--stol .skaner { display: block; position: absolute; inset: 0; border-left: 2px solid var(--qalam); animation: skaner 1.3s .9s var(--ease) both; animation-timeline: auto; animation-range: normal; }
 }
 @keyframes chizma-ket { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); } }
@@ -365,3 +365,35 @@ p, li, dd { text-wrap: pretty; }
   @view-transition { navigation: auto; }
   ::view-transition-group(*) { animation-duration: var(--t-2); animation-timing-function: var(--ease); }
 }
+
+/* ---------- yuklanish holati (skript.js → yukl) ----------
+   Rasm/video joyi hech qachon bo'sh turmaydi: darhol 24 px xira nusxa (.lq / poster), ustida qalam rangidagi nur
+   va pastda chiziq. --p — haqiqiy ulush (video: buffered/duration); noma'lum bo'lsa chiziq yuguradi. Tayyor — so'nadi. */
+.lq, .klip video { background-color: #dfe3dd; background-position: top center; background-size: cover; background-repeat: no-repeat; }
+.yukl-qatlam {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit; overflow: hidden; transition: opacity .45s;
+  background: linear-gradient(100deg, transparent 35%, rgb(255 255 255 / .38) 50%, transparent 65%) no-repeat;
+  background-size: 250% 100%; animation: yukl-nur 1.5s linear infinite;
+}
+.yukl-qatlam i {
+  position: absolute; left: 22%; right: 22%; bottom: 10%; height: 3px; border-radius: 3px; overflow: hidden;
+  background: rgb(255 255 255 / .6); box-shadow: 0 0 0 1px rgb(22 25 30 / .12);
+}
+.yukl-qatlam i::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--qalam);
+  transform-origin: left center; transform: scaleX(var(--p, 0)); transition: transform .35s ease-out;
+}
+.yukl-qatlam:not(.foizli) i::after { transform: scaleX(.35); animation: yukl-yugur 1.3s ease-in-out infinite; }
+.yukl-qatlam b {
+  position: absolute; right: 22%; bottom: calc(10% + 8px); font: 600 .72rem/1 var(--matn, inherit); color: #fff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / .5); font-variant-numeric: tabular-nums;
+}
+.yukl-qatlam.bitdi { opacity: 0; }
+@keyframes yukl-nur { from { background-position: 130% 0; } to { background-position: -30% 0; } }
+@keyframes yukl-yugur { from { transform: translateX(-100%) scaleX(.35); } to { transform: translateX(290%) scaleX(.35); } }
+@media (prefers-reduced-motion: reduce) {
+  .yukl-qatlam { animation: none; background: none; transition: none; }
+  .yukl-qatlam:not(.foizli) i::after { animation: none; transform: scaleX(.35); }
+  .yukl-qatlam i::after { transition: none; }
+}
+.klip video { background-position: center; }
